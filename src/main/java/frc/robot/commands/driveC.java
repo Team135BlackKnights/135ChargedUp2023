@@ -12,17 +12,23 @@ public class driveC extends CommandBase{
   private final driveS drive;
   
   public driveC(driveS subsystem) {
-        // Use addRequirements() here to declare subsystem dependencies.
-        drive = subsystem;
-        addRequirements(subsystem);
-      }       
+    // Use addRequirements() here to declare subsystem dependencies.
+    drive = subsystem;
+    addRequirements(subsystem);
+  }       
  
-      public void execute(){
-      double left = RobotContainer.controller1.getRawAxis(1);
-      double right = RobotContainer.controller1.getRawAxis(5);
-        drive.tankDrive(left,right);
+  public void execute(){
+    double left = RobotContainer.controller1.getRawAxis(1);
+    double right = RobotContainer.controller1.getRawAxis(5);
+    drive.tankDrive(left,right);
 
- 
-        
-}
+    NetworkTable LauncherLimeLightTable = NetworkTableInstance.getDefault().getTable("limelight-launch");
+    if (RobotContainer.controller1.getAButtonPressed()){
+    LauncherLimeLightTable.getEntry("pipeline").setNumber(0);
+    }
+    if (RobotContainer.controller1.getXButton()) {
+      LauncherLimeLightTable.getEntry("pipeline").setNumber(1);
+    }
+  }
+
 }

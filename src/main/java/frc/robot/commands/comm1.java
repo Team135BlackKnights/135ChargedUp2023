@@ -15,7 +15,9 @@ public class comm1 extends CommandBase{
                 subsys1.motor1.set(1);
             }
             else if (RobotContainer.controller1.getBButton()==true){
-                subsys.motor1.set(-1);
+                subsys1.motor1.set(-1);
             }
+
+            
         }
 }

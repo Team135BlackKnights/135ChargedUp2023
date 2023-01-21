@@ -9,7 +9,7 @@ import frc.robot.subsystems.driveS;
 public class shiftC extends CommandBase{
     private final driveS drive;
     double threshold;
-    boolean position;
+    public static boolean position;
     Value output;
     public shiftC(driveS subsystem) {
         // Use addRequirements() here to declare subsystem dependencies.
@@ -21,7 +21,7 @@ public class shiftC extends CommandBase{
     public void initialize() {
         position = true;
         driveS.shifting(position);
-        }
+    }
 
     @Override
     public void execute() {
