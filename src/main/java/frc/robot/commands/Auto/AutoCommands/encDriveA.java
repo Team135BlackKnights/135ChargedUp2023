@@ -44,4 +44,11 @@ public class encDriveA extends CommandBase {
       isFinished = true;
     } 
   }
+  @Override
+  public void end(boolean interrupted) {}
+
+  @Override
+  public boolean isFinished() {
+    return isFinished();
+  }
 }

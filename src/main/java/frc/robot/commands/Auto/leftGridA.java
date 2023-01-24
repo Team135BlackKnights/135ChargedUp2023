@@ -13,19 +13,8 @@ public class leftGridA extends SequentialCommandGroup{
             Commands.sequence(
                 new resetEncoders(drive),
 
-                new encDriveA(drive, -10)
+                new encDriveA(drive, -50)
             )
         );
-                
-                    
-
-                    
-                /* 
-                scoreA(),
-                encoderDriveA(50);
-                if (RobotContainer.score>1) {
-                }*/
-            
-
     }
 }
