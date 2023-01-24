@@ -7,8 +7,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.driveC;
+import frc.robot.commands.Auto.leftGridA;
+import frc.robot.commands.Auto.middleGridA;
+import frc.robot.commands.Auto.rightGridA;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.driveS;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -25,12 +29,24 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public static frc.robot.subsystems.driveS _driveS = new frc.robot.subsystems.driveS();
   public static driveC _driveC = new driveC(_driveS);
+
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final Command LeftGrid = new leftGridA(_driveS);
+  private final Command MiddleGrid = new middleGridA(_driveS);
+  private final Command RightGrid = new rightGridA(_driveS);
 
-
+  SendableChooser<Command> m_Chooser = new SendableChooser<>();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    m_Chooser.addOption("LeftGridAuto", LeftGrid);
+    m_Chooser.addOption("MiddleGridAuto", MiddleGrid);
+    m_Chooser.addOption("RightGridAuto", RightGrid);
+
+    m_Chooser.setDefaultOption("LeftGridAuto", LeftGrid);
+
+    SmartDashboard.putData(m_Chooser);
+
     _driveS.setDefaultCommand(new driveC(_driveS));
 
     // Configure the button bindings
@@ -52,6 +68,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return m_Chooser.getSelected();
   }
 }

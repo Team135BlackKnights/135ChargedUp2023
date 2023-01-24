@@ -1,11 +1,11 @@
-package frc.robot.commands.auto;
+package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.driveS;
 
-public class Auto extends SequentialCommandGroup{
-    public Auto(driveS drive) {
+public class middleGridA extends SequentialCommandGroup{
+    public middleGridA(driveS drive) {
         super(
 
         );

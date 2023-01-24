@@ -30,8 +30,15 @@ public class driveS extends SubsystemBase{
     
   public DifferentialDrive tank = new DifferentialDrive(MCGleft, MCGright);
 
-  public  void tankDrive(double left, double right) {
+  public void tankDrive(double left, double right) {
     tank.tankDrive(left,right);
+  }
+
+  public void resetEncoders() {
+    elFront.setPosition(0);
+    elBack.setPosition(0);
+    erFront.setPosition(0);
+    erBack.setPosition(0);
   }
 
   public static void shifting(boolean position) {
