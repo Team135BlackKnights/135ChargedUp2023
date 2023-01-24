@@ -16,7 +16,7 @@ public class driveC extends CommandBase{
     drive = subsystem;
     addRequirements(subsystem);
   }       
- 
+
   public void execute(){
     double left = RobotContainer.controller1.getRawAxis(1);
     double right = RobotContainer.controller1.getRawAxis(5);
@@ -26,9 +26,8 @@ public class driveC extends CommandBase{
     if (RobotContainer.controller1.getAButtonPressed()){
     LauncherLimeLightTable.getEntry("pipeline").setNumber(0);
     }
-    if (RobotContainer.controller1.getXButton()) {
+    if (RobotContainer.controller1.getXButtonPressed()) {
       LauncherLimeLightTable.getEntry("pipeline").setNumber(1);
     }
   }
-
 }
