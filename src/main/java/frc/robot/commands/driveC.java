@@ -18,9 +18,9 @@ public class driveC extends CommandBase{
   }       
 
   public void execute(){
-    double left = -RobotContainer.controller1.getRawAxis(1);
-    double right = RobotContainer.controller1.getRawAxis(5);
-    drive.tankDrive(left,right);
+    double left = RobotContainer.controller1.getRawAxis(1);
+double right = RobotContainer.controller1.getRawAxis(5);
+    drive.tankDrive(-left,right);
 
     NetworkTable LauncherLimeLightTable = NetworkTableInstance.getDefault().getTable("limelight-launch");
     if (RobotContainer.controller1.getAButtonPressed()){

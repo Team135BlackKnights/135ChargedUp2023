@@ -31,8 +31,8 @@ public class driveS extends SubsystemBase{
 
   public static RelativeEncoder erBack;
 
-  MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);
-  MotorControllerGroup MCGright = new MotorControllerGroup(FrontR, BackR);
+  MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL,BackL);
+  MotorControllerGroup MCGright = new MotorControllerGroup(FrontR,BackR);
     
   public DifferentialDrive tank = new DifferentialDrive(MCGleft, MCGright);
 

@@ -31,7 +31,6 @@ public class RobotContainer {
   public static frc.robot.subsystems.driveS _driveS = new frc.robot.subsystems.driveS();
   public static frc.robot.subsystems.subsys1 _subsys1 = new frc.robot.subsystems.subsys1();
   public static driveC _driveC = new driveC(_driveS);
-
   public final Command _Comm1 = new comm1(_subsys1);
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final Command LeftGrid = new leftGridA(_driveS);
@@ -50,7 +49,7 @@ public class RobotContainer {
 
     SmartDashboard.putData(m_Chooser);
     _subsys1.setDefaultCommand(new comm1(_subsys1));
-    _driveS.setDefaultCommand(new driveC(_driveS));
+    _driveS.setDefaultCommand(_driveC);
 
     // Configure the button bindings
     configureButtonBindings();
