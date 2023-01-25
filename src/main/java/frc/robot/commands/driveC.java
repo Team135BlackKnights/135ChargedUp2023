@@ -18,7 +18,7 @@ public class driveC extends CommandBase{
   }       
 
   public void execute(){
-    double left = RobotContainer.controller1.getRawAxis(1);
+    double left = -RobotContainer.controller1.getRawAxis(1);
     double right = RobotContainer.controller1.getRawAxis(5);
     drive.tankDrive(left,right);
 
@@ -29,5 +29,7 @@ public class driveC extends CommandBase{
     if (RobotContainer.controller1.getXButtonPressed()) {
       LauncherLimeLightTable.getEntry("pipeline").setNumber(1);
     }
+
+    
   }
 }

@@ -11,13 +11,28 @@ public class comm1 extends CommandBase{
         addRequirements(subsystem);
     }
         public void execute(){
-            if (RobotContainer.controller1.getAButton()==true){
+          /*  if (RobotContainer.controller1.getAButton()==true){
                 subsys1.motor1.set(1);
+                subsys1.motor2.set(-1);
+
             }
             else if (RobotContainer.controller1.getBButton()==true){
                 subsys1.motor1.set(-1);
-            }
+                subsys1.motor.set(1);
 
-            
+            }*/
+            if (RobotContainer.controller1.getRawAxis(2)>0){
+            subsys1.motor1.set((RobotContainer.controller1.getRawAxis(2))/2);
+            subsys1.motor2.set(-(RobotContainer.controller1.getRawAxis(2))/2);
+            }
+         else if (RobotContainer.controller1.getRawAxis(3)>0){
+
+            subsys1.motor1.set(-(RobotContainer.controller1.getRawAxis(3))/2);
+            subsys1.motor2.set((RobotContainer.controller1.getRawAxis(3))/2);
+            }
+            else  {
+               subsys1.motor1.set(0);
+               subsys1.motor2.set(0);
+            }
         }
 }

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.comm1;
 import frc.robot.commands.driveC;
 import frc.robot.commands.Auto.leftGridA;
 import frc.robot.commands.Auto.middleGridA;
@@ -28,8 +29,10 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public static frc.robot.subsystems.driveS _driveS = new frc.robot.subsystems.driveS();
+  public static frc.robot.subsystems.subsys1 _subsys1 = new frc.robot.subsystems.subsys1();
   public static driveC _driveC = new driveC(_driveS);
 
+  public final Command _Comm1 = new comm1(_subsys1);
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final Command LeftGrid = new leftGridA(_driveS);
   private final Command MiddleGrid = new middleGridA(_driveS);
@@ -46,7 +49,7 @@ public class RobotContainer {
     m_Chooser.setDefaultOption("LeftGridAuto", LeftGrid);
 
     SmartDashboard.putData(m_Chooser);
-
+    _subsys1.setDefaultCommand(new comm1(_subsys1));
     _driveS.setDefaultCommand(new driveC(_driveS));
 
     // Configure the button bindings

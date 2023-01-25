@@ -15,7 +15,7 @@ public class shiftC extends CommandBase{
         // Use addRequirements() here to declare subsystem dependencies.
         drive = subsystem;
         addRequirements(subsystem);
-      }       
+      }
 
     @Override
     public void initialize() {
@@ -28,7 +28,7 @@ public class shiftC extends CommandBase{
 
         if (RobotContainer.controller1.getLeftBumper()) {
             position = false;
-        } 
+        }
 
         if (RobotContainer.controller1.getRightBumper()) {
             position = true;
@@ -36,12 +36,13 @@ public class shiftC extends CommandBase{
 
         driveS.shifting(position);
         SmartDashboard.putBoolean("position", position);
-        SmartDashboard.putNumber("Pressure", driveS.pressure);
+  //      SmartDashboard.putNumber("Pressure", driveS.pressure);
     }
 
     @Override
-    public void end(boolean interrupted) {}
-  
+    public void end(boolean interrupted) {
+    }
+
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {

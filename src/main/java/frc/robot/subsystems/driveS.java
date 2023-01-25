@@ -16,14 +16,20 @@ import frc.robot.RobotMap;
 public class driveS extends SubsystemBase{
   public static DoubleSolenoid shifter = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.Drive.shiftSolenoid, RobotMap.Drive.shiftSolenoid2);
 
-  public static PneumaticHub PneumHub= new PneumaticHub();
-  public static double pressure = PneumHub.getPressure(0);
+  //public static PneumaticHub PneumHub= new PneumaticHub();
+  //public static double pressure = PneumHub.getPressure(0);
 
   public CANSparkMax FrontL = new CANSparkMax(RobotMap.Drive.FL_ID, MotorType.kBrushless);
   public CANSparkMax FrontR = new CANSparkMax(RobotMap.Drive.FR_ID, MotorType.kBrushless);
   public CANSparkMax BackL = new CANSparkMax(RobotMap.Drive.BL_ID, MotorType.kBrushless);
   public CANSparkMax BackR = new CANSparkMax(RobotMap.Drive.BR_ID, MotorType.kBrushless);
-  public static RelativeEncoder elFront, elBack, erFront, erBack;
+  public static RelativeEncoder elFront;
+
+  public static RelativeEncoder elBack;
+
+  public static RelativeEncoder erFront;
+
+  public static RelativeEncoder erBack;
 
   MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);
   MotorControllerGroup MCGright = new MotorControllerGroup(FrontR, BackR);
@@ -44,10 +50,10 @@ public class driveS extends SubsystemBase{
   public static void shifting(boolean position) {
     if (position == true) {
       shifter.set(Value.kForward);
-      pressure = PneumHub.getPressure(0);
+ //     pressure = PneumHub.getPressure(0);
     } else if (position == false) {
       shifter.set(Value.kReverse);
-      pressure = PneumHub.getPressure(0);
+ //     pressure = PneumHub.getPressure(0);
     }
   }
 }
