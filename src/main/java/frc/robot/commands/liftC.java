@@ -13,7 +13,7 @@ public class liftC extends CommandBase{
         addRequirements(subsystem);    
          Desired = 200;
     }
-    double tiltVal = liftS.eTilt.getPosition();
+    double tiltVal = liftS.eTilt.getDistance();
 
     PIDController pidController = new PIDController(.1, .1, 0);//placeholder vals
 
