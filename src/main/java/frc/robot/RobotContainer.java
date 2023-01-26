@@ -41,7 +41,7 @@ public class RobotContainer {
   private final Command oneScore = new oneScoreA(_driveS);
 
   SendableChooser<Command> m_Chooser = new SendableChooser<>();
-  SendableChooser<Command> m_Chooser2= new SendableChooser<>();
+ // SendableChooser<Command> m_Chooser2= new SendableChooser<>();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_Chooser.addOption("LeftGridAuto", LeftGrid);
@@ -50,7 +50,7 @@ public class RobotContainer {
 
     m_Chooser.setDefaultOption("LeftGridAuto", LeftGrid);
 
-    m_Chooser2.addOption("1 score", oneScore);
+    //m_Chooser2.addOption("1 score", oneScore);
   //m_Chooser2.addOption("2 score", twoScore)
 
     SmartDashboard.putData(m_Chooser);
