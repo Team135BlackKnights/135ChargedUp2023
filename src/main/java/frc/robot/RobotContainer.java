@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   public static XboxController controller1 = new XboxController(0);
-
+  public static XboxController controller2= new XboxController(1);
   public static int grid = 0;
 
   // The robot's subsystems and commands are defined here...
