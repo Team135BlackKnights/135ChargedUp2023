@@ -10,11 +10,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.clawC;
 import frc.robot.commands.driveC;
+import frc.robot.commands.liftC;
 import frc.robot.commands.Auto.leftGridA;
 import frc.robot.commands.Auto.middleGridA;
 import frc.robot.commands.Auto.oneScoreA;
 import frc.robot.commands.Auto.rightGridA;
+import frc.robot.subsystems.clawS;
 import frc.robot.subsystems.driveS;
+import frc.robot.subsystems.liftS;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -29,8 +32,9 @@ public class RobotContainer {
   public static int grid = 0;
 
   // The robot's subsystems and commands are defined here...
-  public static frc.robot.subsystems.driveS _driveS = new frc.robot.subsystems.driveS();
-  public static frc.robot.subsystems.clawS _clawS = new frc.robot.subsystems.clawS();
+  public static driveS _driveS = new driveS();
+  public static clawS _clawS = new clawS();
+  public static liftS _liftS = new liftS();
 
   public static driveC _driveC = new driveC(_driveS);
   public static Command _Comm1 = new clawC(_clawS);
@@ -56,6 +60,7 @@ public class RobotContainer {
     SmartDashboard.putData(m_Chooser);
     _clawS.setDefaultCommand(new clawC(_clawS));
     _driveS.setDefaultCommand(new driveC(_driveS));
+    _liftS.setDefaultCommand(new liftC(_liftS));
 
     if (m_Chooser.getSelected()==LeftGrid){
       grid=1;
