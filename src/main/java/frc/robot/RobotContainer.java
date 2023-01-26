@@ -8,13 +8,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.comm1;
+import frc.robot.commands.clawC;
 import frc.robot.commands.driveC;
 import frc.robot.commands.Auto.leftGridA;
 import frc.robot.commands.Auto.middleGridA;
+import frc.robot.commands.Auto.oneScoreA;
 import frc.robot.commands.Auto.rightGridA;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.driveS;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -26,20 +25,23 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   public static XboxController controller1 = new XboxController(0);
-  // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  public static frc.robot.subsystems.driveS _driveS = new frc.robot.subsystems.driveS();
-  public static frc.robot.subsystems.subsys1 _subsys1 = new frc.robot.subsystems.subsys1();
-  public static driveC _driveC = new driveC(_driveS);
 
-  public final Command _Comm1 = new comm1(_subsys1);
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  public static int grid = 0;
+
+  // The robot's subsystems and commands are defined here...
+  public static frc.robot.subsystems.driveS _driveS = new frc.robot.subsystems.driveS();
+  public static frc.robot.subsystems.clawS _clawS = new frc.robot.subsystems.clawS();
+
+  public static driveC _driveC = new driveC(_driveS);
+  public static Command _Comm1 = new clawC(_clawS);
+
   private final Command LeftGrid = new leftGridA(_driveS);
   private final Command MiddleGrid = new middleGridA(_driveS);
   private final Command RightGrid = new rightGridA(_driveS);
+  private final Command oneScore = new oneScoreA(_driveS);
 
   SendableChooser<Command> m_Chooser = new SendableChooser<>();
-
+  SendableChooser<Command> m_Chooser2= new SendableChooser<>();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_Chooser.addOption("LeftGridAuto", LeftGrid);
@@ -48,9 +50,22 @@ public class RobotContainer {
 
     m_Chooser.setDefaultOption("LeftGridAuto", LeftGrid);
 
+    m_Chooser2.addOption("1 score", oneScore);
+  //m_Chooser2.addOption("2 score", twoScore)
+
     SmartDashboard.putData(m_Chooser);
-    _subsys1.setDefaultCommand(new comm1(_subsys1));
+    _clawS.setDefaultCommand(new clawC(_clawS));
     _driveS.setDefaultCommand(new driveC(_driveS));
+
+    if (m_Chooser.getSelected()==LeftGrid){
+      grid=1;
+    }
+    else if (m_Chooser.getSelected()==MiddleGrid){
+      grid=2;
+    }
+    else if (m_Chooser.getSelected()==RightGrid){
+      grid=3;
+    }
 
     // Configure the button bindings
     configureButtonBindings();
@@ -73,4 +88,6 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return m_Chooser.getSelected();
   }
+    
+ 
 }

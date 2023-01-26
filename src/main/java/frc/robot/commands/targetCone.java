@@ -15,7 +15,7 @@ public class targetCone extends CommandBase{
       // Use addRequirements() here to declare subsystem dependencies.
       drive = subsystem;
       addRequirements(subsystem);
-    }       
+    }
     NetworkTable LauncherLimeLightTable = NetworkTableInstance.getDefault().getTable("limelight-launch");
     NetworkTableEntry Tx = LauncherLimeLightTable.getEntry("tx");
     NetworkTableEntry Tv = LauncherLimeLightTable.getEntry("tv");

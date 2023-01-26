@@ -36,7 +36,7 @@ public class encDriveA extends CommandBase {
     }
     double avgEnc = (driveS.elBack.getPosition() + driveS.elFront.getPosition()-driveS.erBack.getPosition()
     - driveS.erFront.getPosition()) / 4;
-    double rEncValue = avgEnc/gearRatios;
+    double rEncValue = avgEnc*gearRatios;
     encodervalue = rEncValue*diameter;
 
     drive.tankDrive(pidController.calculate(encodervalue, Desired), pidController.calculate(encodervalue, Desired));

@@ -8,6 +8,8 @@ import frc.robot.commands.Auto.AutoCommands.resetEncoders;
 import frc.robot.subsystems.driveS;
 
 public class leftGridA extends SequentialCommandGroup{
+
+    int grid = 1;
     public leftGridA(driveS drive) {
         super(
             Commands.sequence(
@@ -16,5 +18,16 @@ public class leftGridA extends SequentialCommandGroup{
                 new encDriveA(drive, -50)
             )
         );
+                
+                    
+
+                    
+                /* 
+                scoreA(),
+                encoderDriveA(50);
+                if (RobotContainer.score>1) {
+                }*/
+            
+
     }
 }

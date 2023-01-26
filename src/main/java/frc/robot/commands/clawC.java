@@ -2,12 +2,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.subsys1;
+import frc.robot.subsystems.clawS;
 
-public class comm1 extends CommandBase{
-    private final subsys1 subsys;
-    public comm1(subsys1 subsystem) {
-        subsys=subsystem;
+public class clawC extends CommandBase{
+    private final clawS claw;
+    public clawC(clawS subsystem) {
+        claw=subsystem;
         addRequirements(subsystem);
     }
         public void execute(){
@@ -22,17 +22,17 @@ public class comm1 extends CommandBase{
 
             }*/
             if (RobotContainer.controller1.getRawAxis(2)>0){
-            subsys1.motor1.set((RobotContainer.controller1.getRawAxis(2))/2);
-            subsys1.motor2.set(-(RobotContainer.controller1.getRawAxis(2))/2);
+            clawS.claw1.set((RobotContainer.controller1.getRawAxis(2))/2);
+            clawS.claw2.set(-(RobotContainer.controller1.getRawAxis(2))/2);
             }
          else if (RobotContainer.controller1.getRawAxis(3)>0){
 
-            subsys1.motor1.set(-(RobotContainer.controller1.getRawAxis(3))/2);
-            subsys1.motor2.set((RobotContainer.controller1.getRawAxis(3))/2);
+            clawS.claw1.set(-(RobotContainer.controller1.getRawAxis(3))/2);
+            clawS.claw2.set((RobotContainer.controller1.getRawAxis(3))/2);
             }
             else  {
-               subsys1.motor1.set(0);
-               subsys1.motor2.set(0);
+                clawS.claw1.set(0);
+                clawS.claw2.set(0);
             }
         }
 }

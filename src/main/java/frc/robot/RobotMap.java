@@ -1,8 +1,6 @@
 package frc.robot;
 public interface RobotMap {
 
-    public final static int M1=31, M2=32;
-
     public interface Drive {
         
         public final static int 
@@ -17,15 +15,15 @@ public interface RobotMap {
     public interface Intake {
         // Simple intake. Motors spin vertically opposite of each other.
         public static final int
-            intakeMotorID1 = 0,
-            intakeMotorID2 = 0;
+            intakeID_1 = 0,
+            intakeID_2 = 0;
     }
 
-    public interface Manipulator {
+    public interface Lift {
         // Manipulator tilts and is on a lift. Limit switches to set to certain positions.
         public static final int
-            liftMotorID1 = 0,
-            liftMotorID2 = 0,
-            tiltMotorID = 0;
+            liftID_1 = 0,
+            liftID_2 = 0,
+            tiltID = 0;
     }
 }
