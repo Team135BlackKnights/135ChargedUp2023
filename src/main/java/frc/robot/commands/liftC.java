@@ -18,9 +18,16 @@ public class liftC extends CommandBase{
     PIDController pidController = new PIDController(.1, .1, 0);//placeholder vals
 
     public void execute(){
-        
+        if (RobotContainer.controller2.getLeftBumper()){
+            liftS.lift1.set(.5);
+            liftS.lift2.set(-.5);
+        }
+        else if (RobotContainer.controller2.getRightBumper()){
+            liftS.lift1.set(.5);
+            liftS.lift2.set(-.5);
+        }
 
-        if (RobotContainer.controller1.getRightBumperPressed()==true){
+        if (RobotContainer.controller2.getAButton()==true){
         liftS.tilt.set(pidController.calculate(tiltVal, Desired));
     }
 }

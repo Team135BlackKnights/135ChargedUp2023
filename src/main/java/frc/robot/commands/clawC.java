@@ -21,14 +21,14 @@ public class clawC extends CommandBase{
                 subsys1.motor.set(1);
 
             }*/
-            if (RobotContainer.controller1.getRawAxis(2)>0){
-            clawS.claw1.set((RobotContainer.controller1.getRawAxis(2))/2);
-            clawS.claw2.set(-(RobotContainer.controller1.getRawAxis(2))/2);
+            if (RobotContainer.controller2.getRawAxis(2)>0){
+            clawS.claw1.set((RobotContainer.controller2.getRawAxis(2))/2);
+            clawS.claw2.set(-(RobotContainer.controller2.getRawAxis(2))/2);
             }
-         else if (RobotContainer.controller1.getRawAxis(3)>0){
+         else if (RobotContainer.controller2.getRawAxis(3)>0){
 
-            clawS.claw1.set(-(RobotContainer.controller1.getRawAxis(3))/2);
-            clawS.claw2.set((RobotContainer.controller1.getRawAxis(3))/2);
+            clawS.claw1.set(-(RobotContainer.controller2.getRawAxis(3))/2);
+            clawS.claw2.set((RobotContainer.controller2.getRawAxis(3))/2);
             }
             else  {
                 clawS.claw1.set(0);
