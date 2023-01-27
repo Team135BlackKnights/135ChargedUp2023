@@ -32,4 +32,3 @@ public class liftC extends CommandBase{
     }
 }
 }
-// cope seethe and mald nish you bald ass motherfucker

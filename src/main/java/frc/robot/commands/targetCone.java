@@ -10,7 +10,8 @@ import frc.robot.subsystems.driveS;
 
 public class targetCone extends CommandBase{
     private final driveS drive;
-  
+    double lProportional, lIntegral, rProportional, rIntegral, leftSpeed, rightSpeed;
+    double kP = 0, kI = 0;
     public targetCone(driveS subsystem) {
       // Use addRequirements() here to declare subsystem dependencies.
       drive = subsystem;
@@ -24,10 +25,7 @@ public class targetCone extends CommandBase{
 
 
     double angY, angX, dist;
-    @Override 
-    public void initialize(){
-        boolean isFinished = false;
-    }
+    
     @Override
     public void execute(){
         angY= Ty.getDouble(0.0);
@@ -35,17 +33,21 @@ public class targetCone extends CommandBase{
         dist = -2.5/Math.tan(Math.toRadians(angY));
         angX= Tx.getDouble(0.0);
 
-        if (RobotContainer.controller1.getLeftBumper()){
-        if (angX<-1){
-            drive.tankDrive(-.1, -.1);
+        lProportional = angX * kP;
+        rProportional = -angX * kP;
+        lIntegral = -angX * kI;
+        rIntegral = angX * kI;
+        if (RobotContainer.controller1.getLeftBumper()) {
+            if (angX < 7.5 && angX > -7.5) {
+                leftSpeed = lProportional;
+                rightSpeed = -rProportional;}
+            else {
+                leftSpeed = lProportional + lIntegral;
+                rightSpeed = -(rProportional + rIntegral);
+            }
         }
-        else if (angX>1){
-            drive.tankDrive(.1, .1);
-        }
-        else
-        isFinished=true;
-    }
-        SmartDashboard.putNumber("distance", dist);
+        drive.tankDrive(leftSpeed, rightSpeed);
 
+        SmartDashboard.putNumber("distance", dist);
     }
 }
