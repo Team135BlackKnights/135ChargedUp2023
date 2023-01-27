@@ -15,7 +15,9 @@ import frc.robot.commands.Auto.leftGridA;
 import frc.robot.commands.Auto.middleGridA;
 import frc.robot.commands.Auto.oneScoreA;
 import frc.robot.commands.Auto.rightGridA;
+import frc.robot.subsystems.clawS;
 import frc.robot.subsystems.driveS;
+import frc.robot.subsystems.liftS;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -30,9 +32,9 @@ public class RobotContainer {
   public static int grid = 0;
 
   // The robot's subsystems and commands are defined here...
-  public static frc.robot.subsystems.driveS _driveS = new frc.robot.subsystems.driveS();
-  public static frc.robot.subsystems.clawS _clawS = new frc.robot.subsystems.clawS();
-  public static frc.robot.subsystems.liftS _liftS = new frc.robot.subsystems.liftS();
+  public static driveS _driveS = new driveS();
+  public static clawS _clawS = new clawS();
+  public static liftS _liftS = new liftS();
 
   public static driveC _driveC = new driveC(_driveS);
   public static Command _Comm1 = new clawC(_clawS);
