@@ -15,6 +15,7 @@ public class encDriveA extends CommandBase {
   double Desired, encodervalue;
   double gearRatios;
   double diameter = Math.PI*6;
+  double cpr = 1/42;
 
   public encDriveA(driveS subsystem, double desDis) { //desired Distance
     Desired=desDis;
@@ -37,7 +38,7 @@ public class encDriveA extends CommandBase {
     double avgEnc = (driveS.elBack.getPosition() + driveS.elFront.getPosition()-driveS.erBack.getPosition()
     - driveS.erFront.getPosition()) / 4;
     double rEncValue = avgEnc*gearRatios;
-    encodervalue = rEncValue*diameter;
+    encodervalue = rEncValue*diameter*cpr;
 
     drive.tankDrive(pidController.calculate(encodervalue, Desired), pidController.calculate(encodervalue, Desired));
     if (Math.abs(pidController.getPositionError()) < 1) {
