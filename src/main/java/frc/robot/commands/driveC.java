@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -10,7 +11,6 @@ import frc.robot.subsystems.driveS;
 
 public class driveC extends CommandBase{
   private final driveS drive;
-  
   public driveC(driveS subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     drive = subsystem;
@@ -18,6 +18,7 @@ public class driveC extends CommandBase{
   }       
 
   public void execute(){
+
     double left = -RobotContainer.controller1.getLeftY();
     double right = RobotContainer.controller1.getRightY();
     drive.tankDrive(left,right);
@@ -29,7 +30,7 @@ public class driveC extends CommandBase{
     if (RobotContainer.controller1.getXButtonPressed()) {
       LauncherLimeLightTable.getEntry("pipeline").setNumber(1);
     }
-
-    
+    SmartDashboard.putNumber("gyro", driveS.gybro.getAngle());
   }
+  
 }

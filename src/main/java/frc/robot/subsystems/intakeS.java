@@ -6,11 +6,11 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
-public class clawS extends SubsystemBase {
-    public static CANSparkMax claw1 = new CANSparkMax(RobotMap.Intake.intakeID_1, MotorType.kBrushless);
+public class intakeS extends SubsystemBase {
+    public static CANSparkMax intake = new CANSparkMax(RobotMap.Intake.intakeID_1, MotorType.kBrushless);
     //public static CANSparkMax claw2 = new CANSparkMax(RobotMap.Intake.intakeID_2, MotorType.kBrushless);
 
-    public clawS() {
+    public intakeS() {
      //   claw2.setInverted(true);
     }
 }

@@ -15,7 +15,7 @@ public class encDriveA extends CommandBase {
   double Desired, encodervalue;
   double gearRatios;
   double diameter = Math.PI*6;
-  double cpr = 1/42;
+  double cpr = 1/42; //counts per revolution
 
   public encDriveA(driveS subsystem, double desDis) { //desired Distance
     Desired=desDis;
@@ -28,7 +28,7 @@ public class encDriveA extends CommandBase {
 
   }
         
-  @Override
+  @Override 
   public void execute() {
     if (shiftC.position == true) {
       gearRatios=1/36;

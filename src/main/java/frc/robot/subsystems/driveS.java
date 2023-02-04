@@ -4,10 +4,12 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
@@ -29,6 +31,7 @@ public class driveS extends SubsystemBase{
   public static RelativeEncoder erFront;
 
   public static RelativeEncoder erBack;
+  public static Gyro gybro = new ADXRS450_Gyro();
 
   MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);
   MotorControllerGroup MCGright = new MotorControllerGroup(FrontR, BackR);
