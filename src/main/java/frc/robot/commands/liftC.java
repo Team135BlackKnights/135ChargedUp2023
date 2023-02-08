@@ -19,12 +19,12 @@ public class liftC extends CommandBase{
 
     public void execute(){
         if (RobotContainer.controller2.getLeftBumper()){
-            liftS.lift1.set(.5);
-            liftS.lift2.set(-.5);
+            liftS.leftLift.set(.5);
+            liftS.rightLift.set(-.5);
         }
         else if (RobotContainer.controller2.getRightBumper()){
-            liftS.lift1.set(.5);
-            liftS.lift2.set(-.5);
+            liftS.leftLift.set(.5);
+            liftS.rightLift.set(-.5);
         }
 
         if (RobotContainer.controller2.getAButton()==true){
