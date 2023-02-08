@@ -33,6 +33,8 @@ public class driveS extends SubsystemBase{
   public static RelativeEncoder erBack;
   public static Gyro gybro = new ADXRS450_Gyro();
 
+  public static AHRS navx = new AHRS();
+
   MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);
   MotorControllerGroup MCGright = new MotorControllerGroup(FrontR, BackR);
     
