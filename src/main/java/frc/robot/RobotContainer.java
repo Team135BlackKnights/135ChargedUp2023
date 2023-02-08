@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.driveC;
+import frc.robot.commands.intakeC;
 import frc.robot.commands.liftC;
 import frc.robot.commands.Auto.leftGridA;
 import frc.robot.commands.Auto.middleGridA;
