@@ -35,8 +35,16 @@ public class selectionC extends CommandBase{
             gridx=1;
         }
 
-        if (gridy>=2){
+
+        if (gridx==2){ //if center
+            NetworkTableInstance.getDefault().getTable("limelight-launch").getEntry("pipeline").setNumber(2);
+        }
+        else if (gridx==1||gridx==3){ //if to cones
             NetworkTableInstance.getDefault().getTable("limelight-launch").getEntry("pipeline").setNumber(1);
         }
+        
+        SmartDashboard.putNumber("x", grix);
+        SmartDashboard.putNumber("y", gridy);
+        
     }
 }
