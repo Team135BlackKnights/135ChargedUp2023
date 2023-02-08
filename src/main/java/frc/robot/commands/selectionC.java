@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.driveS;
@@ -43,7 +44,7 @@ public class selectionC extends CommandBase{
             NetworkTableInstance.getDefault().getTable("limelight-launch").getEntry("pipeline").setNumber(1);
         }
         
-        SmartDashboard.putNumber("x", grix);
+        SmartDashboard.putNumber("x", gridx);
         SmartDashboard.putNumber("y", gridy);
         
     }
