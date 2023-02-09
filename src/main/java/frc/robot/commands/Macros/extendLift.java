@@ -19,9 +19,9 @@ public class extendLift extends CommandBase{
     public void initialize() {
         if (encoderValue < 2) {
             if (targetCone.targetType == 1 || targetCone.targetType == 0) {
-                Desired = 10;
+                Desired = 43.8; //diagonal distance needed to extend
             } else if (targetCone.targetType == 2) {
-                Desired = 20;
+                Desired = 63.6; //diagonal distance needed to extend
             } 
         } else {
             Desired = 0;
