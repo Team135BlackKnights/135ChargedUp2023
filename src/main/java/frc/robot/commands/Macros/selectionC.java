@@ -13,7 +13,8 @@ public class selectionC extends CommandBase{
       drive = subsystem;
       addRequirements(subsystem);
     }       
-    public int gridx=1, gridy=1;
+    public int gridx=1;
+    public static int gridy=1;
     public boolean selecting=false;
     public void initialize(){}
 

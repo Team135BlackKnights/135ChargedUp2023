@@ -15,6 +15,7 @@ import frc.robot.commands.Auto.leftGridA;
 import frc.robot.commands.Auto.middleGridA;
 import frc.robot.commands.Auto.oneScoreA;
 import frc.robot.commands.Auto.rightGridA;
+import frc.robot.commands.Macros.autoBalance;
 import frc.robot.commands.Macros.extendLift;
 import frc.robot.commands.Macros.rotateIntake;
 import frc.robot.subsystems.intakeS;
@@ -36,6 +37,7 @@ public class RobotContainer {
   public static int grid = 0;
 
   final JoystickButton x = new JoystickButton(controller1, 3);
+  final JoystickButton y = new JoystickButton(controller1, 4);
 
   // The robot's subsystems and commands are defined here...
   public static driveS _driveS = new driveS();
@@ -92,6 +94,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     x.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
+    y.onTrue(new autoBalance(_driveS));
   }
 
   /**

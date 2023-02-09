@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -33,12 +34,16 @@ public class driveS extends SubsystemBase{
   public static RelativeEncoder erBack;
   public static Gyro gybro = new ADXRS450_Gyro();
 
-  public static AHRS navx = new AHRS();
+  public AHRS navx = new AHRS();
 
   MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);
   MotorControllerGroup MCGright = new MotorControllerGroup(FrontR, BackR);
     
   public DifferentialDrive tank = new DifferentialDrive(MCGleft, MCGright);
+
+  public driveS() {
+    MCGleft.setInverted(true);
+  }
 
   public void tankDrive(double left, double right) {
     tank.tankDrive(left,right);

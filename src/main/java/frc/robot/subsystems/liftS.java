@@ -14,6 +14,8 @@ public class liftS extends SubsystemBase {
     public static Encoder eTilt, eLeftLift, eRightLift;
     
     public liftS() {
+        leftLift.setInverted(true);
+        eLeftLift.setReverseDirection(true);
         eTilt= new Encoder(1,0, false, Encoder.EncodingType.k4X);
         eTilt.setDistancePerPulse((22.5*Math.PI/42)); //11.25 is radius in inches
         eTilt.reset();

@@ -11,7 +11,7 @@ import frc.robot.subsystems.driveS;
 public class targetCone extends CommandBase{
     private final driveS drive;
     double lProportional, lIntegral, rProportional, rIntegral, leftSpeed, rightSpeed, tx, ta;
-    int targetType;
+    public static int targetType;
     boolean inRange;
     double kP = 0, kI = 0;
     public targetCone(driveS subsystem) {
