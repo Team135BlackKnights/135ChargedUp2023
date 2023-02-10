@@ -36,7 +36,7 @@ public class RobotContainer {
   public static XboxController controller2= new XboxController(1);
   public static int grid = 0;
 
-  final JoystickButton x = new JoystickButton(controller1, 3);
+  final JoystickButton b = new JoystickButton(controller1, 2);
   final JoystickButton y = new JoystickButton(controller1, 4);
 
   // The robot's subsystems and commands are defined here...
@@ -93,7 +93,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    x.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
+    b.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
     y.onTrue(new autoBalance(_driveS));
   }
 

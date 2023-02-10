@@ -13,17 +13,17 @@ public class selectionC extends CommandBase{
       drive = subsystem;
       addRequirements(subsystem);
     }       
-    public int gridx=1;
-    public static int gridy=1;
+    public int gridx=1, gridy=1;
     public boolean selecting=false;
     public void initialize(){}
 
     public void execute() {
         if (RobotContainer.controller2.getXButton()){
             selecting=true;
-        }else if (RobotContainer.controller2.getYButton()){
+        }else if (selecting==true && RobotContainer.controller2.getXButton()){
             selecting=false;
         }
+
         if (selecting==true && RobotContainer.controller2.getPOV()==0){
             gridy= gridy+1;
         }else if (selecting==true&& RobotContainer.controller2.getPOV()==90){
