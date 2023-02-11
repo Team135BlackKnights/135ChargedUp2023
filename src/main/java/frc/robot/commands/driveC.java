@@ -19,17 +19,11 @@ public class driveC extends CommandBase{
 
   public void execute(){
 
-    double left = RobotContainer.controller1.getLeftY();
+    double left = -RobotContainer.controller1.getLeftY();
     double right = RobotContainer.controller1.getRightY();
     drive.tankDrive(left,right);
 
-    NetworkTable LauncherLimeLightTable = NetworkTableInstance.getDefault().getTable("limelight-launch");
-    if (RobotContainer.controller1.getAButtonPressed()){
-    LauncherLimeLightTable.getEntry("pipeline").setNumber(0);
-    }
-    if (RobotContainer.controller1.getXButtonPressed()) {
-      LauncherLimeLightTable.getEntry("pipeline").setNumber(1);
-    }
+
     SmartDashboard.putNumber("gyro", driveS.gybro.getAngle());
   }
   
