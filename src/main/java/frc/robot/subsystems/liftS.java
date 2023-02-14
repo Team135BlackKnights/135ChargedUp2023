@@ -23,7 +23,7 @@ public class liftS extends SubsystemBase {
         eRightLift.setDistancePerPulse(1*Math.PI/42);*/
     }
 
-    public void extendLift(double left, double right) {
+    public void extendedLift(double left, double right) {
         leftLift.set(left);
         rightLift.set(right);
     }
