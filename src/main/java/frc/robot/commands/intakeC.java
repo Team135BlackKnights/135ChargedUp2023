@@ -11,10 +11,10 @@ public class intakeC extends CommandBase{
         addRequirements(subsystem);
     }
         public void execute(){
-            if (RobotContainer.controller2.getRawAxis(2)>0){
-                intakeS.intake.set(3*(RobotContainer.controller1.getLeftTriggerAxis())/4);
-            } else if (RobotContainer.controller2.getRawAxis(3)>0){
-                intakeS.intake.set(-3*(RobotContainer.controller1.getRightTriggerAxis())/4);
+            if (RobotContainer.controller1.getRawAxis(2)>0){
+                intakeS.intake.set(.75*(RobotContainer.controller1.getLeftTriggerAxis()));
+            } else if (RobotContainer.controller1.getRawAxis(3)>0){
+                intakeS.intake.set(-.75*(RobotContainer.controller1.getRightTriggerAxis()));
             } else {
                 intakeS.intake.set(0);
             }

@@ -19,11 +19,11 @@ public class rotateIntake extends CommandBase{
     @Override
     public void execute() {
         if (liftS.eTilt.getDistance() < 0.1) {
-            while (liftS.eTilt.getDistance() < 26.5) {
+            while (liftS.eTilt.getDistance() < 28.2) {
                 liftS.tilt.set(0.5);
             }
             isFinished = true;
-        } else if (liftS.eTilt.getDistance() > 26.5) {
+        } else if (liftS.eTilt.getDistance() > 28.2) {
             while (liftS.eTilt.getDistance() > 0.1) {
                 liftS.tilt.set(-0.5);
             }

@@ -17,7 +17,14 @@ public class liftS extends SubsystemBase {
         leftLift.setInverted(true);
         eLeftLift.setReverseDirection(true);
         eTilt= new Encoder(1,0, false, Encoder.EncodingType.k4X);
-        eTilt.setDistancePerPulse((22.5*Math.PI/42)); //11.25 is radius in inches
+        eTilt.setDistancePerPulse((24*Math.PI/42)); //24 is diamter in inches
         eTilt.reset();
+        eLeftLift.setDistancePerPulse(1*Math.PI/42); //1 is diameter in inches
+        eRightLift.setDistancePerPulse(1*Math.PI/42);
+    }
+
+    public void extendLift(double left, double right) {
+        leftLift.set(left);
+        rightLift.set(right);
     }
 }

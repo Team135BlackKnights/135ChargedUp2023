@@ -5,7 +5,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
+import frc.robot.RobotContainer; 
 import frc.robot.subsystems.driveS;
 
 public class targetCone extends CommandBase{
@@ -96,7 +96,7 @@ public class targetCone extends CommandBase{
         SmartDashboard.putNumber("tv", limelight.getEntry("tv").getDouble(0.0));
         SmartDashboard.putNumber("pipeline", limelight.getEntry("pipeline").getDouble(0.0));
 
-        if (RobotContainer.controller1.getLeftBumper()) {
+      /*   if (RobotContainer.controller1.getLeftBumper()) {
         targetType = 1;
         }
         if (RobotContainer.controller1.getRightBumper()) {
@@ -104,7 +104,7 @@ public class targetCone extends CommandBase{
         }
         if (RobotContainer.controller1.getYButton()) {
         targetType = 0;
-        }
+        }*/
     }
 
     public double limit(double x, double upperLimit, double lowerLimit) {
