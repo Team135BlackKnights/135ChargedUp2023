@@ -35,8 +35,7 @@ public class extendLift extends CommandBase{
         encoderValue = ((liftS.eLeftLift.getDistance() + liftS.eRightLift.getDistance())/2);
         encoderValue = 1 * Math.PI /42; //1 is diameter in inches
 
-        liftS.leftLift.set(pidController.calculate(encoderValue, Desired));
-        liftS.rightLift.set(pidController.calculate(encoderValue, Desired));
+        lift.extendedLift(pidController.calculate(encoderValue, Desired), pidController.calculate(encoderValue, Desired));
 
         if (Math.abs(pidController.getPositionError()) < 1) {
             isFinished = true;
