@@ -19,10 +19,12 @@ public class driveC extends CommandBase{
 
   public void execute(){
 
-    double left = -RobotContainer.controller1.getLeftY();
+    double left = RobotContainer.controller1.getLeftY();
     double right = RobotContainer.controller1.getRightY();
     drive.tankDrive(left,right);
-
+    if (RobotContainer.controller1.getAButton()){
+      
+    }
 
     SmartDashboard.putNumber("gyro", driveS.gybro.getAngle());
   }

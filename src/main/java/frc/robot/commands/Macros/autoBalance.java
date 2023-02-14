@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.driveS;
 
 public class autoBalance extends CommandBase{
-    private final driveS drive;
+  /*  private final driveS drive;
     boolean isFinished;
     public autoBalance(driveS subsystem){
         drive = subsystem;
@@ -36,5 +36,5 @@ public class autoBalance extends CommandBase{
     @Override
     public boolean isFinished() {
         return isFinished;
-    }
+    }*/
 }

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.liftS;
 
 public class extendLift extends CommandBase{
-    public final liftS lift;
+   /*  public final liftS lift;
     boolean isFinished = false;
     double Desired;
     double encoderValue = 0;
@@ -49,5 +49,5 @@ public class extendLift extends CommandBase{
     @Override
     public boolean isFinished() {
         return isFinished;
-    }
+    }*/
 }

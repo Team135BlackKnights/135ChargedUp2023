@@ -13,7 +13,7 @@ public class liftC extends CommandBase{
         addRequirements(subsystem);    
          Desired = 200;
     }
-    double tiltVal = liftS.eTilt.getDistance();
+   /*  double tiltVal = liftS.eTilt.getDistance();
 
     PIDController pidController = new PIDController(.1, .1, 0);//placeholder vals
 
@@ -29,6 +29,5 @@ public class liftC extends CommandBase{
 
         if (RobotContainer.controller2.getAButton()==true){
         liftS.tilt.set(pidController.calculate(tiltVal, Desired));
-    }
-}
+    }*/
 }

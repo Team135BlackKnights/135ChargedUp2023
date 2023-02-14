@@ -4,10 +4,10 @@ public interface RobotMap {
     public interface Drive {
         
         public final static int 
-            FL_ID = 13, //
-            FR_ID = 10, //
+            FL_ID = 11, //
+            FR_ID = 13, //
             BL_ID = 12, //
-            BR_ID = 11,        
+            BR_ID = 14,        
             shiftSolenoid = 0,
             shiftSolenoid2 = 1;
     }
