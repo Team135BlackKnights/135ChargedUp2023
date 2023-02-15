@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.deployBarC;
 import frc.robot.commands.driveC;
 import frc.robot.commands.intakeC;
 import frc.robot.commands.liftC;
@@ -45,6 +46,7 @@ public class RobotContainer {
   public static driveS _driveS = new driveS();
   public static intakeS _clawS = new intakeS();
   public static liftS _liftS = new liftS();
+  public static intakeS _intakeS = new intakeS();
   
   public static driveC _driveC = new driveC(_driveS);
   //public static Command _Comm1 = new intakeC(_clawS);
@@ -71,7 +73,7 @@ public class RobotContainer {
   //m_Chooser2.addOption("2 score", twoScore)
 
     SmartDashboard.putData(m_Chooser);
-
+    _intakeS.setDefaultCommand(new intakeC(_intakeS));
     _clawS.setDefaultCommand(new intakeC(_clawS));
     _driveS.setDefaultCommand(new driveC(_driveS));
     _liftS.setDefaultCommand(new liftC(_liftS));
@@ -88,6 +90,8 @@ public class RobotContainer {
     */
     // Configure the button bindings
     configureButtonBindings();
+      y.onTrue(new deployBarC(_intakeS));
+    
   }
 
   /**

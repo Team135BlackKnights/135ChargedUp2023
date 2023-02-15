@@ -15,7 +15,9 @@ public interface RobotMap {
     public interface Intake {
         // Simple intake. Motors spin vertically opposite of each other.
         public static final int
-            intakeID_1 = 31;
+            intakeID_1 = 31,
+            BAR_ID=3,
+            BAR2_ID=4;
     }
 
     public interface Lift {
