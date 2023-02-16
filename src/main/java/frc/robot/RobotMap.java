@@ -4,10 +4,10 @@ public interface RobotMap {
     public interface Drive {
         
         public final static int 
-            FL_ID = 13, //
-            FR_ID = 10, //
+            FL_ID = 11, //
+            FR_ID = 13, //
             BL_ID = 12, //
-            BR_ID = 11,        
+            BR_ID = 14,        
             shiftSolenoid = 0,
             shiftSolenoid2 = 1;
     }
@@ -15,7 +15,9 @@ public interface RobotMap {
     public interface Intake {
         // Simple intake. Motors spin vertically opposite of each other.
         public static final int
-            intakeID_1 = 31;
+            intakeID_1 = 31,
+            BAR_ID=3,
+            BAR2_ID=4;
     }
 
     public interface Lift {

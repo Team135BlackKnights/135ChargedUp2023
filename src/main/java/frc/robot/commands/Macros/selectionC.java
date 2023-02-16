@@ -39,10 +39,13 @@ public class selectionC extends CommandBase{
 
 
         if (gridx==2){ //if center
-            NetworkTableInstance.getDefault().getTable("limelight-launch").getEntry("pipeline").setNumber(2);
+            targetCone.targetType=0;
         }
         else if (gridx==1||gridx==3){ //if to cones
-            NetworkTableInstance.getDefault().getTable("limelight-launch").getEntry("pipeline").setNumber(1);
+            targetCone.targetType=1;
+            if (gridy==3){
+                targetCone.targetType=2;
+            }
         }
         
         SmartDashboard.putNumber("x", gridx);
