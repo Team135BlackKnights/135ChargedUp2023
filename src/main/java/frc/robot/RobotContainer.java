@@ -52,7 +52,7 @@ public class RobotContainer {
   //public static Command _Comm1 = new intakeC(_clawS);
   public static liftC _liftC = new liftC(_liftS);
   public static targetCone _targetCone = new targetCone(_driveS);
-  public static selectionC _selectionC = new selectionC(_driveS);
+  //public static selectionC _selectionC = new selectionC(_driveS);
 
   //private final Command LeftGrid = new leftGridA(_driveS);
   //private final Command MiddleGrid = new middleGridA(_driveS);
