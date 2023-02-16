@@ -38,7 +38,7 @@ public class targetCone extends CommandBase{
         rIntegral = tx * kI;
         SmartDashboard.putBoolean("inRange", inRange);
 
-        if (RobotContainer.controller1.getAButton()) {
+        if (RobotContainer.controller2.getAButton()) {
             if (targetType == 0) {
                 if (tx > 2.5 || tx < 2.5) {
                     leftSpeed = limit((lProportional + lIntegral), 0.75, 0.275);
