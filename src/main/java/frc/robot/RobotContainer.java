@@ -38,9 +38,20 @@ public class RobotContainer {
   public static XboxController controller1 = new XboxController(0);
   public static XboxController controller2= new XboxController(1);
   public static int grid = 0;
+  public static int target;
 
-  final JoystickButton b = new JoystickButton(controller1, 2);
-  final JoystickButton y = new JoystickButton(controller1, 4);
+  final JoystickButton a1 = new JoystickButton(controller1, RobotMap.ButtonMap.A);
+  final JoystickButton b1 = new JoystickButton(controller1, RobotMap.ButtonMap.B);
+  final JoystickButton x1 = new JoystickButton(controller1, RobotMap.ButtonMap.X);
+  final JoystickButton y1 = new JoystickButton(controller1, RobotMap.ButtonMap.Y);
+  final JoystickButton lb1 = new JoystickButton(controller1, RobotMap.ButtonMap.LB);
+  final JoystickButton rb1 = new JoystickButton(controller1, RobotMap.ButtonMap.RB);
+  final JoystickButton a2 = new JoystickButton(controller2, RobotMap.ButtonMap.A);
+  final JoystickButton b2 = new JoystickButton(controller2, RobotMap.ButtonMap.B);
+  final JoystickButton x2 = new JoystickButton(controller2, RobotMap.ButtonMap.X);
+  final JoystickButton y2 = new JoystickButton(controller2, RobotMap.ButtonMap.Y);
+  final JoystickButton lb2 = new JoystickButton(controller2, RobotMap.ButtonMap.LB);
+  final JoystickButton rb2 = new JoystickButton(controller2, RobotMap.ButtonMap.RB);
 
   // The robot's subsystems and commands are defined here...
   public static driveS _driveS = new driveS();
@@ -51,7 +62,7 @@ public class RobotContainer {
   public static driveC _driveC = new driveC(_driveS);
   //public static Command _Comm1 = new intakeC(_clawS);
   public static liftC _liftC = new liftC(_liftS);
-  public static targetCone _targetCone = new targetCone(_driveS);
+  public static targetCone _targetCone = new targetCone(_driveS, target);
   //public static selectionC _selectionC = new selectionC(_driveS);
 
   //private final Command LeftGrid = new leftGridA(_driveS);
@@ -90,7 +101,6 @@ public class RobotContainer {
     */
     // Configure the button bindings
     configureButtonBindings();
-      y.onTrue(new deployBarC(_intakeS));
     
   }
 
@@ -100,7 +110,12 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {
+  private void configureButtonBindings() {      
+    y2.onTrue(new deployBarC(_intakeS));
+    lb1.onTrue(new targetCone(_driveS, 1));
+    rb1.onTrue(new targetCone(_driveS, 2));
+    x1.onTrue(new targetCone(_driveS, 0));
+
     //b.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
    // y.onTrue(new autoBalance(_driveS));
   }
