@@ -52,6 +52,7 @@ public class RobotContainer {
   final JoystickButton y2 = new JoystickButton(controller2, RobotMap.ButtonMap.Y);
   final JoystickButton lb2 = new JoystickButton(controller2, RobotMap.ButtonMap.LB);
   final JoystickButton rb2 = new JoystickButton(controller2, RobotMap.ButtonMap.RB);
+  
 
   // The robot's subsystems and commands are defined here...
   public static driveS _driveS = new driveS();
@@ -112,11 +113,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {      
     y2.onTrue(new deployBarC(_intakeS));
-    lb1.onTrue(new targetCone(_driveS, 1));
-    rb1.onTrue(new targetCone(_driveS, 2));
-    x1.onTrue(new targetCone(_driveS, 0));
-
-    //b.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
+    lb2.onTrue(new targetCone(_driveS, 1));
+    rb2.onTrue(new targetCone(_driveS, 2));
+    x2.onTrue(new targetCone(_driveS, 0));
+    b2.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
    // y.onTrue(new autoBalance(_driveS));
   }
 

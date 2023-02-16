@@ -18,11 +18,11 @@ public class liftC extends CommandBase{
     PIDController pidController = new PIDController(.1, .1, 0);//placeholder vals
 
     public void execute(){
-        if (RobotContainer.controller2.getLeftBumper()){
+        if (RobotContainer.controller2.getPOV() == 0){
             liftS.leftLift.set(.5);
             liftS.rightLift.set(-.5);
         }
-        else if (RobotContainer.controller2.getRightBumper()){
+        else if (RobotContainer.controller2.getPOV() == 180){
             liftS.leftLift.set(.5);
             liftS.rightLift.set(-.5);
         }
