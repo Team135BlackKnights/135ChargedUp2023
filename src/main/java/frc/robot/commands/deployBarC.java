@@ -13,11 +13,11 @@ public class deployBarC extends CommandBase {
     }
     public void initiate(){}
     public void execute(){
-         if (intakeS.entrapBar.get()==Value.kOff){
+         if (intakeS.entrapBar.get()==Value.kReverse){
             intakeS.entrapBar.set(Value.kForward);
          }
          else if (intakeS.entrapBar.get()==Value.kForward){
-            intakeS.entrapBar.set(Value.kOff);
+            intakeS.entrapBar.set(Value.kReverse);
          }
          isFinished=true;
     }
