@@ -7,7 +7,7 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.driveS;
 
 public class selectionC extends CommandBase{
-    private final driveS drive;
+    /*private final driveS drive;
     public selectionC(driveS subsystem) {
       // Use addRequirements() here to declare subsystem dependencies.
       drive = subsystem;
@@ -48,5 +48,5 @@ public class selectionC extends CommandBase{
         SmartDashboard.putNumber("x", gridx);
         SmartDashboard.putNumber("y", gridy);
         
-    }
+    }*/
 }
