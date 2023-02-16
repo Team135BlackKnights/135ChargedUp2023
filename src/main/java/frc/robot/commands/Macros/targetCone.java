@@ -14,9 +14,10 @@ public class targetCone extends CommandBase{
     public static int targetType;
     boolean inRange;
     double kP = 0, kI = 0;
-    public targetCone(driveS subsystem) {
+    public targetCone(driveS subsystem, int target) {
       // Use addRequirements() here to declare subsystem dependencies.
       drive = subsystem;
+      targetType = target;
       addRequirements(subsystem);
     }
     NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight-launch");
@@ -55,7 +56,7 @@ public class targetCone extends CommandBase{
                 if (tx < 0.95 && tx > -0.95) {leftSpeed = 0; rightSpeed = 0;}
             }
         } 
-        else if (RobotContainer.controller1.getBButton()) {
+        else if (RobotContainer.controller1.getXButton()) {
             if (targetType == 0) {
                 if (ta > 5) {
                 inRange = true;
@@ -95,16 +96,6 @@ public class targetCone extends CommandBase{
         SmartDashboard.putNumber("tx", tx);
         SmartDashboard.putNumber("tv", limelight.getEntry("tv").getDouble(0.0));
         SmartDashboard.putNumber("pipeline", limelight.getEntry("pipeline").getDouble(0.0));
-
-         if (RobotContainer.controller1.getLeftBumper()) {
-        targetType = 1;
-        }
-        if (RobotContainer.controller1.getRightBumper()) {
-        targetType = 2;
-        }
-        if (RobotContainer.controller1.getYButton()) {
-        targetType = 0;
-        }
     }
 
     public double limit(double x, double upperLimit, double lowerLimit) {
