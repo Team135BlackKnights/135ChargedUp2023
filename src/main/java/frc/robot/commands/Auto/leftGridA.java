@@ -18,7 +18,7 @@ public class leftGridA extends SequentialCommandGroup{
         super(
             Commands.sequence(
                 new resetEncoders(drive),
-                new extendLift(lift), //Everything in extendLift is commented that is why this doesnt work
+                //new extendLift(lift), //Everything in extendLift is commented that is why this doesnt work
                 new rotateIntake(lift),
                 new encDriveA(drive, -50)
             )

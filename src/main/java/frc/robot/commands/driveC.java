@@ -12,6 +12,7 @@ import frc.robot.subsystems.driveS;
 
 public class driveC extends CommandBase{
   private final driveS drive;
+  public static boolean position;
   public driveC(driveS subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     drive = subsystem;
@@ -27,6 +28,17 @@ public class driveC extends CommandBase{
     if (RobotContainer.controller1.getAButton()){
       
     }
+
+    if (RobotContainer.controller1.getLeftTriggerAxis() > 0.1) {
+      position = false;
+    }
+
+    if (RobotContainer.controller1.getRightTriggerAxis() > 0.1) {
+      position = true;
+    }
+
+    driveS.shifting(position);
+    SmartDashboard.putBoolean("position", position);
 
     SmartDashboard.putNumber("gyro", driveS.gybro.getAngle());
   }

@@ -11,10 +11,11 @@ public class shiftC extends CommandBase{
     double threshold;
     public static boolean position;
     Value output;
-    public shiftC(driveS subsystem) {
+    public shiftC(driveS subsystem, boolean pos) {
         // Use addRequirements() here to declare subsystem dependencies.
         drive = subsystem;
-        addRequirements(subsystem);
+        position = pos;
+        addRequirements(drive);
       }
 
     @Override
