@@ -116,7 +116,7 @@ public class RobotContainer {
     lb2.onTrue(new targetCone(_driveS, 1));
     rb2.onTrue(new targetCone(_driveS, 2));
     x2.onTrue(new targetCone(_driveS, 0));
-    b2.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
+   // b2.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
    // y.onTrue(new autoBalance(_driveS));
   }
 
