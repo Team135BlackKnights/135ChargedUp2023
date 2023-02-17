@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
@@ -18,7 +19,8 @@ public class driveC extends CommandBase{
   }       
 
   public void execute(){
-
+    driveS.pCompress.enableDigital();
+   // driveS.pCompress.enableAnalog(50, 120);
     double left = RobotContainer.controller1.getLeftY();
     double right = RobotContainer.controller1.getRightY();
     drive.tankDrive(left,right);

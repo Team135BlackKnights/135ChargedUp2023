@@ -23,8 +23,8 @@ public class liftC extends CommandBase{
             liftS.rightLift.set(-.5);
         }
         else if (RobotContainer.controller2.getPOV() == 180){
-            liftS.leftLift.set(.5);
-            liftS.rightLift.set(-.5);
+            liftS.leftLift.set(.3);
+            liftS.rightLift.set(-.3);
         }
 
        /*  if (RobotContainer.controller2.getAButton()==true){

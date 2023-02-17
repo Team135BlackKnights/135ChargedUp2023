@@ -7,6 +7,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -36,6 +37,7 @@ public class driveS extends SubsystemBase{
   public static Gyro gybro = new ADXRS450_Gyro();
 
   public AHRS navx = new AHRS();
+  public static Compressor pCompress = new Compressor(PneumaticsModuleType.REVPH);  //Digtial I/O,Relay
 
   MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);
   MotorControllerGroup MCGright = new MotorControllerGroup(FrontR, BackR);
@@ -44,6 +46,7 @@ public class driveS extends SubsystemBase{
 
   public driveS() {
     MCGleft.setInverted(true);
+
   }
 
   public void tankDrive(double left, double right) {
