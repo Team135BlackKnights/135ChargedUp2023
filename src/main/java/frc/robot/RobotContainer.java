@@ -108,7 +108,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {      
-    y2.onTrue(new deployBarC(_intakeS));
+    y1.onTrue(new deployBarC(_intakeS));
     //not for scrimmage
     /*lb1.onTrue(new targetCone(_driveS, 1));
     rb1.onTrue(new targetCone(_driveS, 2));
@@ -132,10 +132,10 @@ public class RobotContainer {
    * Drive: Joysticks
    * Shift: Left/Right D-Pad
    * Intake: Triggers
+   * Entrapment Bar: Y
    * 
    * Manipulator Controls:
    * Lift: Up/Down D-Pad
-   * Entrapment Bar: Y
    */
     
  

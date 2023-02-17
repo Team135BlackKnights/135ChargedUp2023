@@ -19,7 +19,7 @@ public class liftC extends CommandBase{
 
     public void execute(){
         if (RobotContainer.controller2.getPOV() == 0){
-            liftS.extendedLift(.5, -.5);
+            liftS.extendedLift(-.5, .5);
         }
         else if (RobotContainer.controller2.getPOV() == 180){
             liftS.extendedLift(.3, -.3);

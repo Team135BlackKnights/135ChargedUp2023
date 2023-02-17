@@ -13,24 +13,27 @@ public class rotateIntake extends CommandBase{
 
     @Override
     public void initialize() {
+        liftS.eTilt.setPosition(0);
         isFinished = false;
     }
 
     @Override
     public void execute() {
-        /* * if (liftS.eTilt.getDistance() < 0.1) {
-            while (liftS.eTilt.getDistance() < 28.2) {
+         if (lift.intakeRotated == false) {
+            while (liftS.eTilt.getPosition() < 28.2) {
                 liftS.tilt.set(0.5);
             }
+            lift.intakeRotated = true;
             isFinished = true;
-        } else if (liftS.eTilt.getDistance() > 28.2) {
-            while (liftS.eTilt.getDistance() > 0.1) {
+        } else if (lift.intakeRotated == true) {
+            while (liftS.eTilt.getPosition() > -28.2) {
                 liftS.tilt.set(-0.5);
             }
+            lift.intakeRotated = false;
             isFinished = true;
         } else {
             isFinished = true;
-        }*/
+        }
     }
 
     @Override
