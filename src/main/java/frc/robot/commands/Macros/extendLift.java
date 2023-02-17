@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.liftS;
 
 public class extendLift extends CommandBase{
-    public final liftS lift;
+     public final liftS lift;
     boolean isFinished = false;
     double Desired;
     double encoderValue = 0;
@@ -32,7 +32,7 @@ public class extendLift extends CommandBase{
     @Override
     public void execute() {
 
-        encoderValue = ((liftS.eLeftLift.getDistance() + liftS.eRightLift.getDistance())/2);
+      //  encoderValue = ((liftS.eLeftLift.getDistance() + liftS.eRightLift.getDistance())/2);
         encoderValue = 1 * Math.PI /42; //1 is diameter in inches
 
         lift.extendedLift(pidController.calculate(encoderValue, Desired), pidController.calculate(encoderValue, Desired));

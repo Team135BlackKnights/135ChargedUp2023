@@ -1,6 +1,6 @@
 package frc.robot.subsystems;
 
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 //import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -36,7 +36,7 @@ public class driveS extends SubsystemBase{
   public static RelativeEncoder erBack;
   public static Gyro gybro = new ADXRS450_Gyro();
 
-  public AHRS navx = new AHRS();
+  //public AHRS navx = new AHRS();
   public static Compressor pCompress = new Compressor(PneumaticsModuleType.REVPH);  //Digtial I/O,Relay
 
   MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);
