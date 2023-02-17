@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class driveS extends SubsystemBase{
-  public static DoubleSolenoid shifter = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.Drive.shiftSolenoid, RobotMap.Drive.shiftSolenoid2);
+  public static DoubleSolenoid shifter = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.Drive.shiftSolenoid, RobotMap.Drive.shiftSolenoid2);
 
   //public static PneumaticHub PneumHub= new PneumaticHub();
   //public static double pressure = PneumHub.getPressure(0);

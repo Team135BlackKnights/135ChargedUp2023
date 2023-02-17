@@ -56,15 +56,12 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   public static driveS _driveS = new driveS();
-  public static intakeS _clawS = new intakeS();
   public static liftS _liftS = new liftS();
   public static intakeS _intakeS = new intakeS();
   
   public static driveC _driveC = new driveC(_driveS);
-  //public static Command _Comm1 = new intakeC(_clawS);
   public static liftC _liftC = new liftC(_liftS);
   public static targetCone _targetCone = new targetCone(_driveS, target);
-  //public static selectionC _selectionC = new selectionC(_driveS);
 
   //private final Command LeftGrid = new leftGridA(_driveS);
   //private final Command MiddleGrid = new middleGridA(_driveS);
@@ -86,7 +83,6 @@ public class RobotContainer {
 
     SmartDashboard.putData(m_Chooser);
     _intakeS.setDefaultCommand(new intakeC(_intakeS));
-    _clawS.setDefaultCommand(new intakeC(_clawS));
     _driveS.setDefaultCommand(new driveC(_driveS));
     _liftS.setDefaultCommand(new liftC(_liftS));
         /* 
@@ -113,10 +109,12 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {      
     y2.onTrue(new deployBarC(_intakeS));
-    lb2.onTrue(new targetCone(_driveS, 1));
-    rb2.onTrue(new targetCone(_driveS, 2));
-    x2.onTrue(new targetCone(_driveS, 0));
+    //not for scrimmage
+    /*lb1.onTrue(new targetCone(_driveS, 1));
+    rb1.onTrue(new targetCone(_driveS, 2));
+    x1.onTrue(new targetCone(_driveS, 0));
     b2.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
+    */
    // y.onTrue(new autoBalance(_driveS));
   }
 
@@ -129,6 +127,16 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return m_Chooser.getSelected();
   }
+  /*
+   * Driver Controls:
+   * Drive: Joysticks
+   * Shift: Left/Right D-Pad
+   * Intake: Triggers
+   * 
+   * Manipulator Controls:
+   * Lift: Up/Down D-Pad
+   * Entrapment Bar: Y
+   */
     
  
 }

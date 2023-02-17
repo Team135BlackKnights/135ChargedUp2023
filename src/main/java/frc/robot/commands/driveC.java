@@ -1,9 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -24,16 +21,13 @@ public class driveC extends CommandBase{
    // driveS.pCompress.enableAnalog(50, 120);
     double left = RobotContainer.controller1.getLeftY();
     double right = RobotContainer.controller1.getRightY();
-    drive.tankDrive(left,right);
-    if (RobotContainer.controller1.getAButton()){
-      
-    }
+    drive.tankDrive(left, right);
 
-    if (RobotContainer.controller1.getLeftTriggerAxis() > 0.1) {
+    if (RobotContainer.controller1.getPOV() == 270) {
       position = false;
     }
 
-    if (RobotContainer.controller1.getRightTriggerAxis() > 0.1) {
+    if (RobotContainer.controller1.getPOV() == 90) {
       position = true;
     }
 
