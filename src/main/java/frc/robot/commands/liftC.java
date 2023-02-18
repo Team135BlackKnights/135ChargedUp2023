@@ -25,11 +25,11 @@ public class liftC extends CommandBase{
             liftS.extendedLift(.3, -.3);
         }
 
-        /*if (RobotContainer.controller2.getAButton()==true){
-            liftS.tilt.set(0.2);
+        if (RobotContainer.controller2.getAButton()==true){
+            liftS.tilt.set(0.5);
         }
         if (RobotContainer.controller2.getBButton()==true) {
-            liftS.tilt.set(-0.2);
-        }*/
+            liftS.tilt.set(-0.5);
+        }
 }
 }
