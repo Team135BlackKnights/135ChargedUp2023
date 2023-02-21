@@ -17,14 +17,14 @@ public class deployBarC extends CommandBase {
         isFinished = false;
     }
     public void execute(){
-         if (intakeS.entrapBar.get()==Value.kReverse){
-            intakeS.entrapBar.set(Value.kForward);
-         } else if (intakeS.entrapBar.get()==Value.kForward){
+         if (intakeS.entrapBar.get()==Value.kForward){
             intakeS.entrapBar.set(Value.kReverse);
+         } else if (intakeS.entrapBar.get()==Value.kReverse){
+            intakeS.entrapBar.set(Value.kForward);
          } else {
             intakeS.entrapBar.set(Value.kReverse);
          }
-         SmartDashboard.putString("Hang", intakeS.entrapBar.get().toString());
+         SmartDashboard.putString("bAR", intakeS.entrapBar.get().toString());
          isFinished=true;
     }
 
