@@ -32,9 +32,9 @@ public class driveC extends CommandBase{
     }
 
     driveS.shifting(position);
-    SmartDashboard.putBoolean("position", position);
+    SmartDashboard.putBoolean("Gear", position);
 
-    SmartDashboard.putNumber("gyro", driveS.gybro.getAngle());
+    SmartDashboard.putNumber("Gyro", driveS.gybro.getAngle());
   }
   
 }

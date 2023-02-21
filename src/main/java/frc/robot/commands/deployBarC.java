@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.intakeS;
 
@@ -12,6 +13,7 @@ public class deployBarC extends CommandBase {
         addRequirements(subsystem);
     }
     public void initiate(){
+        SmartDashboard.putString("Hang", intakeS.entrapBar.get().toString());
         isFinished = false;
     }
     public void execute(){
@@ -22,6 +24,7 @@ public class deployBarC extends CommandBase {
          } else {
             intakeS.entrapBar.set(Value.kReverse);
          }
+         SmartDashboard.putString("Hang", intakeS.entrapBar.get().toString());
          isFinished=true;
     }
 
