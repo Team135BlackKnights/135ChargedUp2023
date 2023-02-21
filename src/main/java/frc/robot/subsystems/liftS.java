@@ -25,9 +25,12 @@ public class liftS extends SubsystemBase {
         //eTilt.reset();
         //eLeftLift.setDistancePerPulse(1*Math.PI/42); //1 is diameter in inches
         //eRightLift.setDistancePerPulse(1*Math.PI/42);
+
+        tilt.setSmartCurrentLimit(1, 1);
+        tilt.burnFlash();
     }
 
-    public static void extendedLift(double left, double right) {
+    public void extendedLift(double left, double right) {
         leftLift.set(left);
         rightLift.set(right);
     }

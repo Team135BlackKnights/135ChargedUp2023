@@ -11,14 +11,27 @@ public class deployBarC extends CommandBase {
         intake = subsystem;
         addRequirements(subsystem);
     }
-    public void initiate(){}
+    public void initiate(){
+        isFinished = false;
+    }
     public void execute(){
          if (intakeS.entrapBar.get()==Value.kReverse){
             intakeS.entrapBar.set(Value.kForward);
-         }
-         else if (intakeS.entrapBar.get()==Value.kForward){
+         } else if (intakeS.entrapBar.get()==Value.kForward){
+            intakeS.entrapBar.set(Value.kReverse);
+         } else {
             intakeS.entrapBar.set(Value.kReverse);
          }
          isFinished=true;
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+
+    }
+
+    @Override
+    public boolean isFinished() {
+        return isFinished;
     }
 }

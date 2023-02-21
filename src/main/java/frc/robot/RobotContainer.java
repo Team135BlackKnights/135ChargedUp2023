@@ -108,13 +108,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {      
-    y1.onTrue(new deployBarC(_intakeS));
+    //y1.onTrue(new deployBarC(_intakeS));
     //not for scrimmage
     /*lb1.onTrue(new targetCone(_driveS, 1));
     rb1.onTrue(new targetCone(_driveS, 2));
     x1.onTrue(new targetCone(_driveS, 0));
     b2.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
     */
+    x2.onTrue(new rotateIntake(_liftS));
    // y.onTrue(new autoBalance(_driveS));
   }
 
@@ -130,12 +131,14 @@ public class RobotContainer {
   /*
    * Driver Controls:
    * Drive: Joysticks
-   * Shift: Left/Right D-Pad
+   * Shift: Left/Right Bumpers (Only works if compressor works)
    * Intake: Triggers
-   * Entrapment Bar: Y
+   * Entrapment Bar: Y       (Only works if compressor works)
    * 
    * Manipulator Controls:
    * Lift: Up/Down D-Pad
+   * Rotate Intake: A or B   (Might work, not tested)
+   * Auto Rotate Intake: X   (Isn't consistent and probably doesn't work) DONT USE
    */
     
  

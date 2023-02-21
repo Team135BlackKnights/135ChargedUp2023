@@ -19,17 +19,18 @@ public class liftC extends CommandBase{
 
     public void execute(){
         if (RobotContainer.controller2.getPOV() == 0){
-            liftS.extendedLift(-.5, .5);
+            lift.extendedLift(-.5, .5);
         }
         else if (RobotContainer.controller2.getPOV() == 180){
-            liftS.extendedLift(.3, -.3);
+            lift.extendedLift(.3, -.3);
         }
 
+        liftS.tilt.set(RobotContainer.controller2.getLeftY());
         /*if (RobotContainer.controller2.getAButton()==true){
-            liftS.tilt.set(0.2);
+            liftS.tilt.set(0.5);
         }
         if (RobotContainer.controller2.getBButton()==true) {
-            liftS.tilt.set(-0.2);
+            liftS.tilt.set(-0.5);
         }*/
 }
 }

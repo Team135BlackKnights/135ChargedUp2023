@@ -19,7 +19,7 @@ public class rotateIntake extends CommandBase{
 
     @Override
     public void execute() {
-         if (lift.intakeRotated == false) {
+         /*if (lift.intakeRotated == false) {
             while (liftS.eTilt.getPosition() < 28.2) {
                 liftS.tilt.set(0.5);
             }
@@ -33,7 +33,7 @@ public class rotateIntake extends CommandBase{
             isFinished = true;
         } else {
             isFinished = true;
-        }
+        }*/
     }
 
     @Override

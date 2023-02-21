@@ -23,11 +23,11 @@ public class driveC extends CommandBase{
     double right = RobotContainer.controller1.getRightY();
     drive.tankDrive(left, right);
 
-    if (RobotContainer.controller1.getPOV() == 270) {
+    if (RobotContainer.controller1.getLeftBumper()) {
       position = false;
     }
 
-    if (RobotContainer.controller1.getPOV() == 90) {
+    if (RobotContainer.controller1.getRightBumper()) {
       position = true;
     }
 
