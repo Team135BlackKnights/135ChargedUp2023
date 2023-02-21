@@ -13,7 +13,6 @@ public class deployBarC extends CommandBase {
         addRequirements(subsystem);
     }
     public void initiate(){
-        SmartDashboard.putString("Hang", intakeS.entrapBar.get().toString());
         isFinished = false;
     }
     public void execute(){
