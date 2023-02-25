@@ -4,7 +4,7 @@ import javax.swing.text.Position;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commands.shiftC;
+import frc.robot.commands.driveC;
 import frc.robot.subsystems.driveS;
 
 public class encDriveA extends CommandBase {
@@ -30,9 +30,9 @@ public class encDriveA extends CommandBase {
         
   @Override 
   public void execute() {
-    if (shiftC.position == true) {
+    if (driveC.position == true) {
       gearRatios=1/36;
-    } else if (shiftC.position == false) {
+    } else if (driveC.position == false) {
       gearRatios=1/42;
     }
     double avgEnc = (driveS.elBack.getPosition() + driveS.elFront.getPosition()-driveS.erBack.getPosition()
