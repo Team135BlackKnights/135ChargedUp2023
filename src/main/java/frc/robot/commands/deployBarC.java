@@ -23,7 +23,7 @@ public class deployBarC extends CommandBase {
          } else {
             intakeS.entrapBar.set(Value.kReverse);
          }
-         SmartDashboard.putString("bAR", intakeS.entrapBar.get().toString());
+         SmartDashboard.putString("Bar", intakeS.entrapBar.get().toString());
          isFinished=true;
     }
 

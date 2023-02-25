@@ -34,7 +34,7 @@ public class driveS extends SubsystemBase{
   public static RelativeEncoder erFront;
 
   public static RelativeEncoder erBack;
-  public static Gyro gybro = new ADXRS450_Gyro();
+  //public static Gyro gybro = new ADXRS450_Gyro();
 
   //public AHRS navx = new AHRS();
   public static Compressor pCompress = new Compressor(PneumaticsModuleType.REVPH);  //Digtial I/O,Relay

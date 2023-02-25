@@ -136,8 +136,8 @@ public class RobotContainer {
    * Entrapment Bar: Y       (Only works if compressor works)
    * 
    * Manipulator Controls:
-   * Lift: Up/Down D-Pad
-   * Rotate Intake: A or B   (Might work, not tested)
+   * Lift: Left Joystick
+   * Rotate Intake: Right Joystick
    * Auto Rotate Intake: X   (Isn't consistent and probably doesn't work) DONT USE
    */
     

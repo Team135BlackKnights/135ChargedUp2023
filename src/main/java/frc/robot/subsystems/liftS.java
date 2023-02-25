@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
@@ -14,6 +15,7 @@ public class liftS extends SubsystemBase {
     public static CANSparkMax tilt = new CANSparkMax(RobotMap.Lift.tiltID, MotorType.kBrushless);
    // public static Encoder eTilt, eLeftLift, eRightLift;
     public static RelativeEncoder eTilt;
+    public DigitalInput rotateStop = new DigitalInput(0);
     public boolean intakeRotated = false;
     
     public liftS() {
@@ -26,7 +28,7 @@ public class liftS extends SubsystemBase {
         //eLeftLift.setDistancePerPulse(1*Math.PI/42); //1 is diameter in inches
         //eRightLift.setDistancePerPulse(1*Math.PI/42);
 
-        tilt.setSmartCurrentLimit(1, 1);
+        tilt.setSmartCurrentLimit(70, 70);
         tilt.burnFlash();
     }
 
