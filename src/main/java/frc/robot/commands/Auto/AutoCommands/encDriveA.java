@@ -31,9 +31,9 @@ public class encDriveA extends CommandBase {
   @Override 
   public void execute() {
     if (driveC.position == true) {
-      gearRatios=1/36;
+      gearRatios=1/7.56; //7.56:1, 22.67:1
     } else if (driveC.position == false) {
-      gearRatios=1/42;
+      gearRatios=1/22.67;
     }
     double avgEnc = (driveS.elBack.getPosition() + driveS.elFront.getPosition()-driveS.erBack.getPosition()
     - driveS.erFront.getPosition()) / 4;
