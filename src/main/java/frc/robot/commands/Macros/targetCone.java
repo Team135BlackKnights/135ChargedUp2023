@@ -13,7 +13,7 @@ public class targetCone extends CommandBase{
     double lProportional, lIntegral, rProportional, rIntegral, leftSpeed, rightSpeed, tx, ta;
     public static int targetType;
     boolean inRange;
-    double kP = 0, kI = 0;
+    double kP = 0.01, kI = 0;
     public targetCone(driveS subsystem, int target) {
       // Use addRequirements() here to declare subsystem dependencies.
       drive = subsystem;

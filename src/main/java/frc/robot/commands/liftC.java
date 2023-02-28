@@ -26,13 +26,17 @@ public class liftC extends CommandBase{
         }
         lift.extendedLift(liftSpeed, -liftSpeed);
 
+<<<<<<< Updated upstream
      /*    if (lift.rotateStop.get()) {
+=======
+        /*if (lift.rotateStop.get()) {
+>>>>>>> Stashed changes
             liftS.eTilt.setPosition(0);
         }
         
         if (lift.rotateStop.get() == true && RobotContainer.controller2.getRightY() > 0) {
             liftS.tilt.set(0);
-        } if (liftS.eTilt.getPosition() <= 28.2 && RobotContainer.controller2.getRightY() < 0) {
+        }*/ if (liftS.eTilt.getPosition() <= 28.2 && RobotContainer.controller2.getRightY() < 0) {
             liftS.tilt.set(0);
         } else {*/
             liftS.tilt.set(-RobotContainer.controller2.getRightY()/2);

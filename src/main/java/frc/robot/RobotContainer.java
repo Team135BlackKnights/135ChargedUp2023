@@ -110,11 +110,11 @@ public class RobotContainer {
   private void configureButtonBindings() {      
     //y1.onTrue(new deployBarC(_intakeS));
     //not for scrimmage
-    /*lb1.onTrue(new targetCone(_driveS, 1));
+    lb1.onTrue(new targetCone(_driveS, 1));
     rb1.onTrue(new targetCone(_driveS, 2));
     x1.onTrue(new targetCone(_driveS, 0));
-    b2.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
-    */
+    //b2.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
+    
     x2.onTrue(new rotateIntake(_liftS));
    // y.onTrue(new autoBalance(_driveS));
   }

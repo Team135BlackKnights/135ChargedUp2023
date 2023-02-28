@@ -51,6 +51,14 @@ public class driveS extends SubsystemBase{
   }
 
   public void tankDrive(double left, double right) {
+    /*left = left * liftS.liftPercent();
+    right = right * liftS.liftPercent();
+    if (left < 0.15) {
+      left = 0.15;
+    }
+    if (right < 0.15) {
+      right = 0.15;
+    }*/
     tank.tankDrive(left,right);
   }
 
