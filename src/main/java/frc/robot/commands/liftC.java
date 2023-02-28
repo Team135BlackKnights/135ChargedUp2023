@@ -24,7 +24,9 @@ public class liftC extends CommandBase{
         } else {
             liftSpeed = (RobotContainer.controller2.getLeftY()*.75);
         }
-        lift.extendedLift(liftSpeed, -liftSpeed);
+
+        if (liftS.eLiftAveragePercent >= 1) {
+        lift.extendedLift(liftSpeed, -liftSpeed);}
 
         /*if (lift.rotateStop.get()) {
             liftS.eTilt.setPosition(0);

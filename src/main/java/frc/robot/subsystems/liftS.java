@@ -37,7 +37,7 @@ public class liftS extends SubsystemBase {
 
     public static double liftPercent() {
         eLiftAverage = (eLeftLift.getPosition() + eRightLift.getPosition()) / 2;
-        eLiftAveragePercent = 1/(eLiftAverage / eLiftLimit);
+        eLiftAveragePercent = eLiftAverage / eLiftLimit;
         return eLiftAveragePercent;
     }
 }
