@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -18,7 +19,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class driveS extends SubsystemBase{
-  public static DoubleSolenoid shifter = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.Drive.shiftSolenoid, RobotMap.Drive.shiftSolenoid2);
+  public static Solenoid shifter = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.Drive.shiftSolenoid);
 
   //public static PneumaticHub PneumHub= new PneumaticHub();
   //public static double pressure = PneumHub.getPressure(0);
@@ -46,7 +47,7 @@ public class driveS extends SubsystemBase{
 
   public driveS() {
     MCGleft.setInverted(true);
-
+    
   }
 
   public void tankDrive(double left, double right) {
@@ -62,10 +63,10 @@ public class driveS extends SubsystemBase{
 
   public static void shifting(boolean position) {
     if (position == true) {
-      shifter.set(Value.kForward);
+      shifter.set(true);
  //     pressure = PneumHub.getPressure(0);
     } else if (position == false) {
-      shifter.set(Value.kReverse);
+      shifter.set(false);
  //     pressure = PneumHub.getPressure(0);
     }
   }

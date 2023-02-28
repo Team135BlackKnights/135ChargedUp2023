@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.driveC;
 import frc.robot.subsystems.driveS;
 
-public class encDriveA extends CommandBase {
+public class rotDriveA extends CommandBase {
   private final driveS drive;
   PIDController pidController = new PIDController(.008, .004, 0);
   public boolean isFinished= false;
@@ -17,9 +17,8 @@ public class encDriveA extends CommandBase {
   double diameter = Math.PI*6;
   double cpr = 1/42; //counts per revolution
 
-  public encDriveA(driveS subsystem, double desDis, boolean gear) { //desired Distance
-    Desired=desDis;
-    driveC.position = gear;
+  public rotDriveA(driveS subsystem, double desAng) { //desired angle
+    Desired=desAng;
     drive = subsystem;
     addRequirements(subsystem);
   }
@@ -41,7 +40,7 @@ public class encDriveA extends CommandBase {
     double rEncValue = avgEnc*gearRatios;
     encodervalue = rEncValue*diameter*cpr;
 
-    drive.tankDrive(pidController.calculate(encodervalue, Desired), pidController.calculate(encodervalue, Desired));
+    drive.tankDrive(pidController.calculate(encodervalue, -Desired), pidController.calculate(encodervalue, Desired));
     if (Math.abs(pidController.getPositionError()) < 1) {
       isFinished = true;
     } 
