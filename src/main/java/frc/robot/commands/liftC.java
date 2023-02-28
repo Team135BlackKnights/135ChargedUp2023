@@ -26,11 +26,7 @@ public class liftC extends CommandBase{
         }
         lift.extendedLift(liftSpeed, -liftSpeed);
 
-<<<<<<< Updated upstream
-     /*    if (lift.rotateStop.get()) {
-=======
         /*if (lift.rotateStop.get()) {
->>>>>>> Stashed changes
             liftS.eTilt.setPosition(0);
         }
         
@@ -38,9 +34,9 @@ public class liftC extends CommandBase{
             liftS.tilt.set(0);
         }*/ if (liftS.eTilt.getPosition() <= 28.2 && RobotContainer.controller2.getRightY() < 0) {
             liftS.tilt.set(0);
-        } else {*/
+        }  else {
             liftS.tilt.set(-RobotContainer.controller2.getRightY()/2);
         SmartDashboard.putNumber("Lift", lift.eLeftLift.getPosition());
         SmartDashboard.putNumber("Intake Tilt", lift.eTilt.getPosition());
     }  
-}
+}}
