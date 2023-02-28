@@ -20,9 +20,9 @@ public class liftC extends CommandBase{
 
     public void execute(){
         if (RobotContainer.controller2.getLeftY() < 0) {
-            liftSpeed = (RobotContainer.controller2.getLeftY()/3);
+            liftSpeed = RobotContainer.controller2.getLeftY()/3;
         } else {
-            liftSpeed = (RobotContainer.controller2.getLeftY()*.75);
+            liftSpeed = RobotContainer.controller2.getLeftY()*.75;
         }
 
         if (liftS.eLiftAveragePercent >= 1) {
