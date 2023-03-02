@@ -53,14 +53,14 @@ public class driveS extends SubsystemBase{
 
   public void tankDrive(double left, double right) {
     
-    if (liftS.liftPercent() >= 0.85) {
+    /*if (liftS.liftPercent() >= 0.85) {
       left = left * 0.15;
       right = right * 0.15;
     }
     else {
       left = left / 10 * liftS.liftPercent();
       right = right / 10 * liftS.liftPercent();
-    }
+    }*/
     
     tank.tankDrive(left,right);
     SmartDashboard.putNumber("liftPercent", liftS.liftPercent());

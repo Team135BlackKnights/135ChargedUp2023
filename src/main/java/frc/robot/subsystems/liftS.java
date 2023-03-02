@@ -61,7 +61,7 @@ public class liftS extends SubsystemBase {
         double posFeedForward = (0.003 * eLeftLift.getPosition()) + 0.1; // position feed forward
 
 
-        if (eTilt.getPosition() > -1) {
+        if (eTilt.getPosition() > -1) { //wont run unless intake is in
             if (desVel < 0) {
                 desVel = desVel * 0.333;
             } else {
