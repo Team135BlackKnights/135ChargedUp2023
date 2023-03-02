@@ -1,4 +1,6 @@
-package frc.robot.commands.Macros;
+//Giving up on this for first event
+
+/*package frc.robot.commands.Macros;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -125,4 +127,4 @@ public class targetCone extends CommandBase{
     public boolean isFinished() {
         return isFinished();
     }
-}
+}*/

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
 import frc.robot.commands.Auto.AutoCommands.encDriveA;
 import frc.robot.commands.Auto.AutoCommands.resetEncoders;
-import frc.robot.commands.Macros.extendLift;
+//import frc.robot.commands.Macros.extendLift;
 import frc.robot.commands.Macros.rotateIntake;
 import frc.robot.subsystems.driveS;
 import frc.robot.subsystems.intakeS;
@@ -18,7 +18,7 @@ public class leftGridA extends SequentialCommandGroup{
         super(
             Commands.sequence(
                 new resetEncoders(drive),
-                new extendLift(lift), //Everything in extendLift is commented that is why this doesnt work
+                //new extendLift(lift), //Everything in extendLift is commented that is why this doesnt work
                 new rotateIntake(lift),
                 new encDriveA(drive, -50, false)
             )

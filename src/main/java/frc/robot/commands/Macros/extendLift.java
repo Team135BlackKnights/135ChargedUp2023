@@ -1,4 +1,6 @@
-package frc.robot.commands.Macros;
+//Everything in targetCone is commented that is why this doesnt work
+
+/*package frc.robot.commands.Macros;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -49,4 +51,4 @@ public class extendLift extends CommandBase{
     public boolean isFinished() {
         return isFinished;
     }
-}
+}*/

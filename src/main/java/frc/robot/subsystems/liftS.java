@@ -20,7 +20,7 @@ public class liftS extends SubsystemBase {
     //public static Encoder eTilt, eLeftLift, eRightLift;
     private static RelativeEncoder eTilt, eLeftLift, eRightLift;
     private boolean intakeRotated = false;
-    public static double eLiftLimit, eLiftAverage, eLiftAverageDist, eLiftAveragePercent;
+    public static double eLiftLimit = 70, eLiftAverage, eLiftAverageDist, eLiftAveragePercent;
 
     final private double spoolDiameter = 1.51, gearRatio = 4.43;
     final private double conversionFactor = spoolDiameter*Math.PI/gearRatio;
@@ -61,30 +61,30 @@ public class liftS extends SubsystemBase {
         double posFeedForward = (0.003 * eLeftLift.getPosition()) + 0.1; // position feed forward
 
 
-
-        if (desVel < 0) {
-            desVel = desVel * 0.333;
-        } else {
-            desVel = desVel * 0.75;
-        }
-
-
-        if (desVel < 0)
-        {   // soft stop on bottom of travel
-            if (eLeftLift.getPosition() < 1)
-            {   // 
-                desVel = 0;
-            }
-            else if (eLeftLift.getPosition() < 4)
-            {
+        if (eTilt.getPosition() > -1) {
+            if (desVel < 0) {
                 desVel = desVel * 0.333;
+            } else {
+                desVel = desVel * 0.75;
+            }
+
+
+            if (desVel < 0)
+            {   // soft stop on bottom of travel
+                if (eLeftLift.getPosition() < 1)
+                {   // 
+                    desVel = 0;
+                }
+                else if (eLeftLift.getPosition() < 4)
+                {
+                    desVel = desVel * 0.333;
+                }
+            }
+            else if (desVel > 0.1 && eLeftLift.getPosition() > 68)
+            {   // soft stop on top of travel
+                desVel = 0.1;
             }
         }
-        else if (desVel > 0.1 && eLeftLift.getPosition() > 68)
-        {   // soft stop on top of travel
-            desVel = 0.1;
-        }
-
         lift.set(desVel);
 
         SmartDashboard.putNumber("Intake Tilt", eTilt.getPosition());
@@ -120,6 +120,7 @@ public class liftS extends SubsystemBase {
                 desSpeed = desSpeed * 0.5;
             }
         }
+    
         // set the lift motor speed (power)
         tilt.set(desSpeed);
 
@@ -129,7 +130,7 @@ public class liftS extends SubsystemBase {
 
     public static double liftPercent() {
         eLiftAverageDist = -eLeftLift.getPosition() * 1.5 * Math.PI /4; // encoderLiftAverage * spool diameter * pi * gear ratio
-        eLiftAveragePercent = 1/(eLiftAverageDist / eLiftLimit);
+        eLiftAveragePercent = 1/(eLeftLift.getPosition() / eLiftLimit);
         return eLiftAveragePercent;
     }
 

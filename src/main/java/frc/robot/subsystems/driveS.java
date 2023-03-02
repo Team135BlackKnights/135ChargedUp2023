@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
@@ -51,17 +52,18 @@ public class driveS extends SubsystemBase{
   }
 
   public void tankDrive(double left, double right) {
-    /*
+    
     if (liftS.liftPercent() >= 0.85) {
       left = left * 0.15;
-      right = right * 0.15
+      right = right * 0.15;
     }
     else {
       left = left / 10 * liftS.liftPercent();
       right = right / 10 * liftS.liftPercent();
     }
-    */
+    
     tank.tankDrive(left,right);
+    SmartDashboard.putNumber("liftPercent", liftS.liftPercent());
   }
 
   public void resetEncoders() {
