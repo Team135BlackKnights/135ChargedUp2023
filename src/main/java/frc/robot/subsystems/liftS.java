@@ -23,6 +23,7 @@ public class liftS extends SubsystemBase {
     public static double eLiftLimit, eLiftAverage, eLiftAverageDist, eLiftAveragePercent;
 
     final private double spoolDiameter = 1.51, gearRatio = 4.43;
+    final private double conversionFacotr = spoolDiameter*Math.PI/gearRatio
     
     public liftS() {
         leftLift.enableVoltageCompensation(12);
@@ -40,11 +41,11 @@ public class liftS extends SubsystemBase {
         eLeftLift = leftLift.getEncoder();
         eRightLift = rightLift.getEncoder();
 
-        eLeftLift.setPositionConversionFactor(1.51 * Math.PI / 4.43);
-        eRightLift.setPositionConversionFactor(1.51 * Math.PI / 4.43);
+        eLeftLift.setPositionConversionFactor(conversionFactor);
+        eRightLift.setPositionConversionFactor(conversionFactor);
 
-        eLeftLift.setVelocityConversionFactor(1.51 * Math.PI / 4.43 / 60);
-        eRightLift.setVelocityConversionFactor(1.51 * Math.PI / 4.43 / 60);
+        eLeftLift.setVelocityConversionFactor(conversionFactor/ 60);
+        eRightLift.setVelocityConversionFactor(conversionFactor/ 60);
 
         eTilt.setPosition(0);
         eLeftLift.setPosition(0);
@@ -55,7 +56,7 @@ public class liftS extends SubsystemBase {
         rightLift.burnFlash();
     }
 
-    public void setLiftFeedForward(double desVel) {
+    public void setLiftFeedForward(double desVel) { //desVel= desired Velocity
         eLiftAverageDist = eLeftLift.getPosition();
         double posFeedForward = (0.003 * eLeftLift.getPosition()) + 0.1; // position feed forward
 
@@ -79,7 +80,7 @@ public class liftS extends SubsystemBase {
                 desVel = desVel * 0.333;
             }
         }
-        else if (desVel > 0.1 && eLeftLift.getPosition() > 63)
+        else if (desVel > 0.1 && eLeftLift.getPosition() > 68)
         {   // soft stop on top of travel
             desVel = 0.1;
         }
@@ -110,11 +111,11 @@ public class liftS extends SubsystemBase {
         }
         if (desSpeed < 0)
         {   // down soft stop
-            if (eTilt.getPosition() < -23.5)
+            if (eTilt.getPosition() < -27/*-23.5*/)
             {   // hard stop
                 desSpeed = 0;  
             }
-            else if (eTilt.getPosition() < -19.5)
+            else if (eTilt.getPosition() < -21/*-19.5*/)
             {   // slow down
                 desSpeed = desSpeed * 0.5;
             }
