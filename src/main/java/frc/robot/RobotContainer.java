@@ -37,7 +37,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   public static XboxController controller1 = new XboxController(0);
   public static XboxController controller2= new XboxController(1);
-  public static int grid = 0;
+  //public static int grid = 0;
   public static int target;
 
   final JoystickButton a1 = new JoystickButton(controller1, RobotMap.ButtonMap.A);
@@ -59,9 +59,9 @@ public class RobotContainer {
   public static liftS _liftS = new liftS();
   public static intakeS _intakeS = new intakeS();
   
-  public static driveC _driveC = new driveC(_driveS);
-  public static liftC _liftC = new liftC(_liftS);
-  public static targetCone _targetCone = new targetCone(_driveS, target);
+  //public static driveC _driveC = new driveC(_driveS);
+  //public static liftC _liftC = new liftC(_liftS);
+  //public static targetCone _targetCone = new targetCone(_driveS, target);
 
   //private final Command LeftGrid = new leftGridA(_driveS);
   //private final Command MiddleGrid = new middleGridA(_driveS);
@@ -72,14 +72,6 @@ public class RobotContainer {
  // SendableChooser<Command> m_Chooser2= new SendableChooser<>();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    /*m_Chooser.addOption("LeftGridAuto", LeftGrid);
-    m_Chooser.addOption("MiddleGridAuto", MiddleGrid);
-    m_Chooser.addOption("RightGridAuto", RightGrid);
-
-    m_Chooser.setDefaultOption("LeftGridAuto", LeftGrid);*/
-
-    //m_Chooser2.addOption("1 score", oneScore);
-  //m_Chooser2.addOption("2 score", twoScore)
 
     SmartDashboard.putData(m_Chooser);
     _intakeS.setDefaultCommand(new intakeC(_intakeS));
@@ -108,14 +100,16 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {      
-    //y1.onTrue(new deployBarC(_intakeS));
+    y1.onTrue(new deployBarC(_intakeS));
     //not for scrimmage
-    lb1.whileTrue(new targetCone(_driveS, 1));
-    rb1.whileTrue(new targetCone(_driveS, 2));
-    y1.whileTrue(new targetCone(_driveS, 0));
+
+    //lb1.whileTrue(new targetCone(_driveS, 1));
+    //rb1.whileTrue(new targetCone(_driveS, 2));
+    //y1.whileTrue(new targetCone(_driveS, 0));
+    
     //b2.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
     
-    x2.onTrue(new rotateIntake(_liftS));
+   // x2.onTrue(new rotateIntake(_liftS));
    // y.onTrue(new autoBalance(_driveS));
   }
 

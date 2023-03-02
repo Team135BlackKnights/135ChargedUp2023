@@ -2,42 +2,133 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class liftS extends SubsystemBase {
-    public static CANSparkMax leftLift = new CANSparkMax(RobotMap.Lift.liftID_1, MotorType.kBrushless);
-    public static CANSparkMax rightLift = new CANSparkMax(RobotMap.Lift.liftID_2, MotorType.kBrushless);
-    public static CANSparkMax tilt = new CANSparkMax(RobotMap.Lift.tiltID, MotorType.kBrushless);
+    private static CANSparkMax leftLift = new CANSparkMax(RobotMap.Lift.liftID_1, MotorType.kBrushless);
+    private static CANSparkMax rightLift = new CANSparkMax(RobotMap.Lift.liftID_2, MotorType.kBrushless);
+    private static CANSparkMax tilt = new CANSparkMax(RobotMap.Lift.tiltID, MotorType.kBrushless);
+    private static MotorControllerGroup lift = new MotorControllerGroup(leftLift, rightLift);
     //public static Encoder eTilt, eLeftLift, eRightLift;
-    public static RelativeEncoder eTilt, eLeftLift, eRightLift;
-    public boolean intakeRotated = false;
-    public static double eLiftLimit, eLiftAverage, eLiftAveragePercent;
+    private static RelativeEncoder eTilt, eLeftLift, eRightLift;
+    private boolean intakeRotated = false;
+    public static double eLiftLimit, eLiftAverage, eLiftAverageDist, eLiftAveragePercent;
+
+    final private double spoolDiameter = 1.51, gearRatio = 4.43;
     
     public liftS() {
+        leftLift.enableVoltageCompensation(12);
+        rightLift.enableVoltageCompensation(12);
+        tilt.enableVoltageCompensation(12);
+
+        leftLift.setInverted(true);
+        rightLift.setInverted(true);
+        leftLift.setIdleMode(IdleMode.kBrake);
+        rightLift.setIdleMode(IdleMode.kBrake);
+        tilt.setIdleMode(IdleMode.kBrake);
+        tilt.setSmartCurrentLimit(40, 40);
+
         eTilt = tilt.getEncoder();
         eLeftLift = leftLift.getEncoder();
         eRightLift = rightLift.getEncoder();
+
+        eLeftLift.setPositionConversionFactor(1.51 * Math.PI / 4.43);
+        eRightLift.setPositionConversionFactor(1.51 * Math.PI / 4.43);
+
+        eLeftLift.setVelocityConversionFactor(1.51 * Math.PI / 4.43 / 60);
+        eRightLift.setVelocityConversionFactor(1.51 * Math.PI / 4.43 / 60);
+
         eTilt.setPosition(0);
         eLeftLift.setPosition(0);
         eRightLift.setPosition(0);
 
-        tilt.setSmartCurrentLimit(40, 40);
         tilt.burnFlash();
+        leftLift.burnFlash();
+        rightLift.burnFlash();
     }
 
-    public void extendedLift(double left, double right) {
-        leftLift.set(left);
-        rightLift.set(right);
+    public void setLiftFeedForward(double desVel) {
+        eLiftAverageDist = eLeftLift.getPosition();
+        double posFeedForward = (0.003 * eLeftLift.getPosition()) + 0.1; // position feed forward
+
+
+
+        if (desVel < 0) {
+            desVel = desVel * 0.333;
+        } else {
+            desVel = desVel * 0.75;
+        }
+
+
+        if (desVel < 0)
+        {   // soft stop on bottom of travel
+            if (eLeftLift.getPosition() < 1)
+            {   // 
+                desVel = 0;
+            }
+            else if (eLeftLift.getPosition() < 4)
+            {
+                desVel = desVel * 0.333;
+            }
+        }
+        else if (desVel > 0.1 && eLeftLift.getPosition() > 63)
+        {   // soft stop on top of travel
+            desVel = 0.1;
+        }
+
+        lift.set(desVel);
+
+        SmartDashboard.putNumber("Intake Tilt", eTilt.getPosition());
+        SmartDashboard.putNumber("lift Position", eLeftLift.getPosition());
+        SmartDashboard.putNumber("Lift Velocity", eLeftLift.getVelocity());
+        SmartDashboard.putNumber("Lift Power", lift.get());
+        SmartDashboard.putNumber("desVel", desVel);
+    }
+
+    public void setTiltPower(double desSpeed)
+    {
+        desSpeed = desSpeed * 0.175; // slow down power control for tilt
+
+        if (desSpeed > 0)
+        {   // up soft stop
+            if (eTilt.getPosition() > -0.5)
+            {   // hard stop
+                desSpeed = 0;  
+            }
+            else if (eTilt.getPosition() > -5)
+            {   // slow down
+                desSpeed = desSpeed * 0.5;
+            }
+        }
+        if (desSpeed < 0)
+        {   // down soft stop
+            if (eTilt.getPosition() < -23.5)
+            {   // hard stop
+                desSpeed = 0;  
+            }
+            else if (eTilt.getPosition() < -19.5)
+            {   // slow down
+                desSpeed = desSpeed * 0.5;
+            }
+        }
+        // set the lift motor speed (power)
+        tilt.set(desSpeed);
+
+        SmartDashboard.putNumber("tilt Position", eTilt.getPosition());
+        SmartDashboard.putNumber("tilt Speed", desSpeed);
     }
 
     public static double liftPercent() {
-        eLiftAverage = (eLeftLift.getPosition() + eRightLift.getPosition()) / 2;
-        eLiftAveragePercent = eLiftAverage / eLiftLimit;
+        eLiftAverageDist = -eLeftLift.getPosition() * 1.5 * Math.PI /4; // encoderLiftAverage * spool diameter * pi * gear ratio
+        eLiftAveragePercent = 1/(eLiftAverageDist / eLiftLimit);
         return eLiftAveragePercent;
     }
 }

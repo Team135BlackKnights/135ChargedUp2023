@@ -13,7 +13,7 @@ public class rotateIntake extends CommandBase{
 
     @Override
     public void initialize() {
-        lift.eTilt.setPosition(0);
+      //  lift.eTilt.setPosition(0);
         isFinished = false;
     }
 

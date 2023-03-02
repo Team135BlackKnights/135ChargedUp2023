@@ -18,11 +18,7 @@ public class driveC extends CommandBase{
 
   public void execute(){
     driveS.pCompress.enableDigital();
-   // driveS.pCompress.enableAnalog(50, 120);
-    double left = RobotContainer.controller1.getLeftY();
-    double right = RobotContainer.controller1.getRightY();
-    drive.tankDrive(left, right);
-
+    
     if (RobotContainer.controller1.getLeftBumper()) {
       position = false;
     }
@@ -33,6 +29,12 @@ public class driveC extends CommandBase{
 
     driveS.shifting(position);
     SmartDashboard.putBoolean("Gear", position);
+    
+   // driveS.pCompress.enableAnalog(50, 120);
+    double left = RobotContainer.controller1.getLeftY();
+    double right = RobotContainer.controller1.getRightY();
+    drive.tankDrive(left, right);
+
 
    // SmartDashboard.putNumber("Gyro", driveS.gybro.getAngle());
   }

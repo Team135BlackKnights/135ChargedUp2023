@@ -44,6 +44,7 @@ public class targetCone extends CommandBase{
         SmartDashboard.putNumber("tv", limelight.getEntry("tv").getDouble(0.0));
         SmartDashboard.putNumber("pipeline", limelight.getEntry("pipeline").getDouble(0.0));
         SmartDashboard.putNumber("Target Type", targetType);
+        
     }
 
     public double limit(double x, double upperLimit, double lowerLimit) {

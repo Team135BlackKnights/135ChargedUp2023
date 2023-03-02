@@ -8,16 +8,15 @@ public interface RobotMap {
             FR_ID = 13, //
             BL_ID = 12, //
             BR_ID = 14,        
-            shiftSolenoid = 0,
-            shiftSolenoid2 = 1;
+            shiftSolenoid = 0;
     }
 
     public interface Intake {
         // Simple intake. Motors spin vertically opposite of each other.
         public static final int
             intakeID_1 = 31,
-            BAR_ID=3,
-            BAR2_ID=4;
+            BAR_ID=1,
+            BAR2_ID=2;
     }
 
     public interface Lift {
