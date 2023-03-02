@@ -23,7 +23,7 @@ public class liftS extends SubsystemBase {
     public static double eLiftLimit, eLiftAverage, eLiftAverageDist, eLiftAveragePercent;
 
     final private double spoolDiameter = 1.51, gearRatio = 4.43;
-    final private double conversionFacotr = spoolDiameter*Math.PI/gearRatio
+    final private double conversionFactor = spoolDiameter*Math.PI/gearRatio;
     
     public liftS() {
         leftLift.enableVoltageCompensation(12);
@@ -132,4 +132,5 @@ public class liftS extends SubsystemBase {
         eLiftAveragePercent = 1/(eLiftAverageDist / eLiftLimit);
         return eLiftAveragePercent;
     }
+
 }
