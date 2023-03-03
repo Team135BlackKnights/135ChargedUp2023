@@ -16,7 +16,7 @@ public class intakeC extends CommandBase{
             } else if (RobotContainer.controller1.getRawAxis(3)>0){
                 intakeS.intake.set((-RobotContainer.controller1.getRightTriggerAxis()));
             } else {
-                intakeS.intake.set(.25);
+                intakeS.intake.set(-.25);
             }
         }
 }

@@ -17,6 +17,7 @@ public class driveC extends CommandBase{
   }       
 
   public void execute(){
+    drive.motorCoast();
     driveS.pCompress.enableDigital();
     
     if (RobotContainer.controller1.getLeftBumper()) {

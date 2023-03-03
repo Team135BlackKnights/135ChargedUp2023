@@ -12,7 +12,7 @@ public class deployBarC extends CommandBase {
         intake = subsystem;
         addRequirements(subsystem);
     }
-    public void initiate(){
+    public void initialize(){
         isFinished = false;
     }
     public void execute(){

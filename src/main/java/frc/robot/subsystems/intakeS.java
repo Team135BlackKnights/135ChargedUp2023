@@ -14,7 +14,7 @@ public class intakeS extends SubsystemBase {
     public static DoubleSolenoid entrapBar = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.Intake.BAR_ID, RobotMap.Intake.BAR2_ID);
 
     public intakeS() {
-        intake.setSmartCurrentLimit(30, 60);
+        intake.setSmartCurrentLimit(25, 50);
         intake.setIdleMode(IdleMode.kBrake);
         intake.burnFlash();
     }

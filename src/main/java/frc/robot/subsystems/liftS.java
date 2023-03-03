@@ -128,6 +128,10 @@ public class liftS extends SubsystemBase {
         SmartDashboard.putNumber("tilt Speed", desSpeed);
     }
 
+    public double getIntakePosition() {
+        return eTilt.getPosition();
+    }
+
     public static double liftPercent() {
         eLiftAverageDist = -eLeftLift.getPosition() * 1.5 * Math.PI /4; // encoderLiftAverage * spool diameter * pi * gear ratio
         eLiftAveragePercent = 1/(eLeftLift.getPosition() / eLiftLimit);

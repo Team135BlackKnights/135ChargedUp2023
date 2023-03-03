@@ -19,8 +19,9 @@ public class leftGridA extends SequentialCommandGroup{
         super(
             Commands.sequence(
                 //new resetEncoders(drive),
+                new autoIntake(intake, 1, false),
                 new liftA(lift, 3, false),
-                new autoIntake(intake, 3, true),
+                new autoIntake(intake, 1.5, true),
                 new liftA(lift, 3, true), 
                 new encDriveA(drive, -150, false)
                 

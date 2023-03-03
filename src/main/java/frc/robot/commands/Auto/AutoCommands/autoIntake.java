@@ -22,9 +22,9 @@ public class autoIntake extends CommandBase{
     public void initialize() {
         timer.start();
         if (reverse != true) {
-            intakeS.intake.set(.5);
-        } else {
             intakeS.intake.set(-.5);
+        } else {
+            intakeS.intake.set(.5);
         }
     }
 
@@ -40,6 +40,7 @@ public class autoIntake extends CommandBase{
     public void end(boolean interrupted) {
         timer.stop();
         timer.reset();
+        intakeS.intake.set(0);
     }
 
     @Override

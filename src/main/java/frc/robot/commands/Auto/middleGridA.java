@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
 import frc.robot.commands.Auto.AutoCommands.encDriveA;
 import frc.robot.commands.Auto.AutoCommands.resetEncoders;
+import frc.robot.commands.Auto.AutoCommands.rotDriveA;
 import frc.robot.subsystems.driveS;
 
 public class middleGridA extends SequentialCommandGroup{
@@ -16,7 +17,8 @@ public class middleGridA extends SequentialCommandGroup{
             Commands.sequence(
                 //new resetEncoders(drive),
 
-                new encDriveA(drive, -93.06, false)
+                new encDriveA(drive, -93, false),
+                new rotDriveA(drive, 90, false)
             )
         );
                 

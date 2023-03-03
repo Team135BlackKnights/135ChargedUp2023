@@ -3,6 +3,7 @@ package frc.robot.commands.Auto.AutoCommands;
 import javax.swing.text.Position;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.driveC;
 import frc.robot.subsystems.driveS;
@@ -12,41 +13,42 @@ public class rotDriveA extends CommandBase {
   PIDController pidController = new PIDController(.008, .004, 0);
   public boolean isFinished= false;
 
-  double Desired, encodervalue;
-  double gearRatios;
-  double diameter = Math.PI*6;
-  double cpr = 1/42; //counts per revolution
 
-  public rotDriveA(driveS subsystem, double desAng) { //desired angle
+  boolean Gear;
+  double Desired;
+
+  public rotDriveA(driveS subsystem, double desAng, boolean gear) { //desired Angle
     Desired=desAng;
+    Gear = gear;
     drive = subsystem;
     addRequirements(subsystem);
   }
 
   @Override
   public void initialize() {
-
+    driveS.shifting(Gear);
+    drive.resetEncoders();
   }
         
   @Override 
   public void execute() {
-    if (driveC.position == true) {
-      gearRatios=1/7.56; //7.56:1, 22.67:1
-    } else if (driveC.position == false) {
-      gearRatios=1/22.67;
-    }
-    double avgEnc = (driveS.elBack.getPosition() + driveS.elFront.getPosition()-driveS.erBack.getPosition()
-    - driveS.erFront.getPosition()) / 4;
-    double rEncValue = avgEnc*gearRatios;
-    encodervalue = rEncValue*diameter*cpr;
+    Desired = Desired * Math.PI * 27.5 / 360;
+    double autoDriveSpeed = 1 * pidController.calculate(drive.getDrivePos(), Desired);
 
-    drive.tankDrive(pidController.calculate(encodervalue, -Desired), pidController.calculate(encodervalue, Desired));
-    if (Math.abs(pidController.getPositionError()) < 1) {
+    drive.tankDrive(/*(100)*/-.5*autoDriveSpeed, .5 * autoDriveSpeed);
+
+    SmartDashboard.putNumber("position error", pidController.getPositionError());
+    SmartDashboard.putNumber("auto drive speed", autoDriveSpeed);
+    
+    if ((pidController.getPositionError()) > -1) {
       isFinished = true;
     } 
   }
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    drive.tankDrive(0, 0);
+    drive.motorBrake();
+  }
 
   @Override
   public boolean isFinished() {

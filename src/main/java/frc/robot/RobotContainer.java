@@ -65,7 +65,7 @@ public class RobotContainer {
 
   private final Command LeftGrid = new leftGridA(_driveS, _liftS, _intakeS);
   private final Command MiddleGrid = new middleGridA(_driveS);
-  private final Command RightGrid = new rightGridA(_driveS);
+  private final Command RightGrid = new rightGridA(_driveS, _intakeS, _liftS);
 
   //private final Command oneScore = new oneScoreA(_driveS);
 
@@ -73,9 +73,9 @@ public class RobotContainer {
  // SendableChooser<Command> m_Chooser2= new SendableChooser<>();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_Chooser.setDefaultOption("leftGrid", LeftGrid);
-    m_Chooser.addOption("MiddleGrid", MiddleGrid);
-    m_Chooser.addOption("RightGrid", RightGrid);
+    m_Chooser.setDefaultOption("Score High Auto", LeftGrid);
+    m_Chooser.addOption("Charging Station Auto", MiddleGrid);
+    m_Chooser.addOption("Non-Functional Auto", RightGrid);
     SmartDashboard.putData(m_Chooser);
     _intakeS.setDefaultCommand(new intakeC(_intakeS));
     _driveS.setDefaultCommand(new driveC(_driveS));

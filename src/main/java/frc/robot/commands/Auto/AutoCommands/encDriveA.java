@@ -47,6 +47,7 @@ public class encDriveA extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     drive.tankDrive(0, 0);
+    drive.motorBrake();
   }
 
   @Override

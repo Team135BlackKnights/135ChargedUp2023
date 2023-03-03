@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 //import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -94,6 +95,20 @@ public class driveS extends SubsystemBase{
     elBack.setPosition(0);
     erFront.setPosition(0);
     erBack.setPosition(0);
+  }
+
+  public void motorBrake() {
+    FrontL.setIdleMode(IdleMode.kBrake);
+    BackL.setIdleMode(IdleMode.kBrake);
+    FrontR.setIdleMode(IdleMode.kBrake);
+    BackR.setIdleMode(IdleMode.kBrake);
+  }
+
+  public void motorCoast() {
+    FrontL.setIdleMode(IdleMode.kCoast);
+    BackL.setIdleMode(IdleMode.kCoast);
+    FrontR.setIdleMode(IdleMode.kCoast);
+    BackR.setIdleMode(IdleMode.kCoast);
   }
 
   public static void shifting(boolean position) {
