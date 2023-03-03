@@ -46,9 +46,21 @@ public class driveS extends SubsystemBase{
     
   public DifferentialDrive tank = new DifferentialDrive(MCGleft , MCGright);
 
+  private double gearRatios;
+  private double circumfrance = Math.PI*6;
+
   public driveS() {
-    MCGleft.setInverted(true);
-    
+    FrontL.setInverted(true);
+    BackL.setInverted(true);
+    MCGright.setInverted(false);
+    elFront = FrontL.getEncoder();
+    elBack = BackL.getEncoder();
+    erFront = FrontR.getEncoder();
+    erBack = BackR.getEncoder();
+    FrontL.burnFlash();
+    BackL.burnFlash();
+    FrontR.burnFlash();
+    BackR.burnFlash();
   }
 
   public void tankDrive(double left, double right) {
@@ -64,6 +76,17 @@ public class driveS extends SubsystemBase{
     
     tank.tankDrive(left,right);
     SmartDashboard.putNumber("liftPercent", liftS.liftPercent());
+  }
+  public double getDrivePos(){
+    if (shifter.get() == true) {
+      gearRatios=1/22.67; //7.56:1, 22.67:1
+    } else {
+      gearRatios=1/7.56;
+    }
+    double avgEnc = (elFront.getPosition() + erFront.getPosition()) / 2;
+    double rEncValue = avgEnc*gearRatios;
+    double encodervalue = rEncValue*circumfrance;
+    return encodervalue;
   }
 
   public void resetEncoders() {

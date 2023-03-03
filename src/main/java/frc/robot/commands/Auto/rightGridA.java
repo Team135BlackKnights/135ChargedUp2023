@@ -13,9 +13,11 @@ public class rightGridA extends SequentialCommandGroup{
     public rightGridA(driveS drive) {
         super(
             Commands.sequence(
-                new resetEncoders(drive),
+                //new resetEncoders(drive),
 
-                new encDriveA(drive, -50, false)
+                new encDriveA(drive, -5, false),
+                new encDriveA(drive, 10, false),
+                new encDriveA(drive, -150, false)
             )
         );
                 

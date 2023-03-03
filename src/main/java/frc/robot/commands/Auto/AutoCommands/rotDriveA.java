@@ -50,6 +50,6 @@ public class rotDriveA extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return isFinished();
+    return isFinished;
   }
 }

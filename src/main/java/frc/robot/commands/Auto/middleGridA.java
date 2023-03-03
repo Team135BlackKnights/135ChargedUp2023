@@ -8,15 +8,15 @@ import frc.robot.commands.Auto.AutoCommands.resetEncoders;
 import frc.robot.subsystems.driveS;
 
 public class middleGridA extends SequentialCommandGroup{
-    int grid = 2;
+
 
     public middleGridA(driveS drive) {
         
         super(
             Commands.sequence(
-                new resetEncoders(drive),
+                //new resetEncoders(drive),
 
-                new encDriveA(drive, -50, false)
+                new encDriveA(drive, -150, false)
             )
         );
                 

@@ -17,13 +17,11 @@ public class leftGridA extends SequentialCommandGroup{
     public leftGridA(driveS drive, liftS lift, intakeS intake) {
         super(
             Commands.sequence(
-                new resetEncoders(drive),
-                //new extendLift(lift), //Everything in extendLift is commented that is why this doesnt work
-                new rotateIntake(lift),
-                new encDriveA(drive, -50, false)
+                //new resetEncoders(drive),
+
+                new encDriveA(drive, -150, false)
             )
         );
 
-            
     }
 }

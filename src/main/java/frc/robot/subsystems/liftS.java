@@ -80,7 +80,7 @@ public class liftS extends SubsystemBase {
                     desVel = desVel * 0.333;
                 }
             }
-            else if (desVel > 0.1 && eLeftLift.getPosition() > 68)
+            else if (desVel > 0.1 && eLeftLift.getPosition() > 65)
             {   // soft stop on top of travel
                 desVel = 0.1;
             }

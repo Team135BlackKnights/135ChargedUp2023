@@ -36,7 +36,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   public static XboxController controller1 = new XboxController(0);
-  public static XboxController controller2= new XboxController(1);
+  public static XboxController controller2 = new XboxController(1);
   //public static int grid = 0;
   public static int target;
 
@@ -63,31 +63,24 @@ public class RobotContainer {
   //public static liftC _liftC = new liftC(_liftS);
   //public static targetCone _targetCone = new targetCone(_driveS, target);
 
-  //private final Command LeftGrid = new leftGridA(_driveS);
-  //private final Command MiddleGrid = new middleGridA(_driveS);
-  //private final Command RightGrid = new rightGridA(_driveS);
+  private final Command LeftGrid = new leftGridA(_driveS, _liftS, _intakeS);
+  private final Command MiddleGrid = new middleGridA(_driveS);
+  private final Command RightGrid = new rightGridA(_driveS);
+
   //private final Command oneScore = new oneScoreA(_driveS);
 
   SendableChooser<Command> m_Chooser = new SendableChooser<>();
  // SendableChooser<Command> m_Chooser2= new SendableChooser<>();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-
+    m_Chooser.setDefaultOption("leftGrid", LeftGrid);
+    m_Chooser.addOption("MiddleGrid", MiddleGrid);
+    m_Chooser.addOption("RightGrid", RightGrid);
     SmartDashboard.putData(m_Chooser);
     _intakeS.setDefaultCommand(new intakeC(_intakeS));
     _driveS.setDefaultCommand(new driveC(_driveS));
     _liftS.setDefaultCommand(new liftC(_liftS));
-        /* 
-    if (m_Chooser.getSelected()==LeftGrid){
-      grid=1;
-    }
-    else if (m_Chooser.getSelected()==MiddleGrid){
-      grid=2;
-    }
-    else if (m_Chooser.getSelected()==RightGrid){
-      grid=3;
-    }
-    */
+        
     // Configure the button bindings
     configureButtonBindings();
     
