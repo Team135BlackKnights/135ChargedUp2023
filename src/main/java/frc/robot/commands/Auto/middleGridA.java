@@ -16,7 +16,7 @@ public class middleGridA extends SequentialCommandGroup{
             Commands.sequence(
                 //new resetEncoders(drive),
 
-                new encDriveA(drive, -150, false)
+                new encDriveA(drive, -93.06, false)
             )
         );
                 

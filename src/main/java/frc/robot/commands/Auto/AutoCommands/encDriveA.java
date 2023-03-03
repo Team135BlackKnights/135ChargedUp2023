@@ -35,7 +35,7 @@ public class encDriveA extends CommandBase {
     
     double autoDriveSpeed = 1 * pidController.calculate(drive.getDrivePos(), Desired);
 
-    drive.tankDrive(/*(100)*/autoDriveSpeed, autoDriveSpeed);
+    drive.tankDrive(/*(100)*/.5*autoDriveSpeed, .5 * autoDriveSpeed);
 
     SmartDashboard.putNumber("position error", pidController.getPositionError());
     SmartDashboard.putNumber("auto drive speed", autoDriveSpeed);
