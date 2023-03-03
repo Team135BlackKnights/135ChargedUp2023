@@ -12,11 +12,11 @@ public class intakeC extends CommandBase{
     }
         public void execute(){
             if (RobotContainer.controller1.getRawAxis(2)>0){
-                intakeS.intake.set((1.25*(RobotContainer.controller1.getLeftTriggerAxis())) - 0.25);
+                intakeS.intake.set((RobotContainer.controller1.getLeftTriggerAxis()));
             } else if (RobotContainer.controller1.getRawAxis(3)>0){
-                intakeS.intake.set((-.75*(RobotContainer.controller1.getRightTriggerAxis())) - 0.25);
+                intakeS.intake.set((RobotContainer.controller1.getRightTriggerAxis()));
             } else {
-                intakeS.intake.set(-0.25);
+                intakeS.intake.set(0);
             }
         }
 }

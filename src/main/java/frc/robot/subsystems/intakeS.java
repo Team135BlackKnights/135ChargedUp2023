@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -14,6 +15,7 @@ public class intakeS extends SubsystemBase {
 
     public intakeS() {
         intake.setSmartCurrentLimit(30, 60);
+        intake.setIdleMode(IdleMode.kBrake);
         intake.burnFlash();
     }
 }

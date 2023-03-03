@@ -1,5 +1,9 @@
 package frc.robot.commands.Auto.AutoCommands;
 
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.liftS;
+
 public class liftA extends CommandBase{
     double time;
     Timer timer = new Timer();
@@ -21,13 +25,13 @@ public class liftA extends CommandBase{
   @Override
   public void execute(){
       if (timer.get() < time && reverse==false) {
-        liftS.setLiftFeedForward(5);
+        lift.setLiftFeedForward(5);
   }
     else if (timer.get()<time && reverse==true){
-      liftS.setLiftFeedForward(-5);
+      lift.setLiftFeedForward(-5);
     }
         else if (timer.get()>time){
-      liftS.setLiftFeedForward(0);
+      lift.setLiftFeedForward(0);
     }
   }
 }
