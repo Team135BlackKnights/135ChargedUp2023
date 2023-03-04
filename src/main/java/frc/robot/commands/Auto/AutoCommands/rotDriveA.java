@@ -26,6 +26,7 @@ public class rotDriveA extends CommandBase {
 
   @Override
   public void initialize() {
+    drive.motorCoast();
     driveS.shifting(Gear);
     drive.resetEncoders();
   }
