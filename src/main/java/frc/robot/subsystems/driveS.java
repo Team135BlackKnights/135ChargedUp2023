@@ -51,6 +51,7 @@ public class driveS extends SubsystemBase{
   private double circumfrance = Math.PI*6;
 
   public driveS() {
+    motorCoast();
     FrontL.setInverted(true);
     BackL.setInverted(true);
     MCGright.setInverted(false);
@@ -58,6 +59,11 @@ public class driveS extends SubsystemBase{
     elBack = BackL.getEncoder();
     erFront = FrontR.getEncoder();
     erBack = BackR.getEncoder();
+    FrontL.setOpenLoopRampRate(.05);
+    FrontR.setOpenLoopRampRate(.05);
+    BackL.setOpenLoopRampRate(.05);
+    BackR.setOpenLoopRampRate(.05);
+
     FrontL.burnFlash();
     BackL.burnFlash();
     FrontR.burnFlash();
@@ -98,10 +104,8 @@ public class driveS extends SubsystemBase{
   }
 
   public void motorBrake() {
-    FrontL.setIdleMode(IdleMode.kBrake);
-    BackL.setIdleMode(IdleMode.kBrake);
-    FrontR.setIdleMode(IdleMode.kBrake);
-    BackR.setIdleMode(IdleMode.kBrake);
+    MCGleft.stopMotor();
+    MCGright.stopMotor();
   }
 
   public void motorCoast() {

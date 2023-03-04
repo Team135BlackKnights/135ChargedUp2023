@@ -64,7 +64,7 @@ public class RobotContainer {
   //public static targetCone _targetCone = new targetCone(_driveS, target);
 
   private final Command LeftGrid = new leftGridA(_driveS, _liftS, _intakeS);
-  private final Command MiddleGrid = new middleGridA(_driveS);
+  private final Command MiddleGrid = new middleGridA(_driveS, _liftS, _intakeS);
   private final Command RightGrid = new rightGridA(_driveS, _intakeS, _liftS);
 
   //private final Command oneScore = new oneScoreA(_driveS);
