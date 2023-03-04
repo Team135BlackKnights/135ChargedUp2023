@@ -52,4 +52,5 @@ public class liftC extends CommandBase{
         //}  else {
             //liftS.tilt.set(-RobotContainer.controller2.getRightY()/2);
         //} 
-}}
+}
+}
