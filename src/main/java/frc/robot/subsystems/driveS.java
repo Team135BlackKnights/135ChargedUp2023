@@ -63,6 +63,10 @@ public class driveS extends SubsystemBase{
     FrontR.setOpenLoopRampRate(.05);
     BackL.setOpenLoopRampRate(.05);
     BackR.setOpenLoopRampRate(.05);
+    FrontL.setSmartCurrentLimit(75, 75);
+    BackL.setSmartCurrentLimit(75, 75);
+    FrontR.setSmartCurrentLimit(75, 75);
+    BackR.setSmartCurrentLimit(75, 75);
 
     FrontL.burnFlash();
     BackL.burnFlash();
@@ -104,6 +108,10 @@ public class driveS extends SubsystemBase{
   }
 
   public void motorBrake() {
+    FrontL.setIdleMode(IdleMode.kBrake);
+    BackL.setIdleMode(IdleMode.kBrake);
+    FrontR.setIdleMode(IdleMode.kBrake);
+    BackR.setIdleMode(IdleMode.kBrake);
     MCGleft.stopMotor();
     MCGright.stopMotor();
   }
