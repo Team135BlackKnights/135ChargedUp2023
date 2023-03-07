@@ -1,6 +1,7 @@
 package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
 import frc.robot.commands.Auto.AutoCommands.autoIntake;
@@ -21,11 +22,11 @@ public class middleGridA extends SequentialCommandGroup{
             Commands.sequence(
                 //new resetEncoders(drive),
 
-             //   new liftA(lift, 3, false),
-             //   new autoIntake(intake, 1.5, true),
-             //  new liftA(lift, 3, true), 
+                new liftA(lift, 3, false),
+                new autoIntake(intake, 1.5, true),
+               new liftA(lift, 3, true),
                 new encDriveA(drive, -93.03, false),
-                new encDriveA(drive, 1, false)
+                new encDriveA(drive, 0.3, false)
                 //new rotDriveA(drive, 90, false)
             )
         );

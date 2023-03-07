@@ -14,18 +14,15 @@ import frc.robot.commands.intakeC;
 import frc.robot.commands.liftC;
 import frc.robot.commands.Auto.leftGridA;
 import frc.robot.commands.Auto.middleGridA;
-import frc.robot.commands.Auto.oneScoreA;
 import frc.robot.commands.Auto.rightGridA;
 import frc.robot.commands.Macros.autoBalance;
 //import frc.robot.commands.Macros.extendLift;
 import frc.robot.commands.Macros.rotateIntake;
-import frc.robot.commands.Macros.selectionC;
 //import frc.robot.commands.Macros.targetCone;
 import frc.robot.subsystems.intakeS;
 import frc.robot.subsystems.driveS;
 import frc.robot.subsystems.liftS;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -74,8 +71,8 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_Chooser.setDefaultOption("Score High Auto", LeftGrid);
-    m_Chooser.addOption("Charging Station Auto", MiddleGrid);
-    m_Chooser.addOption("Non-Functional Auto", RightGrid);
+    m_Chooser.addOption("Score High and Charging", MiddleGrid);
+    m_Chooser.addOption("Cycling Auto DO NOT USE", RightGrid);
     SmartDashboard.putData(m_Chooser);
     _intakeS.setDefaultCommand(new intakeC(_intakeS));
     _driveS.setDefaultCommand(new driveC(_driveS));
@@ -102,8 +99,8 @@ public class RobotContainer {
     
     //b2.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
     
-   // x2.onTrue(new rotateIntake(_liftS));
-   // y.onTrue(new autoBalance(_driveS));
+    x2.onTrue(new rotateIntake(_liftS, 3));
+   // y2.onTrue(new autoBalance(_driveS));
   }
 
   /**

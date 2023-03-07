@@ -1,20 +1,16 @@
 package frc.robot.subsystems;
 
 //import com.kauailabs.navx.frc.AHRS;
-//import com.kauailabs.navx.frc.AHRS;
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -39,7 +35,7 @@ public class driveS extends SubsystemBase{
   public static RelativeEncoder erBack;
   //public static Gyro gybro = new ADXRS450_Gyro();
 
-  //public AHRS navx = new AHRS();
+  public AHRS navx = new AHRS(RobotMap.Drive.navxPort);
   public static Compressor pCompress = new Compressor(PneumaticsModuleType.REVPH);  //Digtial I/O,Relay
 
   MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);
@@ -112,6 +108,10 @@ public class driveS extends SubsystemBase{
     BackL.setIdleMode(IdleMode.kBrake);
     FrontR.setIdleMode(IdleMode.kBrake);
     BackR.setIdleMode(IdleMode.kBrake);
+    FrontL.burnFlash();
+    FrontR.burnFlash();
+    BackL.burnFlash();
+    BackR.burnFlash();
     MCGleft.stopMotor();
     MCGright.stopMotor();
   }
@@ -121,6 +121,10 @@ public class driveS extends SubsystemBase{
     BackL.setIdleMode(IdleMode.kCoast);
     FrontR.setIdleMode(IdleMode.kCoast);
     BackR.setIdleMode(IdleMode.kCoast);
+    FrontL.burnFlash();
+    FrontR.burnFlash();
+    BackL.burnFlash();
+    BackR.burnFlash();
   }
 
   public static void shifting(boolean position) {

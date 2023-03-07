@@ -1,10 +1,6 @@
 package frc.robot.commands;
 
-import edu.wpi.first.hal.simulation.RoboRioDataJNI;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.simulation.BatterySim;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
@@ -18,7 +14,7 @@ public class driveC extends CommandBase{
     drive = subsystem;
     addRequirements(subsystem);
   }     
-  
+
   @Override
   public void initialize() {
     drive.motorCoast();
@@ -27,7 +23,6 @@ public class driveC extends CommandBase{
   @Override
   public void execute(){
     driveS.pCompress.enableDigital();
-    
     if (RobotContainer.controller1.getLeftBumper()) {
       position = false;
     }
@@ -38,6 +33,7 @@ public class driveC extends CommandBase{
 
     driveS.shifting(position);
     SmartDashboard.putBoolean("Gear", position);
+    SmartDashboard.putNumber("navx", drive.navx.getPitch());
     
    // driveS.pCompress.enableAnalog(50, 120);
     double left = RobotContainer.controller1.getLeftY();

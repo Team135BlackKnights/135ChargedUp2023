@@ -1,4 +1,7 @@
 package frc.robot;
+
+import edu.wpi.first.wpilibj.I2C;
+
 public interface RobotMap {
 
     public interface Drive {
@@ -9,6 +12,8 @@ public interface RobotMap {
             BL_ID = 12, //
             BR_ID = 14,        
             shiftSolenoid = 0;
+        
+        public final I2C.Port navxPort = I2C.Port.kOnboard;
     }
 
     public interface Intake {

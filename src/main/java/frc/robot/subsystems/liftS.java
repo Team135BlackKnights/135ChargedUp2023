@@ -6,7 +6,6 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -17,9 +16,7 @@ public class liftS extends SubsystemBase {
     private static CANSparkMax rightLift = new CANSparkMax(RobotMap.Lift.liftID_2, MotorType.kBrushless);
     private static CANSparkMax tilt = new CANSparkMax(RobotMap.Lift.tiltID, MotorType.kBrushless);
     private static MotorControllerGroup lift = new MotorControllerGroup(leftLift, rightLift);
-    //public static Encoder eTilt, eLeftLift, eRightLift;
     private static RelativeEncoder eTilt, eLeftLift, eRightLift;
-    private boolean intakeRotated = false;
     public static double eLiftLimit = 70, eLiftAverage, eLiftAverageDist, eLiftAveragePercent;
 
     final private double spoolDiameter = 1.51, gearRatio = 4.43;
@@ -104,18 +101,18 @@ public class liftS extends SubsystemBase {
             {   // hard stop
                 desSpeed = 0;  
             }
-            else if (eTilt.getPosition() > -5)
+            else if (eTilt.getPosition() > -6.5)
             {   // slow down
                 desSpeed = desSpeed * 0.5;
             }
         }
         if (desSpeed < 0)
         {   // down soft stop
-            if (eTilt.getPosition() < -27/*-23.5*/)
+            if (eTilt.getPosition() < -25/*-23.5*/)
             {   // hard stop
                 desSpeed = 0;  
             }
-            else if (eTilt.getPosition() < -21/*-19.5*/)
+            else if (eTilt.getPosition() < -18/*-19.5*/)
             {   // slow down
                 desSpeed = desSpeed * 0.5;
             }

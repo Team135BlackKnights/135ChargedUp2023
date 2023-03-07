@@ -19,9 +19,9 @@ public class autoBalance extends CommandBase{
     @Override
     public void execute() {
       /*   if (drive.navx.getPitch() > 5) {
-            drive.tankDrive(0.25, 0.25);
+            drive.tankDrive(0.2, 0.2);
         } else if (drive.navx.getPitch() < -5) {
-            drive.tankDrive(-0.25, -0.25);
+            drive.tankDrive(-0.2, -0.2);
         } else {
             drive.tankDrive(0, 0);
             isFinished = true;
