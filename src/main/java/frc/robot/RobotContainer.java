@@ -18,7 +18,7 @@ import frc.robot.commands.Auto.rightGridA;
 import frc.robot.commands.Macros.autoBalance;
 //import frc.robot.commands.Macros.extendLift;
 import frc.robot.commands.Macros.rotateIntake;
-//import frc.robot.commands.Macros.targetCone;
+import frc.robot.commands.Macros.targetCone;
 import frc.robot.subsystems.intakeS;
 import frc.robot.subsystems.driveS;
 import frc.robot.subsystems.liftS;
@@ -35,7 +35,6 @@ public class RobotContainer {
   public static XboxController controller1 = new XboxController(0);
   public static XboxController controller2 = new XboxController(1);
   //public static int grid = 0;
-  public static int target;
 
   final JoystickButton a1 = new JoystickButton(controller1, RobotMap.ButtonMap.A);
   final JoystickButton b1 = new JoystickButton(controller1, RobotMap.ButtonMap.B);
@@ -58,7 +57,7 @@ public class RobotContainer {
   
   //public static driveC _driveC = new driveC(_driveS);
   //public static liftC _liftC = new liftC(_liftS);
-  //public static targetCone _targetCone = new targetCone(_driveS, target);
+  //public static targetCone _targetCone0 = new targetCone(_driveS, 0);
 
   private final Command LeftGrid = new leftGridA(_driveS, _liftS, _intakeS);
   private final Command MiddleGrid = new middleGridA(_driveS, _liftS, _intakeS);
@@ -77,7 +76,8 @@ public class RobotContainer {
     _intakeS.setDefaultCommand(new intakeC(_intakeS));
     _driveS.setDefaultCommand(new driveC(_driveS));
     _liftS.setDefaultCommand(new liftC(_liftS));
-        
+    
+    
     // Configure the button bindings
     configureButtonBindings();
     
@@ -92,15 +92,11 @@ public class RobotContainer {
   private void configureButtonBindings() {      
     y1.onTrue(new deployBarC(_intakeS));
     //not for scrimmage
-
-    //lb1.whileTrue(new targetCone(_driveS, 1));
-    //rb1.whileTrue(new targetCone(_driveS, 2));
-    //y1.whileTrue(new targetCone(_driveS, 0));
     
     //b2.onTrue(new ParallelCommandGroup(new rotateIntake(_liftS), new extendLift(_liftS)));
-    
+    a1.whileTrue(new targetCone(_driveS, 0));
     x2.onTrue(new rotateIntake(_liftS, 3));
-   // y2.onTrue(new autoBalance(_driveS));
+    y2.onTrue(new autoBalance(_driveS, 1.5));
   }
 
   /**

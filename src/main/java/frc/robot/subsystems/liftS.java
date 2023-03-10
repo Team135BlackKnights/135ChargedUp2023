@@ -93,7 +93,7 @@ public class liftS extends SubsystemBase {
 
     public void setTiltPower(double desSpeed)
     {
-        desSpeed = desSpeed * 0.175; // slow down power control for tilt
+        desSpeed = desSpeed * 0.35; // slow down power control for tilt
 
         if (desSpeed > 0)
         {   // up soft stop

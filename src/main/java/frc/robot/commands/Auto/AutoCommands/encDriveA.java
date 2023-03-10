@@ -33,7 +33,7 @@ public class encDriveA extends CommandBase {
         
   @Override 
   public void execute() {
-    
+    if (driveS.shifter.get() == Gear) {
     double autoDriveSpeed = 1 * pidController.calculate(drive.getDrivePos(), Desired);
 
     drive.tankDrive(/*(100)*/.5*autoDriveSpeed, .5 * autoDriveSpeed);
@@ -44,6 +44,7 @@ public class encDriveA extends CommandBase {
     if ((pidController.getPositionError()) > -1) {
       isFinished = true;
     } 
+  }
   }
   @Override
   public void end(boolean interrupted) {

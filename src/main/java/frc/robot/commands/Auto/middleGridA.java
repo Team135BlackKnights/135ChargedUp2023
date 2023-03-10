@@ -9,6 +9,7 @@ import frc.robot.commands.Auto.AutoCommands.encDriveA;
 import frc.robot.commands.Auto.AutoCommands.liftA;
 import frc.robot.commands.Auto.AutoCommands.resetEncoders;
 import frc.robot.commands.Auto.AutoCommands.rotDriveA;
+import frc.robot.commands.Macros.autoBalance;
 import frc.robot.subsystems.driveS;
 import frc.robot.subsystems.intakeS;
 import frc.robot.subsystems.liftS;
@@ -22,11 +23,13 @@ public class middleGridA extends SequentialCommandGroup{
             Commands.sequence(
                 //new resetEncoders(drive),
 
-                new liftA(lift, 3, false),
-                new autoIntake(intake, 1.5, true),
-               new liftA(lift, 3, true),
-                new encDriveA(drive, -93.03, false),
-                new encDriveA(drive, 0.3, false)
+            //     new liftA(lift, 3, false),
+             //   new autoIntake(intake, 1.5, true),
+             //   new liftA(lift, 3, true),
+                new encDriveA(drive, -88.03, true),
+                new autoBalance(drive, 10)
+
+                //new encDriveA(drive, 0.3, false)
                 //new rotDriveA(drive, 90, false)
             )
         );

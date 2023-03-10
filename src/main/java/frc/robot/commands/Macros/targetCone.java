@@ -1,52 +1,88 @@
-//Giving up on this for first event
-
-/*package frc.robot.commands.Macros;
+package frc.robot.commands.Macros;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer; 
+import frc.robot.RobotContainer;
+import frc.robot.commands.driveC;
 import frc.robot.subsystems.driveS;
 
 public class targetCone extends CommandBase{
     private final driveS drive;
     double lProportional, lIntegral, rProportional, rIntegral, leftSpeed, rightSpeed, tx, ta;
     public static int targetType;
-    boolean inRange, isFinished = false;
-    NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight-launch");
-    NetworkTableEntry Tx = limelight.getEntry("tx");
-    NetworkTableEntry Ta = limelight.getEntry("ta");
-    double kP = 0.01, kI = 0;
-    public targetCone(driveS subsystem, int target) {
+    boolean inRange = false, isRange = false, isFinished = false;
+    NetworkTableEntry Tx = driveS.limelight.getEntry("tx");
+    NetworkTableEntry Ta = driveS.limelight.getEntry("ta");
+    double kP = 0.03, kI = 0.005;
+    int runs = 0, targetRuns = 0, searchRuns = 0, destroyRuns = 0;
+    public targetCone(driveS subsystem, int m_targetType) {
       // Use addRequirements() here to declare subsystem dependencies.
       drive = subsystem;
-      targetType = target;
+      targetType = m_targetType;
       addRequirements(subsystem);
     }
     @Override
     public void execute(){
-        NetworkTableInstance.getDefault().getTable("limelight-launch").getEntry("pipeline").setNumber(targetType);
+        isRange = false;
+        NetworkTableInstance.getDefault().getTable("limelight-target").getEntry("pipeline").setNumber(targetType);
     
-        tx = limelight.getEntry("tx").getDouble(0.0);
-        ta = limelight.getEntry("ta").getDouble(0.0);
-
+        tx = driveS.limelight.getEntry("tx").getDouble(0.0);
+        ta = driveS.limelight.getEntry("ta").getDouble(0.0);
+    
         lProportional = tx * kP;
         rProportional = -tx * kP;
         lIntegral = -tx * kI;
         rIntegral = tx * kI;
-        SmartDashboard.putBoolean("inRange", inRange);
 
-        if (RobotContainer.controller1.getAButton()) {search();} 
-        else if (RobotContainer.controller1.getXButton()) {destroy();} 
+        if (targetType == 0) {
+            if (tx < 2.5 && tx > -2.5) {
+                isRange = true;
+            }
+            else {
+                isRange = false;
+            }
+        }
+        else {
+            if (tx < 1 && tx > -1) {
+                isRange = true;
+            }
+            else {
+                isRange = false;
+            }
+        }
 
-        drive.tankDrive(leftSpeed, rightSpeed);
-        SmartDashboard.putNumber("tx", tx);
-        SmartDashboard.putNumber("tv", limelight.getEntry("tv").getDouble(0.0));
-        SmartDashboard.putNumber("pipeline", limelight.getEntry("pipeline").getDouble(0.0));
-        SmartDashboard.putNumber("Target Type", targetType);
-        
+        if (isRange == false) {
+            if (targetType == 0) {
+                if (tx > 2.5 || tx < -2.5) {
+                    leftSpeed = limit((lProportional + lIntegral), 0.75, 0.275);
+                    rightSpeed = -limit((rProportional + rIntegral), 0.75, 0.275);
+                    drive.tankDrive(-leftSpeed, rightSpeed);
+                }
+
+                if (tx < 2.45 && tx > -2.45) {isRange = true;}
+            } 
+            else {
+                if (tx > 1 || tx < -1) {
+                    leftSpeed = limit((lProportional + lIntegral), 0.75, 0.275);
+                    rightSpeed = -limit((rProportional + rIntegral), 0.75, 0.275);
+                    drive.tankDrive(-leftSpeed, rightSpeed);
+                }
+
+                if (tx < 0.95 && tx > -0.95) {isRange = true;}
+            }
+            if (RobotContainer.controller1.getAButton() == false) {isRange = true;}
+        }
+        runs += 1;
+        SmartDashboard.putNumber("runs", runs);
+
+        SmartDashboard.putBoolean("isRange", isRange);
+
+        if (isRange == true) {
+            isFinished = true;
+        }
     }
 
     public double limit(double x, double upperLimit, double lowerLimit) {
@@ -68,23 +104,8 @@ public class targetCone extends CommandBase{
         }
     }
 
-    public void search() {
-        if (targetType == 0) {
-            if (tx > 2.5 || tx < 2.5) {
-                leftSpeed = limit((lProportional + lIntegral), 0.75, 0.275);
-                rightSpeed = -limit((rProportional + rIntegral), 0.75, 0.275);
-            }
-
-            if (tx < 2.45 && tx > -2.45) {isFinished = true;}
-        } 
-        else {
-            if (tx > 1 || tx < -1) {
-                leftSpeed = limit((lProportional + lIntegral), 0.75, 0.275);
-                rightSpeed = -limit((rProportional + rIntegral), 0.75, 0.275);
-            }
-
-            if (tx < 0.95 && tx > -0.95) {isFinished = true;}
-        }
+    public double rangeScale() {
+        return 1;
     }
 
     public void destroy() {
@@ -112,19 +133,12 @@ public class targetCone extends CommandBase{
         if (inRange == false) {
             leftSpeed = -limit(0.3 + (-tx / 15), 0.4, 0.3);
             rightSpeed = limit(0.3 + (tx / 15), 0.4, 0.3);
-        } 
-        else {
-            isFinished = true;
-        } 
+        }
     }
 
-    // Called once the command ends or is interrupted.
-    @Override
-    public void end(boolean interrupted) {}
-    
-    // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return isFinished();
+        isRange = false;
+        return isFinished;
     }
-}*/
+}

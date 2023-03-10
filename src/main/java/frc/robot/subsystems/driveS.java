@@ -7,6 +7,8 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -37,7 +39,7 @@ public class driveS extends SubsystemBase{
 
   public AHRS navx = new AHRS(RobotMap.Drive.navxPort);
   public static Compressor pCompress = new Compressor(PneumaticsModuleType.REVPH);  //Digtial I/O,Relay
-
+  public static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight-target");
   MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);
   MotorControllerGroup MCGright = new MotorControllerGroup(FrontR, BackR);
     
@@ -45,7 +47,6 @@ public class driveS extends SubsystemBase{
 
   private double gearRatios;
   private double circumfrance = Math.PI*6;
-
   public driveS() {
     motorCoast();
     FrontL.setInverted(true);
@@ -96,6 +97,18 @@ public class driveS extends SubsystemBase{
     return encodervalue;
   }
 
+  public double getRightDrivePos(){
+    if (shifter.get() == true) {
+      gearRatios=1/22.67; //7.56:1, 22.67:1
+    } else {
+      gearRatios=1/7.56;
+    }
+    double avgEnc = (erFront.getPosition());
+    double rEncValue = avgEnc*gearRatios;
+    double encodervalue = rEncValue*circumfrance;
+    return encodervalue;
+  }
+
   public void resetEncoders() {
     elFront.setPosition(0);
     elBack.setPosition(0);
@@ -128,12 +141,7 @@ public class driveS extends SubsystemBase{
   }
 
   public static void shifting(boolean position) {
-    if (position == true) {
-      shifter.set(true);
- //     pressure = PneumHub.getPressure(0);
-    } else if (position == false) {
-      shifter.set(false);
- //     pressure = PneumHub.getPressure(0);
-    }
+    shifter.set(position);
+    SmartDashboard.putBoolean("shifting", shifter.get());
   }
 }
