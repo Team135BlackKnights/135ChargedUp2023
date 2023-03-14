@@ -1,12 +1,10 @@
 package frc.robot.commands.Macros;
 
-import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.commands.driveC;
 import frc.robot.subsystems.driveS;
 
 public class targetCone extends CommandBase{
@@ -16,7 +14,7 @@ public class targetCone extends CommandBase{
     boolean inRange = false, isRange = false, isFinished = false;
     NetworkTableEntry Tx = driveS.limelight.getEntry("tx");
     NetworkTableEntry Ta = driveS.limelight.getEntry("ta");
-    double kP = 0.03, kI = 0.005;
+    double kP = 0.0325, kI = 0.01, minRange = 5.5;
     int runs = 0, targetRuns = 0, searchRuns = 0, destroyRuns = 0;
     public targetCone(driveS subsystem, int m_targetType) {
       // Use addRequirements() here to declare subsystem dependencies.
@@ -27,11 +25,14 @@ public class targetCone extends CommandBase{
     @Override
     public void execute(){
         isRange = false;
+        isFinished = false;
         NetworkTableInstance.getDefault().getTable("limelight-target").getEntry("pipeline").setNumber(targetType);
     
         tx = driveS.limelight.getEntry("tx").getDouble(0.0);
         ta = driveS.limelight.getEntry("ta").getDouble(0.0);
-    
+        
+        tx -= rangeScale();
+
         lProportional = tx * kP;
         rProportional = -tx * kP;
         lIntegral = -tx * kI;
@@ -80,7 +81,7 @@ public class targetCone extends CommandBase{
 
         SmartDashboard.putBoolean("isRange", isRange);
 
-        if (isRange == true) {
+        if (RobotContainer.controller1.getAButton() == false) {
             isFinished = true;
         }
     }
@@ -105,7 +106,8 @@ public class targetCone extends CommandBase{
     }
 
     public double rangeScale() {
-        return 1;
+        double xDiff = ta * -2.4768;
+        return xDiff;
     }
 
     public void destroy() {
@@ -138,7 +140,6 @@ public class targetCone extends CommandBase{
 
     @Override
     public boolean isFinished() {
-        isRange = false;
         return isFinished;
     }
 }
