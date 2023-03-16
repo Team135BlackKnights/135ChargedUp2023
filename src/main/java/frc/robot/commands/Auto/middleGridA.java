@@ -21,16 +21,14 @@ public class middleGridA extends SequentialCommandGroup{
         
         super(
             Commands.sequence(
-                //new resetEncoders(drive),
-
-            //     new liftA(lift, 3, false),
-             //   new autoIntake(intake, 1.5, true),
-             //   new liftA(lift, 3, true),
-                new encDriveA(drive, -88.03, true),
+                new liftA(lift, 2.5, false),
+                new autoIntake(intake, 0.35, true),
+                new liftA(lift, 1.5, true),
+                // new autoIntake(intake, 5, true),
+                new encDriveA(drive, -165.03, true),
+                new encDriveA(drive, 55, true),
                 new autoBalance(drive, 10)
 
-                //new encDriveA(drive, 0.3, false)
-                //new rotDriveA(drive, 90, false)
             )
         );
 

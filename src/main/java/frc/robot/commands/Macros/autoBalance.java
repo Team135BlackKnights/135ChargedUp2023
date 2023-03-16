@@ -10,6 +10,7 @@ import frc.robot.subsystems.driveS;
 public class autoBalance extends CommandBase{
     private final driveS drive;
     boolean isFinished;
+    double desiredClimbSpeed;
     Timer timer = new Timer();
     double time;
     public autoBalance(driveS subsystem, double m_time){
@@ -34,12 +35,10 @@ public class autoBalance extends CommandBase{
             isFinished = true;
         }
 
-        if (drive.navx.getRoll() > 10) {
-            drive.tankDrive(0.35, 0.35);
-            timer.stop();
-            timer.reset();
-        } else if (drive.navx.getRoll() < -10) {
-            drive.tankDrive(-0.35, -0.35);
+        desiredClimbSpeed = (drive.navx.getRoll() * 0.024);
+
+        if (Math.abs(drive.navx.getRoll()) > 6.5) {
+            drive.tankDrive(desiredClimbSpeed, desiredClimbSpeed);
             timer.stop();
             timer.reset();
         } else {

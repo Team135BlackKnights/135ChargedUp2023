@@ -25,13 +25,17 @@ public class liftA extends CommandBase{
   }
   @Override
   public void execute(){
-    SmartDashboard.putNumber("test Variable", testVar);
+
       if (timer.get() < time && reverse==false) {
-        lift.setLiftFeedForward(.30);
+        if (lift.getLiftPosition() >= 45){
+        lift.setLiftFeedForward(.285);
+      } else {
+        lift.setLiftFeedForward(.6);
+      }
        //testVar = testVar + 1;
   }
     else if (timer.get()<time && reverse==true){
-      lift.setLiftFeedForward(-.55);
+      lift.setLiftFeedForward(-.9);
      // testVar = testVar - 1;
 
     }

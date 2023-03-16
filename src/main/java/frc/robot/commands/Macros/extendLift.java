@@ -1,30 +1,37 @@
 //Everything in targetCone is commented that is why this doesnt work
 
-/*package frc.robot.commands.Macros;
+package frc.robot.commands.Macros;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.liftS;
+import java.time.chrono.ThaiBuddhistEra;
 
 public class extendLift extends CommandBase{
      public final liftS lift;
     boolean isFinished = false;
-    double Desired;
+    double Desired, target, liftSpeed;
     double encoderValue = 0;
-    PIDController pidController = new PIDController(0.1, 0.1, 0);
-    public extendLift(liftS subsystem) {
+    PIDController pidController = new PIDController(0.008, 0.01, 0.005);
+    public extendLift(liftS subsystem, double m_target) {
         lift = subsystem;
+        target = m_target;
         addRequirements(subsystem);
     }
 
     @Override
     public void initialize() {
-        if (encoderValue < 2) {
-            if (targetCone.targetType == 1 || targetCone.targetType == 0) {
-                Desired = 43.8; //diagonal distance needed to extend
-            } else if (targetCone.targetType == 2) {
-                Desired = 63.6; //diagonal distance needed to extend
-            } 
+        // if (targetCone.targetType == 1 || targetCone.targetType == 0) {
+        //     Desired = 43.8; //diagonal distance needed to extend
+        // } else if (targetCone.targetType == 2) {
+        //     Desired = 63.6; //diagonal distance needed to extend
+        // } 
+        if (target == 1) {
+            Desired = 43.8;
+        } else if (target == 2) {
+            Desired = 63.6;
         } else {
             Desired = 0;
         }
@@ -33,11 +40,17 @@ public class extendLift extends CommandBase{
 
     @Override
     public void execute() {
+        if (Math.abs(RobotContainer.controller2.getLeftY()) > 0.15) {
+            isFinished = true;
+        }
 
-      //  encoderValue = ((liftS.eLeftLift.getDistance() + liftS.eRightLift.getDistance())/2);
-        encoderValue = 1 * Math.PI /42; //1 is diameter in inches
+        encoderValue = lift.getLiftPosition();
 
-        //liftS.lift.set(pidController.calculate(encoderValue, Desired));
+        liftSpeed = pidController.calculate(encoderValue, Desired);
+
+        lift.setLiftFeedForward(0.5*liftSpeed);
+
+        SmartDashboard.putNumber("lift error", pidController.getPositionError());
 
         if (Math.abs(pidController.getPositionError()) < 1) {
             isFinished = true;
@@ -45,10 +58,12 @@ public class extendLift extends CommandBase{
     }
 
     @Override
-    public void end(boolean interrupted) {}
+    public void end(boolean interrupted) {
+        lift.setLiftFeedForward(0);
+    }
 
     @Override
     public boolean isFinished() {
         return isFinished;
     }
-}*/
+}

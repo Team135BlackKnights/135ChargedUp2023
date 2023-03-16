@@ -49,6 +49,7 @@ public class driveS extends SubsystemBase{
   private double circumfrance = Math.PI*6;
   public driveS() {
     motorCoast();
+    pCompress.enableDigital();
     FrontL.setInverted(true);
     BackL.setInverted(true);
     MCGright.setInverted(false);
@@ -142,6 +143,6 @@ public class driveS extends SubsystemBase{
 
   public static void shifting(boolean position) {
     shifter.set(position);
-    SmartDashboard.putBoolean("shifting", shifter.get());
+    SmartDashboard.putBoolean("Gear", shifter.get());
   }
 }

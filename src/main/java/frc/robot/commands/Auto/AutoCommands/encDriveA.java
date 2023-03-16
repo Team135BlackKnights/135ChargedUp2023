@@ -36,12 +36,12 @@ public class encDriveA extends CommandBase {
     if (driveS.shifter.get() == Gear) {
     double autoDriveSpeed = 1 * pidController.calculate(drive.getDrivePos(), Desired);
 
-    drive.tankDrive(/*(100)*/.5*autoDriveSpeed, .5 * autoDriveSpeed);
+    drive.tankDrive(.74*autoDriveSpeed, .74*autoDriveSpeed);
 
     SmartDashboard.putNumber("position error", pidController.getPositionError());
     SmartDashboard.putNumber("auto drive speed", autoDriveSpeed);
     
-    if ((pidController.getPositionError()) > -1) {
+    if (Math.abs(pidController.getPositionError()) < 1) {
       isFinished = true;
     } 
   }

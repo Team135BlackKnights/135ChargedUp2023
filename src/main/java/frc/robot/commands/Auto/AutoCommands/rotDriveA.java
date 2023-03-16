@@ -37,12 +37,12 @@ public class rotDriveA extends CommandBase {
     
     double autoDriveSpeed = 1 * pidController.calculate(drive.getRightDrivePos(), Desired);
 
-    drive.tankDrive(/*(100)*/-.5*autoDriveSpeed, .5 * autoDriveSpeed);
+    drive.tankDrive(-.75*autoDriveSpeed, .75 * autoDriveSpeed);
 
     SmartDashboard.putNumber("position error", pidController.getPositionError());
     SmartDashboard.putNumber("auto drive speed", autoDriveSpeed);
     
-    if ((pidController.getPositionError()) > -0.2) {
+    if (Math.abs(pidController.getPositionError()) < 0.2) {
       isFinished = true;
     } 
   }

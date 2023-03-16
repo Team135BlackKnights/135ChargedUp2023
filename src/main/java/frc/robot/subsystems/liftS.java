@@ -129,6 +129,10 @@ public class liftS extends SubsystemBase {
         return eTilt.getPosition();
     }
 
+    public double getLiftPosition() {
+        return eLeftLift.getPosition();
+    }
+
     public static double liftPercent() {
         eLiftAverageDist = -eLeftLift.getPosition() * 1.5 * Math.PI /4; // encoderLiftAverage * spool diameter * pi * gear ratio
         eLiftAveragePercent = 1/(eLeftLift.getPosition() / eLiftLimit);

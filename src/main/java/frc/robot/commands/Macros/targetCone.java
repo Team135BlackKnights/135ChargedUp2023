@@ -106,7 +106,9 @@ public class targetCone extends CommandBase{
     }
 
     public double rangeScale() {
-        double xDiff = ta * -2.4768;
+        double xDiff;
+        if (targetType == 0) {xDiff = ta * -2.4768;}
+        else {xDiff = ta;}
         return xDiff;
     }
 
