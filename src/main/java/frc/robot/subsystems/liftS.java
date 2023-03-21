@@ -60,9 +60,9 @@ public class liftS extends SubsystemBase {
 
         if (eTilt.getPosition() > -1) { //wont run unless intake is in
             if (desVel < 0) {
-                desVel = desVel * 0.333;
+                desVel = desVel * 0.7;
             } else {
-                desVel = desVel * 0.75;
+                desVel = desVel * 0.9;
             }
 
 
@@ -81,14 +81,15 @@ public class liftS extends SubsystemBase {
             {   // soft stop on top of travel
                 desVel = 0.1;
             }
+            if (desVel == 0 && eLeftLift.getPosition() > 4) {
+                desVel = posFeedForward;
+            }
         }
         lift.set(desVel);
 
-        SmartDashboard.putNumber("Intake Tilt", eTilt.getPosition());
         SmartDashboard.putNumber("lift Position", eLeftLift.getPosition());
         SmartDashboard.putNumber("Lift Velocity", eLeftLift.getVelocity());
         SmartDashboard.putNumber("Lift Power", lift.get());
-        SmartDashboard.putNumber("desVel", desVel);
     }
 
     public void setTiltPower(double desSpeed)
@@ -121,8 +122,8 @@ public class liftS extends SubsystemBase {
         // set the lift motor speed (power)
         tilt.set(desSpeed);
 
-        SmartDashboard.putNumber("tilt Position", eTilt.getPosition());
-        SmartDashboard.putNumber("tilt Speed", desSpeed);
+        SmartDashboard.putNumber("Tilt Position", eTilt.getPosition());
+        SmartDashboard.putNumber("Tilt Power", desSpeed);
     }
 
     public double getIntakePosition() {

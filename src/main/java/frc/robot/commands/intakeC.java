@@ -16,7 +16,7 @@ public class intakeC extends CommandBase{
             } else if (RobotContainer.controller1.getRawAxis(3)>0){
                 intake.intake.set((-RobotContainer.controller1.getRightTriggerAxis()));
             } else { //later get motor current and when it is at stall current then start passive intake
-                intake.intake.set(0/*-.25 */);
+                intake.intake.set(-.1);
             }
         }
 }

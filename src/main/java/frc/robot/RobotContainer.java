@@ -93,12 +93,12 @@ public class RobotContainer {
   private void configureButtonBindings() {      
     y1.onTrue(new deployBarC(_intakeS));
     a1.whileTrue(new targetCone(_driveS, 1));
+    b1.onTrue(new autoBalance(_driveS, 1.5));
 
     a2.onTrue(new extendLift(_liftS, 69));
     b2.onTrue(new extendLift(_liftS, 1));
     y2.onTrue(new extendLift(_liftS, 2));
     x2.onTrue(new rotateIntake(_liftS, 3));
-    rb2.onTrue(new autoBalance(_driveS, 1.5));
   }
 
   /**

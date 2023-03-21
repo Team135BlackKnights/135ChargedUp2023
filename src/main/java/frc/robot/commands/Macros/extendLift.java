@@ -29,9 +29,9 @@ public class extendLift extends CommandBase{
         //     Desired = 63.6; //diagonal distance needed to extend
         // } 
         if (target == 1) {
-            Desired = 43.8;
+            Desired = 34;
         } else if (target == 2) {
-            Desired = 63.6;
+            Desired = 56;
         } else {
             Desired = 0;
         }
