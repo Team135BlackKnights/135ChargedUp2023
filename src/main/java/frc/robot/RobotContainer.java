@@ -25,6 +25,8 @@ import frc.robot.subsystems.driveS;
 import frc.robot.subsystems.liftS;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.Joystick;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -35,7 +37,23 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   public static XboxController controller1 = new XboxController(0);
   public static XboxController controller2 = new XboxController(1);
+  public static Joystick leftJoystick = new Joystick(2);
+  public static Joystick rightJoystick = new Joystick(3);
+
   //public static int grid = 0;
+  public static JoystickButton LTrig = new JoystickButton(leftJoystick, 1); //left trigger
+  public static JoystickButton RTrig = new JoystickButton(rightJoystick, 1);
+  public static JoystickButton LThumb= new JoystickButton(leftJoystick, 2);
+  public static JoystickButton RThumb= new JoystickButton(rightJoystick, 2);
+  public static JoystickButton Lbl = new JoystickButton(leftJoystick, 3); //left joystick bottom left
+  public static JoystickButton Rbl = new JoystickButton(rightJoystick, 3);
+  public static JoystickButton Lbr = new JoystickButton(leftJoystick, 4);
+  public static JoystickButton Rbr = new JoystickButton(rightJoystick, 4);
+  public static JoystickButton Ltl = new JoystickButton(leftJoystick, 5);
+  public static JoystickButton Rtl = new JoystickButton(rightJoystick, 5);
+  public static JoystickButton Ltr = new JoystickButton(leftJoystick, 6);
+  public static JoystickButton Rtr = new JoystickButton(rightJoystick, 6);
+
 
   final JoystickButton a1 = new JoystickButton(controller1, RobotMap.ButtonMap.A);
   final JoystickButton b1 = new JoystickButton(controller1, RobotMap.ButtonMap.B);
@@ -43,6 +61,7 @@ public class RobotContainer {
   final JoystickButton y1 = new JoystickButton(controller1, RobotMap.ButtonMap.Y);
   final JoystickButton lb1 = new JoystickButton(controller1, RobotMap.ButtonMap.LB);
   final JoystickButton rb1 = new JoystickButton(controller1, RobotMap.ButtonMap.RB);
+
   final JoystickButton a2 = new JoystickButton(controller2, RobotMap.ButtonMap.A);
   final JoystickButton b2 = new JoystickButton(controller2, RobotMap.ButtonMap.B);
   final JoystickButton x2 = new JoystickButton(controller2, RobotMap.ButtonMap.X);
@@ -67,6 +86,8 @@ public class RobotContainer {
   //private final Command oneScore = new oneScoreA(_driveS);
 
   SendableChooser<Command> m_Chooser = new SendableChooser<>();
+  public static SendableChooser<Boolean> jStick_Chooser = new SendableChooser<>();
+
  // SendableChooser<Command> m_Chooser2= new SendableChooser<>();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -74,6 +95,8 @@ public class RobotContainer {
     m_Chooser.addOption("Score High and Charging", MiddleGrid);
     m_Chooser.addOption("Cycling Auto DO NOT USE", RightGrid);
     SmartDashboard.putData(m_Chooser);
+    jStick_Chooser.addOption("joystick", true);
+    jStick_Chooser.addOption("controller", false);
     _intakeS.setDefaultCommand(new intakeC(_intakeS));
     _driveS.setDefaultCommand(new driveC(_driveS));
     _liftS.setDefaultCommand(new liftC(_liftS));
@@ -91,10 +114,16 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {      
+    if (jStick_Chooser.getSelected()==false){
     y1.onTrue(new deployBarC(_intakeS));
     a1.whileTrue(new targetCone(_driveS, 1));
     b1.onTrue(new autoBalance(_driveS, 1.5));
-
+    }
+    else {
+      LThumb.onTrue(new deployBarC(_intakeS));
+      Rtl.onTrue(new targetCone(_driveS, 1));
+      Rbl.onTrue(new autoBalance(_driveS, 1.5));
+    }
     a2.onTrue(new extendLift(_liftS, 69));
     b2.onTrue(new extendLift(_liftS, 1));
     y2.onTrue(new extendLift(_liftS, 2));

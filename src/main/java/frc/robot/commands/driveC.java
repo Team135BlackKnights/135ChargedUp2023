@@ -12,6 +12,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class driveC extends CommandBase{
   private final driveS drive;
+  double left, right;
   boolean position;
   private boolean coasting = false;
   public driveC(driveS subsystem) {
@@ -27,17 +28,16 @@ public class driveC extends CommandBase{
   @Override
   public void execute(){
     driveS.pCompress.enableDigital();
-    if (RobotContainer.controller1.getLeftBumper()) {
+    if (RobotContainer.controller1.getLeftBumper()|| RobotContainer.Rtr.getAsBoolean()) {
       position = false;
       driveS.shifting(position);
     }
 
-    if (RobotContainer.controller1.getRightBumper()) {
+    if (RobotContainer.controller1.getRightBumper()|| RobotContainer.Rbr.getAsBoolean()) {
       position = true;
       driveS.shifting(position);
     }
-
-    if (Math.abs(RobotContainer.controller1.getLeftY()) > 0.15 || Math.abs(RobotContainer.controller1.getRightY()) > 0.15) {
+    if (Math.abs(RobotContainer.controller1.getLeftY()) > 0.15 || Math.abs(RobotContainer.controller1.getRightY()) > 0.15 || Math.abs(RobotContainer.leftJoystick.getRawAxis(4))>.15 || Math.abs(RobotContainer.rightJoystick.getRawAxis(4))>.15) {
       if (coasting != true) {
         drive.motorCoast();
         coasting = true;
@@ -45,10 +45,15 @@ public class driveC extends CommandBase{
     }
     
     SmartDashboard.putNumber("NavX Tilt", drive.navx.getRoll());
-    
-    double left = RobotContainer.controller1.getLeftY();
-    double right = RobotContainer.controller1.getRightY();
 
+  if (RobotContainer.jStick_Chooser.getSelected()==true){
+     left = RobotContainer.leftJoystick.getRawAxis(4);
+     right = RobotContainer.controller1.getRawAxis(4);
+  }
+  else{ 
+    left = RobotContainer.controller1.getLeftY();
+    right = RobotContainer.controller1.getRightY();
+  }
     drive.tankDrive(left, right);
 
     SmartDashboard.putNumber("tx", driveS.limelight.getEntry("tx").getDouble(0.0));
