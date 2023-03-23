@@ -40,12 +40,14 @@ public class RobotContainer {
   public static Joystick leftJoystick = new Joystick(2);
   public static Joystick rightJoystick = new Joystick(3);
 
-  //public static int grid = 0;
-  public static JoystickButton LTrig = new JoystickButton(leftJoystick, 1); //left trigger
+// L/R=left joystick or right joystick
+// b/t = bottom or top
+// r/l = right of left (buttons next to POV on joystick handle)
+  public static JoystickButton LTrig = new JoystickButton(leftJoystick, 1); 
   public static JoystickButton RTrig = new JoystickButton(rightJoystick, 1);
   public static JoystickButton LThumb= new JoystickButton(leftJoystick, 2);
   public static JoystickButton RThumb= new JoystickButton(rightJoystick, 2);
-  public static JoystickButton Lbl = new JoystickButton(leftJoystick, 3); //left joystick bottom left
+  public static JoystickButton Lbl = new JoystickButton(leftJoystick, 3); 
   public static JoystickButton Rbl = new JoystickButton(rightJoystick, 3);
   public static JoystickButton Lbr = new JoystickButton(leftJoystick, 4);
   public static JoystickButton Rbr = new JoystickButton(rightJoystick, 4);
