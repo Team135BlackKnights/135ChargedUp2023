@@ -42,22 +42,6 @@ public class rotateIntake extends CommandBase{
         if (timer.get() > time) {
             isFinished = true;
         }
-
-      /*    if (lift.intakeRotated == false) {
-            while (liftS.eTilt.getPosition() < 28.2) {
-                liftS.tilt.set(0.5);
-            }
-            lift.intakeRotated = true;
-            isFinished = true;
-        } else if (lift.intakeRotated == true) {
-            while (liftS.eTilt.getPosition() > -28.2) {
-                liftS.tilt.set(-0.5);
-            }
-            lift.intakeRotated = false;
-            isFinished = true;
-        } else {
-            isFinished = true;
-}*/
     }
 
     @Override

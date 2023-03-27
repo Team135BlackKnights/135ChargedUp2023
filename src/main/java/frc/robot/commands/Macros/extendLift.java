@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.liftS;
-import java.time.chrono.ThaiBuddhistEra;
 
 public class extendLift extends CommandBase{
      public final liftS lift;
@@ -29,9 +28,9 @@ public class extendLift extends CommandBase{
         //     Desired = 63.6; //diagonal distance needed to extend
         // } 
         if (target == 1) {
-            Desired = 34;
+            Desired = 35;
         } else if (target == 2) {
-            Desired = 56;
+            Desired = 57;
         } else {
             Desired = 0;
         }

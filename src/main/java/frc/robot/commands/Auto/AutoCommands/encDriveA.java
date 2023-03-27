@@ -1,11 +1,8 @@
 package frc.robot.commands.Auto.AutoCommands;
 
-import javax.swing.text.Position;
-
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commands.driveC;
 import frc.robot.subsystems.driveS;
 
 public class encDriveA extends CommandBase {
@@ -29,18 +26,24 @@ public class encDriveA extends CommandBase {
     drive.motorCoast();
     driveS.shifting(Gear);
     drive.resetEncoders();
+    drive.navx.zeroYaw();
   }
         
   @Override 
   public void execute() {
     if (driveS.shifter.get() == Gear) {
     double autoDriveSpeed = 1 * pidController.calculate(drive.getDrivePos(), Desired);
+    double angleOffset = drive.navx.getYaw();
+    double angleCorrection = angleOffset/90;
 
-    drive.tankDrive(.74*autoDriveSpeed, .74*autoDriveSpeed);
+    drive.tankDrive(((1.0085*.79*autoDriveSpeed) + angleCorrection), .79*autoDriveSpeed);
 
+    SmartDashboard.putNumber("left drive position", drive.getLeftDrivePos());
+    SmartDashboard.putNumber("right drive position", drive.getRightDrivePos());
     SmartDashboard.putNumber("position error", pidController.getPositionError());
     SmartDashboard.putNumber("auto drive speed", autoDriveSpeed);
-    
+    SmartDashboard.putNumber("angle offset", angleOffset);
+
     if (Math.abs(pidController.getPositionError()) < 1) {
       isFinished = true;
     } 

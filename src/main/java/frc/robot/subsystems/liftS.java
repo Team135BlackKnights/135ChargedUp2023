@@ -5,7 +5,6 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -55,7 +54,7 @@ public class liftS extends SubsystemBase {
 
     public void setLiftFeedForward(double desVel) { //desVel= desired Velocity
         eLiftAverageDist = eLeftLift.getPosition();
-        double posFeedForward = (0.003 * eLeftLift.getPosition()) + 0.1; // position feed forward
+        //double posFeedForward = (0.003 * eLeftLift.getPosition()) + 0.1; // position feed forward
 
 
         if (eTilt.getPosition() > -1) { //wont run unless intake is in
@@ -81,9 +80,11 @@ public class liftS extends SubsystemBase {
             {   // soft stop on top of travel
                 desVel = 0.1;
             }
-            if (desVel == 0 && eLeftLift.getPosition() > 4) {
-                desVel = posFeedForward;
-            }
+            // if (desVel == 0 && eLeftLift.getPosition() > 4) {
+            //     desVel = posFeedForward;
+            // }
+        } else {
+            desVel = 0;
         }
         lift.set(desVel);
 

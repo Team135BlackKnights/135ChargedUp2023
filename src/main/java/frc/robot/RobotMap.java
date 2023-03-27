@@ -17,7 +17,7 @@ public interface RobotMap {
     }
 
     public interface Intake {
-        // Simple intake. Motors spin vertically opposite of each other.
+        // Simple intake. Motor spins vertically opposite of each other.
         public static final int
             intakeID_1 = 31,
             BAR_ID=1,
@@ -25,7 +25,7 @@ public interface RobotMap {
     }
 
     public interface Lift {
-        // Manipulator tilts and is on a lift. Limit switches to set to certain positions.
+        // Manipulator tilts and is on a lift.
         public static final int
             liftID_1 = 40,
             liftID_2 = 41,

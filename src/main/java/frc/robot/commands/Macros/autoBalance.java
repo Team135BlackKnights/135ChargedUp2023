@@ -1,10 +1,8 @@
 package frc.robot.commands.Macros;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.commands.driveC;
 import frc.robot.subsystems.driveS;
 
 public class autoBalance extends CommandBase{

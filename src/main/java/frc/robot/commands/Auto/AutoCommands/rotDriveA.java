@@ -1,11 +1,8 @@
 package frc.robot.commands.Auto.AutoCommands;
 
-import javax.swing.text.Position;
-
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commands.driveC;
 import frc.robot.subsystems.driveS;
 
 public class rotDriveA extends CommandBase {

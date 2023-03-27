@@ -85,6 +85,8 @@ public class driveS extends SubsystemBase{
     
     tank.tankDrive(left,right);
     SmartDashboard.putNumber("liftPercent", liftS.liftPercent());
+    SmartDashboard.putNumber("leftMCG", MCGleft.get());
+    SmartDashboard.putNumber("rightMCG", MCGright.get());
   }
   public double getDrivePos(){
     if (shifter.get() == true) {
@@ -104,10 +106,22 @@ public class driveS extends SubsystemBase{
     } else {
       gearRatios=1/7.56;
     }
-    double avgEnc = (erFront.getPosition());
-    double rEncValue = avgEnc*gearRatios;
-    double encodervalue = rEncValue*circumfrance;
-    return encodervalue;
+    double ravgEnc = (erFront.getPosition());
+    double rrEncValue = ravgEnc*gearRatios;
+    double rencodervalue = rrEncValue*circumfrance;
+    return rencodervalue;
+  }
+
+  public double getLeftDrivePos(){
+    if (shifter.get() == true) {
+      gearRatios=1/22.67; //7.56:1, 22.67:1
+    } else {
+      gearRatios=1/7.56;
+    }
+    double lavgEnc = (elFront.getPosition());
+    double lrEncValue = lavgEnc*gearRatios;
+    double lencodervalue = lrEncValue*circumfrance;
+    return lencodervalue;
   }
 
   public void resetEncoders() {

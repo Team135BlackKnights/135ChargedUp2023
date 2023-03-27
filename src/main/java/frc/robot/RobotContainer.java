@@ -16,6 +16,7 @@ import frc.robot.commands.Auto.leftGridA;
 import frc.robot.commands.Auto.middleGridA;
 import frc.robot.commands.Auto.rightGridA;
 import frc.robot.commands.Macros.autoBalance;
+import frc.robot.commands.Macros.cubeHeight;
 import frc.robot.commands.Macros.extendLift;
 //import frc.robot.commands.Macros.extendLift;
 import frc.robot.commands.Macros.rotateIntake;
@@ -43,12 +44,14 @@ public class RobotContainer {
   final JoystickButton y1 = new JoystickButton(controller1, RobotMap.ButtonMap.Y);
   final JoystickButton lb1 = new JoystickButton(controller1, RobotMap.ButtonMap.LB);
   final JoystickButton rb1 = new JoystickButton(controller1, RobotMap.ButtonMap.RB);
+
   final JoystickButton a2 = new JoystickButton(controller2, RobotMap.ButtonMap.A);
   final JoystickButton b2 = new JoystickButton(controller2, RobotMap.ButtonMap.B);
   final JoystickButton x2 = new JoystickButton(controller2, RobotMap.ButtonMap.X);
   final JoystickButton y2 = new JoystickButton(controller2, RobotMap.ButtonMap.Y);
   final JoystickButton lb2 = new JoystickButton(controller2, RobotMap.ButtonMap.LB);
   final JoystickButton rb2 = new JoystickButton(controller2, RobotMap.ButtonMap.RB);
+  final JoystickButton rsb2 = new JoystickButton(controller2, RobotMap.ButtonMap.RIGHT_STICK_BUTTON);
   
 
   // The robot's subsystems and commands are defined here...
@@ -72,7 +75,7 @@ public class RobotContainer {
   public RobotContainer() {
     m_Chooser.setDefaultOption("Score High Auto", LeftGrid);
     m_Chooser.addOption("Score High and Charging", MiddleGrid);
-    m_Chooser.addOption("Cycling Auto DO NOT USE", RightGrid);
+    m_Chooser.addOption("Cycling Auto", RightGrid);
     SmartDashboard.putData(m_Chooser);
     _intakeS.setDefaultCommand(new intakeC(_intakeS));
     _driveS.setDefaultCommand(new driveC(_driveS));
@@ -95,10 +98,10 @@ public class RobotContainer {
     a1.whileTrue(new targetCone(_driveS, 1));
     b1.onTrue(new autoBalance(_driveS, 1.5));
 
-    a2.onTrue(new extendLift(_liftS, 69));
     b2.onTrue(new extendLift(_liftS, 1));
     y2.onTrue(new extendLift(_liftS, 2));
-    x2.onTrue(new rotateIntake(_liftS, 3));
+    x2.onTrue(new rotateIntake(_liftS, .85));
+    a2.onTrue(new cubeHeight(_liftS, 100));
   }
 
   /**

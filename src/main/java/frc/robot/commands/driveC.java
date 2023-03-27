@@ -4,11 +4,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.commands.Macros.autoBalance;
 import frc.robot.subsystems.driveS;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class driveC extends CommandBase{
   private final driveS drive;
@@ -30,11 +26,13 @@ public class driveC extends CommandBase{
     if (RobotContainer.controller1.getLeftBumper()) {
       position = false;
       driveS.shifting(position);
+      drive.motorCoast();
     }
 
     if (RobotContainer.controller1.getRightBumper()) {
       position = true;
       driveS.shifting(position);
+      drive.motorBrake();
     }
 
     if (Math.abs(RobotContainer.controller1.getLeftY()) > 0.15 || Math.abs(RobotContainer.controller1.getRightY()) > 0.15) {
