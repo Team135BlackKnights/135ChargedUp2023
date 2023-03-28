@@ -101,7 +101,7 @@ public class RobotContainer {
     b2.onTrue(new extendLift(_liftS, 1));
     y2.onTrue(new extendLift(_liftS, 2));
     x2.onTrue(new rotateIntake(_liftS, .85));
-    a2.onTrue(new cubeHeight(_liftS, 100));
+    lb2.onTrue(new cubeHeight(_liftS, 100));
   }
 
   /**
