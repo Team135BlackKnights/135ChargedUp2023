@@ -13,8 +13,9 @@ public class cubeHeight extends CommandBase {
     double time, tiltPower;
     Timer timer = new Timer();
     PIDController pidController = new PIDController(0.03, 0, 0);
-    public cubeHeight(liftS subsystem, double m_time) {
+    public cubeHeight(liftS subsystem, double m_time/*, double target */) {
         lift = subsystem;
+      //target= m_target;
         time = m_time;
         addRequirements(subsystem);
     }
@@ -35,7 +36,7 @@ public class cubeHeight extends CommandBase {
             isFinished = true;
         }
         
-        tiltPower = pidController.calculate(lift.getIntakePosition(),-16.3);
+        tiltPower = pidController.calculate(lift.getIntakePosition(),-16.3 /*m_target*/);
 
         lift.setTiltPower((tiltPower));
 
