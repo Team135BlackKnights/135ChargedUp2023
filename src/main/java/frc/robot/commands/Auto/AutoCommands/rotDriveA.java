@@ -25,7 +25,7 @@ public class rotDriveA extends CommandBase {
   @Override
   public void initialize() {
     drive.motorCoast();
-    driveS.shifting(Gear);
+    drive.shifting(Gear);
     drive.resetEncoders();
   }
         
@@ -34,7 +34,7 @@ public class rotDriveA extends CommandBase {
     
     double autoDriveSpeed = 1 * pidController.calculate(drive.getRightDrivePos(), Desired);
 
-    drive.tankDrive(-.75*autoDriveSpeed, .75 * autoDriveSpeed);
+    drive.tankDrive(-.79*autoDriveSpeed, .79 * autoDriveSpeed);
 
     SmartDashboard.putNumber("position error", pidController.getPositionError());
     SmartDashboard.putNumber("auto drive speed", autoDriveSpeed);

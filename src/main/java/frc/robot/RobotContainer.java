@@ -14,6 +14,7 @@ import frc.robot.commands.intakeC;
 import frc.robot.commands.liftC;
 import frc.robot.commands.Auto.leftGridA;
 import frc.robot.commands.Auto.middleGridA;
+import frc.robot.commands.Auto.oneScoreA;
 import frc.robot.commands.Auto.rightGridA;
 import frc.robot.commands.Macros.autoBalance;
 import frc.robot.commands.Macros.cubeHeight;
@@ -66,6 +67,7 @@ public class RobotContainer {
   private final Command LeftGrid = new leftGridA(_driveS, _liftS, _intakeS);
   private final Command MiddleGrid = new middleGridA(_driveS, _liftS, _intakeS);
   private final Command RightGrid = new rightGridA(_driveS, _intakeS, _liftS);
+  private final Command oneScoreA = new oneScoreA(_driveS, _liftS, _intakeS);
 
   //private final Command oneScore = new oneScoreA(_driveS);
 
@@ -73,7 +75,8 @@ public class RobotContainer {
  // SendableChooser<Command> m_Chooser2= new SendableChooser<>();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_Chooser.setDefaultOption("Score High Auto", LeftGrid);
+    m_Chooser.setDefaultOption("Score High and Drive", LeftGrid);
+    m_Chooser.addOption("Score High No Drive", oneScoreA);
     m_Chooser.addOption("Score High and Charging", MiddleGrid);
     m_Chooser.addOption("Cycling Auto", RightGrid);
     SmartDashboard.putData(m_Chooser);
@@ -100,6 +103,7 @@ public class RobotContainer {
 
     b2.onTrue(new extendLift(_liftS, 1));
     y2.onTrue(new extendLift(_liftS, 2));
+    lb2.onTrue(new extendLift(_liftS, 3));
     x2.onTrue(new rotateIntake(_liftS, .85));
     a2.onTrue(new cubeHeight(_liftS, 100));
   }

@@ -10,13 +10,18 @@ public class intakeC extends CommandBase{
         intake = subsystem;
         addRequirements(subsystem);
     }
-        public void execute(){
-            if (RobotContainer.controller1.getRawAxis(2)>0){
-                intake.intake.set((RobotContainer.controller1.getLeftTriggerAxis()));
-            } else if (RobotContainer.controller1.getRawAxis(3)>0){
-                intake.intake.set((-RobotContainer.controller1.getRightTriggerAxis()));
-            } else { //later get motor current and when it is at stall current then start passive intake
-                intake.intake.set(-.12);
-            }
+
+    @Override
+    public void execute(){
+        if (RobotContainer.controller1.getRawAxis(2)>0){
+            intake.intake.set((RobotContainer.controller1.getLeftTriggerAxis()));
+        } else if (RobotContainer.controller1.getRawAxis(3)>0){
+            intake.intake.set((-RobotContainer.controller1.getRightTriggerAxis()));
+        } else if (RobotContainer.controller2.getRawAxis(3)>0){
+            intake.intake.set((-RobotContainer.controller2.getRightTriggerAxis()));
+        } else { //later get motor current and when it is at stall current then start passive intake
+            intake.intake.set(-0.12);
         }
+
+    }
 }

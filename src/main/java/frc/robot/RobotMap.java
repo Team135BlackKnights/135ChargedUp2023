@@ -13,7 +13,7 @@ public interface RobotMap {
             BR_ID = 14,        
             shiftSolenoid = 0;
         
-        public final I2C.Port navxPort = I2C.Port.kOnboard;
+        public final I2C.Port navxPort = I2C.Port.kMXP;
     }
 
     public interface Intake {

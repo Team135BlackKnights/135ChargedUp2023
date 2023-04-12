@@ -31,6 +31,10 @@ public class extendLift extends CommandBase{
             Desired = 35;
         } else if (target == 2) {
             Desired = 57;
+        } else if (target == 3) {
+            Desired = 48;
+        } else if (target == 4) {
+            Desired = 18;
         } else {
             Desired = 0;
         }

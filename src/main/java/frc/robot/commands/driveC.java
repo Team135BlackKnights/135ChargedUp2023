@@ -25,13 +25,13 @@ public class driveC extends CommandBase{
     driveS.pCompress.enableDigital();
     if (RobotContainer.controller1.getLeftBumper()) {
       position = false;
-      driveS.shifting(position);
+      drive.shifting(position);
       drive.motorCoast();
     }
 
     if (RobotContainer.controller1.getRightBumper()) {
       position = true;
-      driveS.shifting(position);
+      drive.shifting(position);
       drive.motorBrake();
     }
 
@@ -42,17 +42,20 @@ public class driveC extends CommandBase{
       }
     }
     
-    SmartDashboard.putNumber("NavX Tilt", drive.navx.getRoll());
+    SmartDashboard.putNumber("NavX Tilt", drive.navx.getPitch());
     
     double left = RobotContainer.controller1.getLeftY();
     double right = RobotContainer.controller1.getRightY();
 
     drive.tankDrive(left, right);
 
+    SmartDashboard.putNumber("left drive teleop position", drive.getLeftDrivePos());
+    SmartDashboard.putNumber("right drive teleop position", drive.getRightDrivePos());
+    SmartDashboard.putNumber("drive teleop position", drive.getDrivePos());
     SmartDashboard.putNumber("tx", driveS.limelight.getEntry("tx").getDouble(0.0));
     SmartDashboard.putNumber("tv", driveS.limelight.getEntry("tv").getDouble(0.0));
     SmartDashboard.putNumber("pipeline", driveS.limelight.getEntry("pipeline").getDouble(0.0));
-        
+    SmartDashboard.putNumber("NavX Yaw", drive.navx.getYaw());
   }
   
 }

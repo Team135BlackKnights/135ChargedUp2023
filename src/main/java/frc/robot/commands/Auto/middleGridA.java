@@ -17,11 +17,13 @@ public class middleGridA extends SequentialCommandGroup{
         
         super(
             Commands.sequence(
+
+                new encDriveA(drive, 0, true),
                 new liftA(lift, 2.5, false),
                 new autoIntake(intake, 0.35, true),
                 new liftA(lift, 1.5, true),
-                new encDriveA(drive, -165.03, true),
-                new encDriveA(drive, 65, true), 
+                new encDriveA(drive, -150.03, true),
+                new encDriveA(drive, 60, true), 
                 new autoBalance(drive, 10)
 
             )

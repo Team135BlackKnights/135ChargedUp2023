@@ -83,7 +83,7 @@ public class driveS extends SubsystemBase{
       right = right / 10 * liftS.liftPercent();
     }*/
     
-    tank.tankDrive(left,right);
+    tank.tankDrive(left*0.97,right);
     SmartDashboard.putNumber("liftPercent", liftS.liftPercent());
     SmartDashboard.putNumber("leftMCG", MCGleft.get());
     SmartDashboard.putNumber("rightMCG", MCGright.get());
@@ -155,7 +155,7 @@ public class driveS extends SubsystemBase{
     BackR.burnFlash();
   }
 
-  public static void shifting(boolean position) {
+  public void shifting(boolean position) {
     shifter.set(position);
     SmartDashboard.putBoolean("Gear", shifter.get());
   }

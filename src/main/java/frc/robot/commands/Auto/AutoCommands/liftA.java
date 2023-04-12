@@ -20,7 +20,6 @@ public class liftA extends CommandBase{
   @Override
   public void initialize(){
        timer.start();
-
   }
   @Override
   public void execute(){

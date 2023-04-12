@@ -1,6 +1,7 @@
 package frc.robot.commands.Macros;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.driveS;
@@ -25,6 +26,8 @@ public class autoBalance extends CommandBase{
     @Override
     public void execute() {
 
+        SmartDashboard.putNumber("NavX Tilt Auto", drive.navx.getPitch());
+
         if (Math.abs(RobotContainer.controller1.getRightY()) > 0.2 || Math.abs(RobotContainer.controller1.getLeftY()) > 0.2) {
             isFinished = true;
         }
@@ -33,9 +36,9 @@ public class autoBalance extends CommandBase{
             isFinished = true;
         }
 
-        desiredClimbSpeed = (drive.navx.getRoll() * 0.024);
+        desiredClimbSpeed = (drive.navx.getPitch() * -0.03);
 
-        if (Math.abs(drive.navx.getRoll()) > 6.5) {
+        if (Math.abs(drive.navx.getPitch()) > 6.5) {
             drive.tankDrive(desiredClimbSpeed, desiredClimbSpeed);
             timer.stop();
             timer.reset();

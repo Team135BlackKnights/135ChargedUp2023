@@ -7,7 +7,7 @@ import frc.robot.subsystems.driveS;
 
 public class encDriveA extends CommandBase {
   private final driveS drive;
-  PIDController pidController = new PIDController(.008, .004, 0);
+  PIDController encoderPID = new PIDController(.008, .004/*.003 */, 0);
   public boolean isFinished= false;
 
 
@@ -24,30 +24,35 @@ public class encDriveA extends CommandBase {
   @Override
   public void initialize() {
     drive.motorCoast();
-    driveS.shifting(Gear);
     drive.resetEncoders();
     drive.navx.zeroYaw();
+    drive.shifting(Gear);
   }
         
   @Override 
   public void execute() {
     if (driveS.shifter.get() == Gear) {
-    double autoDriveSpeed = 1 * pidController.calculate(drive.getDrivePos(), Desired);
-    double angleOffset = drive.navx.getYaw();
-    double angleCorrection = angleOffset/90;
+      double autoDriveSpeed = 1 * encoderPID.calculate(drive.getDrivePos(), Desired);
+      if (autoDriveSpeed >= 1) {
+        autoDriveSpeed = 1;
+      } else if (autoDriveSpeed <= -1) {
+        autoDriveSpeed = -1;
+      }
+      double angleOffset = drive.navx.getYaw();
+      double angleCorrection = angleOffset/90;
 
-    drive.tankDrive(((1.0085*.79*autoDriveSpeed) + angleCorrection), .79*autoDriveSpeed);
+      drive.tankDrive( .79*(autoDriveSpeed + angleCorrection), .79*autoDriveSpeed);
 
-    SmartDashboard.putNumber("left drive position", drive.getLeftDrivePos());
-    SmartDashboard.putNumber("right drive position", drive.getRightDrivePos());
-    SmartDashboard.putNumber("position error", pidController.getPositionError());
-    SmartDashboard.putNumber("auto drive speed", autoDriveSpeed);
-    SmartDashboard.putNumber("angle offset", angleOffset);
+      SmartDashboard.putNumber("left drive auto position", drive.getLeftDrivePos());
+      SmartDashboard.putNumber("right drive auto position", drive.getRightDrivePos());
+      SmartDashboard.putNumber("position error", encoderPID.getPositionError());
+      SmartDashboard.putNumber("auto drive speed", autoDriveSpeed);
+      SmartDashboard.putNumber("angle offset", angleOffset);
 
-    if (Math.abs(pidController.getPositionError()) < 1) {
-      isFinished = true;
-    } 
-  }
+      if (Math.abs(encoderPID.getPositionError()) < 1) {
+        isFinished = true;
+      } 
+    }
   }
   @Override
   public void end(boolean interrupted) {
