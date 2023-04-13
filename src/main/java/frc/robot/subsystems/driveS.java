@@ -12,6 +12,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -37,7 +38,7 @@ public class driveS extends SubsystemBase{
   public static RelativeEncoder erBack;
   //public static Gyro gybro = new ADXRS450_Gyro();
 
-  public AHRS navx = new AHRS(RobotMap.Drive.navxPort);
+  public AHRS navx = new AHRS(Port.kUSB);
   public static Compressor pCompress = new Compressor(PneumaticsModuleType.REVPH);  //Digtial I/O,Relay
   public static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight-target");
   MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);

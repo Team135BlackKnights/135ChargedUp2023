@@ -1,7 +1,5 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.I2C;
-
 public interface RobotMap {
 
     public interface Drive {
@@ -11,17 +9,15 @@ public interface RobotMap {
             FR_ID = 13, //
             BL_ID = 12, //
             BR_ID = 14,        
-            shiftSolenoid = 0;
-        
-        public final I2C.Port navxPort = I2C.Port.kMXP;
+            shiftSolenoid = 0; 
     }
 
     public interface Intake {
         // Simple intake. Motor spins vertically opposite of each other.
         public static final int
-            intakeID_1 = 31,
-            BAR_ID=1,
-            BAR2_ID=2;
+            intakeID_1 = 31;
+            //BAR_ID=1,
+           // BAR2_ID=2;
     }
 
     public interface Lift {

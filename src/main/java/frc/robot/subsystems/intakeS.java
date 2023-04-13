@@ -11,7 +11,7 @@ import frc.robot.RobotMap;
 
 public class intakeS extends SubsystemBase {
     public CANSparkMax intake = new CANSparkMax(RobotMap.Intake.intakeID_1, MotorType.kBrushless);
-    public static DoubleSolenoid entrapBar = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.Intake.BAR_ID, RobotMap.Intake.BAR2_ID);
+    //public static DoubleSolenoid entrapBar = new DoubleSolenoid(PneumaticsModuleType.REVPH, RobotMap.Intake.BAR_ID, RobotMap.Intake.BAR2_ID);
 
     public intakeS() {
         intake.setInverted(false);

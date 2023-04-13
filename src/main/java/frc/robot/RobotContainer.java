@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.deployBarC;
+//import frc.robot.commands.deployBarC;
 import frc.robot.commands.driveC;
 import frc.robot.commands.intakeC;
 import frc.robot.commands.liftC;
@@ -97,13 +97,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {      
-    y1.onTrue(new deployBarC(_intakeS));
+   // y1.onTrue(new deployBarC(_intakeS));
     a1.whileTrue(new targetCone(_driveS, 1));
     b1.onTrue(new autoBalance(_driveS, 1.5));
 
     b2.onTrue(new extendLift(_liftS, 1));
     y2.onTrue(new extendLift(_liftS, 2));
-    lb2.onTrue(new extendLift(_liftS, 3));
+    a2.onTrue(new extendLift(_liftS, 3));
     x2.onTrue(new rotateIntake(_liftS, .85));
     lb2.onTrue(new cubeHeight(_liftS, 100));
   }
@@ -120,14 +120,19 @@ public class RobotContainer {
   /*
    * Driver Controls:
    * Drive: Joysticks
-   * Shift: Left/Right Bumpers (Only works if compressor works)
+   * Shift: Left/Right Bumpers
    * Intake: Triggers
-   * Entrapment Bar: Y       (Only works if compressor works)
+   * Entrapment Bar: Y Button  
    * 
    * Manipulator Controls:
    * Lift: Left Joystick
-   * Rotate Intake: Right Joystick
-   * Auto Rotate Intake: X   (Isn't consistent and probably doesn't work) DONT USE
+   * Four Bar In/Out: Right Joystick
+   * Intake: Right Trigger
+   * Auto Four Bar In/Out: X Button
+   * Extend Lift Mid: B Button
+   * Extend Lift High: Y Button
+   * Extend Lift Shelf: A Button
+   * Four Bar Cube Height: Left Bumper
    */
     
  
