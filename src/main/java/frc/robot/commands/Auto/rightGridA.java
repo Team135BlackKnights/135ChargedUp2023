@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Auto.AutoCommands.autoIntake;
 import frc.robot.commands.Auto.AutoCommands.encDriveA;
 import frc.robot.commands.Auto.AutoCommands.waitAuto;
+import frc.robot.commands.Macros.cubeHeight;
 import frc.robot.commands.Macros.extendLift;
 import frc.robot.commands.Macros.rotateIntake;
 import frc.robot.subsystems.driveS;
@@ -24,8 +25,9 @@ public class rightGridA extends SequentialCommandGroup{
                 new waitAuto(0.2),
                 new autoIntake(intake, 0.3, true),
                 new extendLift(lift, 0),
-                new ParallelCommandGroup(new rotateIntake(lift, 1.5), new encDriveA(drive, -190, true), new autoIntake(intake, 3, false)),
-                new ParallelCommandGroup(new rotateIntake(lift, 1.5), new encDriveA(drive, 200, true), new autoIntake(intake, 3, false))
+                new ParallelCommandGroup(new rotateIntake(lift, 1.5), new encDriveA(drive, -177, true), new autoIntake(intake, 7, false))
+                // new autoIntake(intake, .3, false),
+                // new ParallelCommandGroup(new rotateIntake(lift, 1.5), new encDriveA(drive, 200, true), new autoIntake(intake, 3, false))
                 //new extendLift(lift, 1),
                 //new autoIntake(intake, 0.3, true)
                 //new extendLift(lift, 0)

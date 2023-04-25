@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Auto.AutoCommands.autoIntake;
 import frc.robot.commands.Auto.AutoCommands.encDriveA;
 import frc.robot.commands.Auto.AutoCommands.liftA;
+import frc.robot.commands.Macros.extendLift;
 import frc.robot.commands.Macros.rotateIntake;
 //import frc.robot.commands.Macros.extendLift;
 import frc.robot.subsystems.driveS;
@@ -19,7 +20,8 @@ public class leftGridA extends SequentialCommandGroup{
             
                 new encDriveA(drive, 0, false),
                 new autoIntake(intake, 0.5, false),
-                new liftA(lift, 3, false),
+                //new liftA(lift, 3, false),
+                new extendLift(lift, 2),
                 new autoIntake(intake, 1.5, true),
                 new liftA(lift, 3, true),
                 new encDriveA(drive, -150, false),

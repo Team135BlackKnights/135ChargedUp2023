@@ -36,7 +36,7 @@ public class cubeHeight extends CommandBase {
             isFinished = true;
         }
         
-        tiltPower = pidController.calculate(lift.getIntakePosition(),-16.3 /*m_target*/);
+        tiltPower = pidController.calculate(lift.getIntakePosition(),-16.39 /*18.23 to 15.something */) + 0.05;
 
         lift.setTiltPower((tiltPower));
 

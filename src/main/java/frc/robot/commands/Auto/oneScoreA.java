@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Auto.AutoCommands.autoIntake;
 import frc.robot.commands.Auto.AutoCommands.encDriveA;
 import frc.robot.commands.Auto.AutoCommands.liftA;
+import frc.robot.commands.Macros.extendLift;
 import frc.robot.subsystems.driveS;
 import frc.robot.subsystems.liftS;
 import frc.robot.subsystems.intakeS;
@@ -16,9 +17,10 @@ public class oneScoreA extends SequentialCommandGroup {
 
                 new encDriveA(drive, 0, true),
                 new autoIntake(intake, 0.5, false),
-                new liftA(lift, 3, false),
+                //new liftA(lift, 3, false),
+                new extendLift(lift, 2),
                 new autoIntake(intake, 1.5, true),
-                new liftA(lift, 3, true)
+                new liftA(lift, 1.5, true)
             )
         );
                 

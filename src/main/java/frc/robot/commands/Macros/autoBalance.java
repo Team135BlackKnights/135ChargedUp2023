@@ -26,7 +26,7 @@ public class autoBalance extends CommandBase{
     @Override
     public void execute() {
 
-        SmartDashboard.putNumber("NavX Tilt Auto", drive.navx.getPitch());
+        SmartDashboard.putNumber("NavX Tilt Auto", drive.navx.getPitch()-5.3);
 
         if (Math.abs(RobotContainer.controller1.getRightY()) > 0.2 || Math.abs(RobotContainer.controller1.getLeftY()) > 0.2) {
             isFinished = true;
@@ -36,10 +36,10 @@ public class autoBalance extends CommandBase{
             isFinished = true;
         }
 
-        desiredClimbSpeed = (drive.navx.getPitch() * -0.03);
+        desiredClimbSpeed = ((drive.navx.getPitch()-5.3) * -0.028);
 
         if (Math.abs(drive.navx.getPitch()) > 6.5) {
-            drive.tankDrive(desiredClimbSpeed, desiredClimbSpeed);
+            drive.tankDrive(-desiredClimbSpeed, -desiredClimbSpeed);
             timer.stop();
             timer.reset();
         } else {

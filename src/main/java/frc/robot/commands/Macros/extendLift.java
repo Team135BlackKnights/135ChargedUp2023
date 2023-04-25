@@ -28,11 +28,11 @@ public class extendLift extends CommandBase{
         //     Desired = 63.6; //diagonal distance needed to extend
         // } 
         if (target == 1) {
-            Desired = 35;
+            Desired = 31.58;
         } else if (target == 2) {
-            Desired = 57;
+            Desired = 53.33;
         } else if (target == 3) {
-            Desired = 48;
+            Desired = 43.34;
         } else if (target == 4) {
             Desired = 18;
         } else {
@@ -51,7 +51,7 @@ public class extendLift extends CommandBase{
 
         liftSpeed = pidController.calculate(encoderValue, Desired);
 
-        lift.setLiftFeedForward(0.5*liftSpeed);
+        lift.setLiftFeedForward(0.65*liftSpeed);
 
         SmartDashboard.putNumber("lift error", pidController.getPositionError());
 

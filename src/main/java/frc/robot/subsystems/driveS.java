@@ -38,7 +38,7 @@ public class driveS extends SubsystemBase{
   public static RelativeEncoder erBack;
   //public static Gyro gybro = new ADXRS450_Gyro();
 
-  public AHRS navx = new AHRS(Port.kUSB);
+  public AHRS navx = new AHRS(Port.kUSB1);
   public static Compressor pCompress = new Compressor(PneumaticsModuleType.REVPH);  //Digtial I/O,Relay
   public static NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight-target");
   MotorControllerGroup MCGleft = new MotorControllerGroup(FrontL, BackL);

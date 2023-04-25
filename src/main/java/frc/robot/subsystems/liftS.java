@@ -31,7 +31,7 @@ public class liftS extends SubsystemBase {
         leftLift.setIdleMode(IdleMode.kBrake);
         rightLift.setIdleMode(IdleMode.kBrake);
         tilt.setIdleMode(IdleMode.kBrake);
-        tilt.setSmartCurrentLimit(40, 40);
+        tilt.setSmartCurrentLimit(50, 50);
 
         eTilt = tilt.getEncoder();
         eLeftLift = leftLift.getEncoder();
@@ -54,7 +54,7 @@ public class liftS extends SubsystemBase {
 
     public void setLiftFeedForward(double desVel) { //desVel= desired Velocity
         eLiftAverageDist = eLeftLift.getPosition();
-        //double posFeedForward = (0.003 * eLeftLift.getPosition()) + 0.1; // position feed forward
+        double posFeedForward = (0.003 * eLeftLift.getPosition()) + 0.1; // position feed forward
 
 
         if (eTilt.getPosition() > -1) { //wont run unless intake is in
@@ -71,7 +71,7 @@ public class liftS extends SubsystemBase {
                 {   // 
                     desVel = 0;
                 }
-                else if (eLeftLift.getPosition() < 4)
+                else if (eLeftLift.getPosition() < 15)
                 {
                     desVel = desVel * 0.333;
                 }
@@ -80,9 +80,9 @@ public class liftS extends SubsystemBase {
             {   // soft stop on top of travel
                 desVel = 0.1;
             }
-            // if (desVel == 0 && eLeftLift.getPosition() > 4) {
-            //     desVel = posFeedForward;
-            // }
+            if (desVel == 0 && eLeftLift.getPosition() > 4) {
+                desVel = posFeedForward;
+            }
         } else {
             desVel = 0;
         }
@@ -110,11 +110,11 @@ public class liftS extends SubsystemBase {
         }
         if (desSpeed < 0)
         {   // down soft stop
-            if (eTilt.getPosition() < -25/*-23.5*/)
+            if (eTilt.getPosition() < -19/*-23.5*/)
             {   // hard stop
                 desSpeed = 0;  
             }
-            else if (eTilt.getPosition() < -18/*-19.5*/)
+            else if (eTilt.getPosition() < -15/*-19.5*/)
             {   // slow down
                 desSpeed = desSpeed * 0.5;
             }
