@@ -48,7 +48,7 @@ public class driveC extends CommandBase{
 
   if (RobotContainer.jStick_Chooser.getSelected()==true){
      left = RobotContainer.leftJoystick.getRawAxis(4);
-     right = RobotContainer.controller1.getRawAxis(4);
+     right = RobotContainer.rightJoystick.getRawAxis(4);
   }
   else{ 
     left = RobotContainer.controller1.getLeftY();
