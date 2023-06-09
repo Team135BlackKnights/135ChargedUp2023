@@ -47,8 +47,8 @@ public class driveC extends CommandBase{
     SmartDashboard.putNumber("NavX Tilt", drive.navx.getRoll());
 
   if (RobotContainer.jStick_Chooser.getSelected()==true){
-     left = RobotContainer.leftJoystick.getRawAxis(4);
-     right = RobotContainer.rightJoystick.getRawAxis(4);
+     left = RobotContainer.leftJoystick.getRawAxis(1);
+     right = RobotContainer.rightJoystick.getRawAxis(1);
   }
   else{ 
     left = RobotContainer.controller1.getLeftY();

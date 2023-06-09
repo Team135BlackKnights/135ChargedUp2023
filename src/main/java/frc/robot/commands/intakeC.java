@@ -21,10 +21,10 @@ public class intakeC extends CommandBase{
             }
         }
         if (RobotContainer.jStick_Chooser.getSelected()==true){
-            if (RobotContainer.Ltl.getAsBoolean()){
-                intake.intake.set((RobotContainer.leftJoystick.getRawAxis(3)+1/2));
-            } else if (RobotContainer.Lbl.getAsBoolean()){
-                intake.intake.set(-1*Math.abs(RobotContainer.leftJoystick.getRawAxis(3)+1/2));
+            if (RobotContainer.RTrig.getAsBoolean()){
+                intake.intake.set(-1);
+            } else if (RobotContainer.RThumb.getAsBoolean()){
+                intake.intake.set(1);
             } else { //later get motor current and when it is at stall current then start passive intake
                 intake.intake.set(-.1);
             }

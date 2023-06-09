@@ -97,7 +97,7 @@ public class RobotContainer {
     m_Chooser.addOption("Score High and Charging", MiddleGrid);
     m_Chooser.addOption("Cycling Auto DO NOT USE", RightGrid);
     SmartDashboard.putData(m_Chooser);
-    jStick_Chooser.addOption("joystick", true);
+    jStick_Chooser.setDefaultOption("joystick", true);
     jStick_Chooser.addOption("controller", false);
     SmartDashboard.putData(jStick_Chooser);
     _intakeS.setDefaultCommand(new intakeC(_intakeS));
